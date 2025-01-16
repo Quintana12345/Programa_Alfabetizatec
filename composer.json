@@ -1,0 +1,11 @@
+{
+    "name": "tec/alfabetiza",
+    "require": {
+        "phpoffice/phpspreadsheet": "^3.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "Tec\\Alfabetiza\\": "src/"
+        }
+    }
+}
