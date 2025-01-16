@@ -14,4 +14,4 @@ El **Sistema de Apoyo y Registro de Procesos Administrativos y Educativos** tien
 ### Desarrollado por:
 - **TECNM | Campus San Marcos**
 - **Eliezer Solano Martínez**
-- **Yimmi Quintana**
+- **Yimmi Quintana Orteaga**
