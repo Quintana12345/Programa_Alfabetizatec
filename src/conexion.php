@@ -3,7 +3,7 @@
 $host = 'localhost';       // Cambiar si es necesario
 $user = 'root';            // Cambiar si usas otro usuario
 $password = '';            // Cambiar si usas otra contraseña
-$dbname = 'tecnologicos_programa';  // Nombre de la base de datos
+$dbname = 'alfabetizatec';  // Nombre de la base de datos
 
 // Crear la conexión
 $conn = new mysqli($host, $user, $password, $dbname);
