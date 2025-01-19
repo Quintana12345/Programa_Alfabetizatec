@@ -21,7 +21,7 @@
             position: absolute;
             top: 90px;
             left: 10px;
-            background-color: white;
+            background-color: blanco_universal;
             border: 1px solid #ccc;
             border-radius: 5px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -71,7 +71,7 @@
         }
 
         header {
-            color: white;
+            color: blanco_universal;
             text-align: center;
             padding: 20px;
             width: 100%;
@@ -85,9 +85,9 @@
         }
 
         .back-button {
-            background-color: white;
+            background-color: blanco_universal;
             color: #007BFF;
-            border: 2px solid white;
+            border: 2px solid blanco_universal;
             padding: 10px 15px;
             border-radius: 5px;
             cursor: pointer;
@@ -99,12 +99,12 @@
 
         .back-button:hover {
             background-color: #0056b3;
-            color: white;
+            color: blanco_universal;
         }
 
         footer {
             background-color: #007BFF;
-            color: white;
+            color: blanco_universal;
             text-align: center;
             padding: 10px;
             margin-top: auto;
@@ -140,8 +140,8 @@
         }
 
         .menu-item h3 {
-            background-color: var(--tecnm-blue_color);
-            color: white;
+            background-color: var(--azul_TecNM);
+            color: blanco_universal;
             margin: 0;
             padding: 10px;
             font-size: .8rem;
@@ -191,8 +191,8 @@
         }
 
         .menu-item h3 {
-            background-color: var(--tecnm-blue_color);
-            color: white;
+            background-color: var(--azul_TecNM);
+            color: blanco_universal;
             margin: 10px 0;
             padding: 10px;
             font-size: 1rem;
@@ -203,8 +203,8 @@
         .menu-item .details {
             font-size: 0.9rem;
             color: #333;
-            background-color: var(--tecnm-blue_color);
-            color :white;
+            background-color: var(--azul_TecNM);
+            color :blanco_universal;
             border-radius: 5px;
             text-decoration: none
         }

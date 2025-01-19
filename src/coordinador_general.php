@@ -25,7 +25,7 @@
 
         header {
             background-color: #007BFF;
-            color: white;
+            color: blanco_universal;
             padding: 15px;
             text-align: center;
             position: fixed;
@@ -38,7 +38,7 @@
 
         footer {
             background-color: #007BFF;
-            color: white;
+            color: blanco_universal;
             padding: 10px;
             text-align: center;
         }
@@ -72,7 +72,7 @@
             display: none;
             flex-direction: column;
             background-color: #007BFF;
-            color: white;
+            color: blanco_universal;
             position: absolute;
             top: 50px;
             left: 10px;
@@ -81,7 +81,7 @@
         }
 
         .menu a {
-            color: white;
+            color: blanco_universal;
             text-decoration: none;
             padding: 10px;
             margin-bottom: 5px;
@@ -95,7 +95,7 @@
             cursor: pointer;
             padding: 15px;
             background-color: #007BFF;
-            color: white;
+            color: blanco_universal;
             border-radius: 5px;
             position: absolute;
             top: 10px;
@@ -112,7 +112,7 @@
             margin: 20px auto;
             /* Centra la tabla y añade margen superior e inferior */
             border-collapse: collapse;
-            background-color: white;
+            background-color: blanco_universal;
             /* Fondo blanco */
             border-radius: 10px;
             /* Bordes redondeados */

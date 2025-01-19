@@ -62,8 +62,8 @@ text-align: center;
 .cta{
     padding: 1rem;
     border-radius: 1rem;
-    background-color: var(--tecnm-blue_color);
-    color: var(--white);
+    background-color: var(--azul_TecNM);
+    color: var(--blanco_universal);
 }
 .convocatoria{
     display: flex;
