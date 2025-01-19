@@ -22,7 +22,7 @@
         }
         header {
             background-color: #007BFF;
-            color: white;
+            color: blanco_universal;
             text-align: center;
             padding: 20px;
             position: fixed;
@@ -34,7 +34,7 @@
         }
         footer {
             background-color: #007BFF;
-            color: white;
+            color: blanco_universal;
             text-align: center;
             padding: 10px;
             position: absolute;
@@ -98,7 +98,7 @@
         }
         .form-group button {
             background-color: #007BFF;
-            color: white;
+            color: blanco_universal;
             padding: 12px 20px;
             border: none;
             border-radius: 5px;

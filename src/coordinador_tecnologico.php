@@ -18,7 +18,7 @@
             position: absolute;
             top: 90px;
             left: 10px;
-            background-color: white;
+            background-color: blanco_universal;
             border: 1px solid #ccc;
             border-radius: 5px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -74,9 +74,9 @@
 
 
         .back-button {
-            background-color: white;
+            background-color: blanco_universal;
             color: #007BFF;
-            border: 2px solid white;
+            border: 2px solid blanco_universal;
             padding: 10px 15px;
             border-radius: 5px;
             cursor: pointer;
@@ -88,13 +88,13 @@
 
         .back-button:hover {
             background-color: #0056b3;
-            color: white;
+            color: blanco_universal;
         }
 
 
         header {
             background-color: #007BFF;
-            color: white;
+            color: blanco_universal;
             text-align: center;
             padding: 20px;
             width: 100%;
@@ -109,7 +109,7 @@
 
         footer {
             background-color: #007BFF;
-            color: white;
+            color: blanco_universal;
             text-align: center;
             padding: 10px;
 
@@ -183,7 +183,7 @@
 
         .form-group button {
             background-color: #007BFF;
-            color: white;
+            color: blanco_universal;
             padding: 12px 20px;
             border: none;
             border-radius: 5px;

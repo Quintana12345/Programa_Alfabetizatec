@@ -7,12 +7,13 @@
 }
 
 :root {
-  --tecnm-blue_color: #1b386a;
-  --white: #ffffff;
+  --azul_TecNM: #1b386a;
+  --blanco_universal: #ffffff;
+  --vino_sep: #6a1a33;
 }
 .principal_header {
-  background-color: var(--tecnm-blue_color);
-  color: var(--white);
+  background-color: var(--azul_TecNM);
+  color: var(--blanco_universal);
   display: flex;
   justify-content: space-between; /* Cambié para permitir el espacio entre el logo y el menú */
   align-items: center;
@@ -43,7 +44,7 @@
 }
 
 .menu ul li a {
-  color: var(--white);
+  color: var(--blanco_universal);
   text-decoration: none;
   font-size: 1rem;
   font-weight: 500;

@@ -75,7 +75,7 @@ if ($id_tecnologico) {
 
             left: 10px;
 
-            background-color: white;
+            background-color: blanco_universal;
 
             border: 1px solid #ccc;
 
@@ -201,7 +201,7 @@ if ($id_tecnologico) {
 
             background-color: #007BFF;
 
-            color: white;
+            color: blanco_universal;
 
             text-align: center;
 
@@ -363,7 +363,7 @@ if ($id_tecnologico) {
 
             background-color: #007BFF;
 
-            color: white;
+            color: blanco_universal;
 
             padding: 12px 20px;
 
@@ -400,7 +400,7 @@ if ($id_tecnologico) {
 
             border-radius: 1.2rem;
 
-            background-color: white;
+            background-color: blanco_universal;
 
             padding: 2rem;
 
