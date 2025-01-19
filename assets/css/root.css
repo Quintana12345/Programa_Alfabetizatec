@@ -10,6 +10,7 @@
   --azul_TecNM: #1b386a;
   --blanco_universal: #ffffff;
   --vino_sep: #6a1a33;
+  --azul_contraste: #007bff;
 }
 .principal_header {
   background-color: var(--azul_TecNM);
@@ -57,7 +58,19 @@
   background-color: var(--tecnm-blue);
 }
 
-/* Para asegurar que el header no se sobreponga al contenido */
-body {
-  margin: 0;
+
+.btn_submit{
+  padding: 1.3rem;
+  background-color: var(--azul_TecNM);
+  color: var(--blanco_universal);
+  border: none;
+  outline: none;
+  border-radius: 1rem;
+  margin: 1rem;
+}
+
+.btn_submit:hover {
+  background-color: #0056b3; /* Un azul más oscuro */
+  transform: scale(1.1); /* Agranda ligeramente el botón */
+  transition: all .2s ease-in-out;
 }

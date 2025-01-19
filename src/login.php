@@ -21,17 +21,28 @@
         <div class="decorador"></div>
 
         <div class="container_form">
+
+
+            <div></div>
             <!-- Formulario de login -->
-            <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-                <label for="correo">Correo:</label>
-                <input type="email" id="correo" name="correo" required value="<?php echo isset($_POST['correo']) ? htmlspecialchars($_POST['correo']) : ''; ?>">
+            <form class="form_login">
+                <img src="../assets/img/logotipos/alfabetizatec_logo.png" alt="Alfabetizate logo">
 
-                <label for="contra">contra:</label>
-                <input type="password" id="contra" name="contra" required value="<?php echo isset($_POST['correo']) ? htmlspecialchars($_POST['contra']) : ''; ?>">
+                <div class="motivational_message">
+                    ¡Bienvenido! "Cada día es una nueva oportunidad para aprender y crecer."
+                </div>
+                <div class="content_form">
+                    <label  for="correo">Correo:</label>
+                    <input class="input_form" type="email" id="correo" name="correo" required>
+
+                    <label for="Contraseña">Contraseña:</label>
+                    <input class="input_form" type="password" id="Contraseña" name="Contrasena" required>
+                </div>
 
 
-                <button type="submit">Iniciar Sesión</button>
+                <button class="btn_submit" type="submit">Iniciar Sesión</button>
             </form>
+            <div></div>
         </div>
 
 
@@ -47,31 +58,14 @@
         <p>&copy; 2024 ALFABETIZATEC</p>
     </footer>
 
-    <?php
-    // Inicializar el correo ingresado por el usuario
-    $correo = "";
 
-    // Si el formulario ha sido enviado
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Obtener el correo del formulario
-        $correo = $_POST["correo"];
-
-        // Redirigir según el correo electrónico ingresado
-        session_start();
-        $_SESSION['correo'] = $correo;  // Guardar el correo en la sesión
-
-        // Redirección según el correo del usuario
-        if ($correo == 'yimmi.quintan@example.com') {
-            header("Location: coordinador_programa.php");  // Redirigir a coordinador programa
-        } elseif ($correo == 'ramon.jimenez_lopez@example.com') {
-            header("Location: coordinador_nacional.php");  // Redirigir a coordinador nacional
-        } elseif ($correo == 'hugo.agaton@example.com') {
-            header("Location: coordinador_regional.php");  // Redirigir a coordinador regional
-        } else {
-            echo "<script>alert('Correo no reconocido. Acceso denegado.');</script>";
-        }
-    }
-    ?>
+        <script src="../assets/js/sweetalert.js"></script>
+        <script src="../assets/js/jquery.js"></script>
+        <script src="api/auth/login.js"></script>
+        <!-- <script>
+            Swal.fire("SweetAlert2 is working!");
+        </script> -->
 </body>
+
 
 </html>
