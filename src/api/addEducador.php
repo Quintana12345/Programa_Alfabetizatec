@@ -5,18 +5,18 @@ include '../config/conexionDB.php';
 // Verificar si la solicitud es POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    // Recibir los datos del formulario
-    $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : null;
-    $apellido = isset($_POST['apellido']) ? $_POST['apellido'] : null;
-    $curp = isset($_POST['curp']) ? $_POST['curp'] : null;
-    $telefono = isset($_POST['telefono']) ? $_POST['telefono'] : null;
-    $correo = isset($_POST['correo']) ? $_POST['correo'] : null;
-    $correo_inst = isset($_POST['correo_inst']) ? $_POST['correo_inst'] : null;
-    $contrasena = isset($_POST['contrasena']) ? $_POST['contrasena'] : null;
-    $rol_id = isset($_POST['rol_id']) ? $_POST['rol_id'] : null;
-    $puesto = isset($_POST['puesto']) ? $_POST['puesto'] : null;
-    $tipo_participante = isset($_POST['tipo_participante']) ? $_POST['tipo_participante'] : null;
-    $modalidad = isset($_POST['modalidad']) ? $_POST['modalidad'] : null;
+    // Recibir los datos del formulario y asignar cadenas vacías a los campos opcionales
+    $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : '';
+    $apellido = isset($_POST['apellido']) ? $_POST['apellido'] : '';
+    $curp = isset($_POST['curp']) ? $_POST['curp'] : '';
+    $telefono = isset($_POST['telefono']) ? $_POST['telefono'] : '';
+    $correo = isset($_POST['correo']) ? $_POST['correo'] : '';
+    $correo_inst = isset($_POST['correo_inst']) ? $_POST['correo_inst'] : '';
+    $contrasena = isset($_POST['contrasena']) ? $_POST['contrasena'] : '';
+    $rol_id = isset($_POST['rol_id']) ? $_POST['rol_id'] : '';
+    $puesto = isset($_POST['puesto']) ? $_POST['puesto'] : '';
+    $tipo_participante = isset($_POST['tipo_participante']) ? $_POST['tipo_participante'] : '';
+    $modalidad = isset($_POST['modalidad']) ? $_POST['modalidad'] : '';
     $numero_control = isset($_POST['numero_control']) ? $_POST['numero_control'] : '';
     $carrera = isset($_POST['carrera']) ? $_POST['carrera'] : '';
     $id_tecnologico = isset($_POST['id_tecnologico']) ? $_POST['id_tecnologico'] : '';
@@ -74,7 +74,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         $stmt_usuario = $conn->prepare($query_usuario);
-        // Se ajustan los tipos de datos para la inserción: 'sssssiss' (string, string, string, string, string, int, int)
         $stmt_usuario->bind_param('sssssssis', $nombre, $apellido, $curp, $telefono, $correo, $correo_inst, $contrasena_hash, $rol_id, $puesto);
         $stmt_usuario->execute();
 
@@ -82,11 +81,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $id_usuario = $stmt_usuario->insert_id;
 
         // Insertar los datos en la tabla 'educadores' usando el ID del usuario insertado
-        // Ahora ajustamos bind_param correctamente
         $query_educador = "INSERT INTO educadores (id_usuario, tipo_participante, modalidad, numero_control, carrera, id_tecnologico, semestre)
 VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         $stmt_educador = $conn->prepare($query_educador);
+        // Asegurarse de que los tipos de datos coincidan
         $stmt_educador->bind_param('issssii', $id_usuario, $tipo_participante, $modalidad, $numero_control, $carrera, $id_tecnologico, $semestre);
         $stmt_educador->execute();
 

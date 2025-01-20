@@ -249,20 +249,18 @@ session_start();
             $(window).click(function(event) {
                 if ($(event.target).is('.modal')) {
                     $('.modal').fadeOut();
-                }
+                }   
             });
 
             // Procesar formulario de modal_programa
             $('#registrationFormPrograma').submit(function(event) {
                 event.preventDefault();
-                alert('Formulario Programa Enviado');
                 $('#modal_programa').fadeOut();
             });
 
             // Procesar formulario de modal_educador
             $('#registrationFormEducador').submit(function(event) {
                 event.preventDefault();
-                alert('Formulario Educador Enviado');
                 $('#modal_educador').fadeOut();
             });
 
@@ -293,16 +291,41 @@ session_start();
                         var responseJson = JSON.parse(response);
 
                         if (responseJson.success) {
-                            alert('Formulario enviado correctamente');
                             console.log(responseJson.message); // Mostrar mensaje de éxito
+                            Swal.fire({
+                                title: '¡Éxito!',
+                                text: responseJson.message,
+                                icon: 'success',
+                                confirmButtonText: 'Aceptar'
+                            }).then(() => {
+                                // Ocultar el modal después de aceptar el SweetAlert
+                                const modal = document.getElementById('modal_educador'); // Cambiar 'miModal' por el ID de tu modal
+                                const bootstrapModal = bootstrap.Modal.getInstance(modal);
+                                bootstrapModal.hide();
+
+                                // Opcional: reiniciar el formulario
+                                const formulario = document.getElementById('miFormulario'); // Cambiar 'miFormulario' por el ID de tu formulario
+                                formulario.reset();
+                                location.reload(); 
+                            });
                         } else {
-                            alert('Error al enviar el formulario: ' + responseJson.message);
+                            Swal.fire({
+                                title: 'Error',
+                                text: responseJson.message,
+                                icon: 'error',
+                                confirmButtonText: 'Aceptar'
+                            });
                             console.error(responseJson.message); // Mostrar mensaje de error
                         }
                     },
                     error: function(xhr, status, error) {
                         // Manejo de errores de la solicitud AJAX
-                        alert('Hubo un error al enviar el formulario');
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Hubo un problema al procesar la solicitud.',
+                            icon: 'error',
+                            confirmButtonText: 'Aceptar'
+                        });
                         console.error(xhr.responseText); // Ver el error del servidor
                     }
                 });
