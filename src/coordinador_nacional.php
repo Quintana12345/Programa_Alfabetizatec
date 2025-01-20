@@ -35,22 +35,23 @@ session_start();
             <!-- Contenedor de las cards -->
             <div class="cards_container">
                 <!-- Card de vista de regiones -->
-                <div class="card" id="card-regiones">
-                    <h3>Vista de Regiones</h3>
+                <div class="card">
+                    <h3 >Vista de Regiones</h3>
                     <p>Accede a la vista detallada de las diferentes regiones del país.</p>
+                    <div class="card_body ">
+                        <p><strong>¿Qué puedes hacer aquí?</strong></p>
+                        <ul>
+                            <li><strong>Ver todas las regiones:</strong> Obtén una lista completa de las regiones geográficas del país, organizada por estados o áreas.</li>
+                            <li><strong>Consultar detalles por región:</strong> Al seleccionar una región, puedes obtener información específica como el nombre de los tecnológicos, el tipo de institución, los directores y otros datos relevantes.</li>
+                            <li><strong>Visualizar estadísticas:</strong> Puedes ver estadísticas relacionadas con cada región, como el rendimiento de los tecnológicos, el número de estudiantes, y otros indicadores clave.</li>
+                            <li><strong>Acceder a tecnología por región:</strong> Descubre qué tecnológicos pertenecen a cada región y cómo se distribuyen a lo largo del país.</li>
+                        </ul>
+                        <p id="card-regiones"  class="btn btn-primary">Acceder a la vista de regiones</p>
+                    </div>
                 </div>
 
-                <!-- Card de vista de tecnológicos -->
-                <div class="card" id="card-tecnologicos">
-                    <h3>Vista de Tecnológicos</h3>
-                    <p>Consulta información sobre los tecnológicos distribuidos por México.</p>
-                </div>
 
-                <!-- Card de vista de estadísticas -->
-                <div class="card" id="card-estadisticas">
-                    <h3>Vista de Estadísticas</h3>
-                    <p>Obtén las estadísticas más recientes sobre diversos aspectos del país.</p>
-                </div>
+
             </div>
 
         </div>
@@ -74,15 +75,7 @@ session_start();
             window.location.href = './Regiones.php'; // Cambia '/ruta-regiones' por la ruta que desees
         });
 
-        // Redirigir al hacer clic en "Vista de Tecnológicos"
-        $('#card-tecnologicos').click(function() {
-            window.location.href = '/ruta-tecnologicos'; // Cambia '/ruta-tecnologicos' por la ruta que desees
-        });
 
-        // Redirigir al hacer clic en "Vista de Estadísticas"
-        $('#card-estadisticas').click(function() {
-            window.location.href = '/ruta-estadisticas'; // Cambia '/ruta-estadisticas' por la ruta que desees
-        });
     });
 </script>
 

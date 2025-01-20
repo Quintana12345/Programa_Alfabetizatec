@@ -54,12 +54,14 @@
                         // Redirigir al usuario a la página de inicio
                         window.location.href = '/';
                     } else {
-                        alert(data.message || 'Error al cerrar sesión.');
+                        window.location.href = '/';
                     }
                 })
                 .catch(error => {
+                    window.location.href = '/Alfabetizatec/';
                     console.error('Error en la solicitud de logout:', error);
                     alert('Hubo un problema al procesar la solicitud.');
+
                 });
         });
 

@@ -61,3 +61,22 @@ main{
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Incrementa la sombra */
     border-left: 5px solid var(--azul_TecNM); /* Resalta el borde al pasar el cursor */
 }
+
+
+.card_body{
+    padding: 1rem 2rem;
+    flex-direction: column;
+    margin: auto;
+    
+}
+
+
+.card_body ul {
+    margin-bottom: 1rem;
+
+}
+#card-regiones{
+text-align: center;
+text-decoration: underline;
+color: blue;
+}

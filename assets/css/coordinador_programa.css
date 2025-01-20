@@ -1,0 +1,121 @@
+.tec_nombre {
+  text-align: center;
+  width: 100%;
+}
+
+/* Cuando sea escritorio (pantallas más grandes) */
+
+main {
+  background-color: var(--gris_contraste);
+  min-height: 84vh; /* Mínimo 84vh, pero puede crecer según el contenido */
+  justify-content: space-between; /* Distribuye los elementos dentro */
+  align-items: center;
+  width: 100%; /* Asegura que ocupe todo el ancho disponible */
+  max-width: 1500px;
+}
+/* Estilos del modal */
+.modal {
+  display: none; /* Oculto por defecto */
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+  overflow: auto; /* Permite el desplazamiento si el contenido es grande */
+}
+
+/* Contenido del modal */
+.modal-content {
+  background-color: #fff;
+  margin: auto; /* Centrado automático */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 90%;
+  max-width: 500px; /* Limita el ancho máximo del modal */
+  max-height: 90vh; /* Limita la altura del modal */
+  overflow-y: auto; /* Agrega scroll si el contenido es demasiado grande */
+  box-sizing: border-box; /* Asegura que el padding no afecte el tamaño total */
+}
+
+/* Botón de cierre */
+.close {
+  color: #aaa;
+  font-size: 28px;
+  font-weight: bold;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Estilos para el formulario */
+#registrationFormEducador {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 1.8rem 0rem;
+  max-height: 88vh; /* Limita la altura máxima del formulario */
+}
+
+#registrationFormEducador {
+  margin-top: 2rem;
+}
+
+
+.input_grupo {
+  display: flex;
+  flex-direction: column;
+}
+
+.input_grupo input {
+    margin-top: 1rem;
+    border: none;
+    outline:  none;
+    padding: .2rem 0rem;
+    border-bottom: 2px solid var(--azul_TecNM);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 1rem;
+  padding: 1rem;
+  max-width: 45%;
+}
+
+.actions button {
+  max-width: 40%;
+  padding: 1rem 1.4rem;
+  background-color: var(--azul_TecNM);
+  color: var(--blanco_universal);
+  border: none;
+  outline: none;
+  border-radius: 1rem;
+  transition: all 0.3s ease; /* Suaviza el cambio de propiedades */
+}
+
+/* Efecto hover para cambio de color y escala */
+.actions button:hover {
+  background-color: var(
+    --azul_TecNM_hover,
+    #0056b3
+  ); /* Cambia a un azul más oscuro, puedes personalizar el color */
+  transform: scale(1.05); /* Aumenta ligeramente el tamaño del botón */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Agrega sombra para resaltar el botón */
+}
+
+/* Efecto de enfoque (opcional) */
+.actions button:focus {
+  outline: none; /* Quita el borde de enfoque predeterminado */
+  box-shadow: 0 0 10px rgba(0, 120, 255, 0.5); /* Agrega un resplandor azul al enfocarse */
+}
