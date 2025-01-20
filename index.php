@@ -35,8 +35,8 @@ $dotenv->load();
                 <p>Una iniciativa del TecNM y el INEA, que busca transformar vidas mediante la alfabetización y la conclusión de estudios básicos para personas mayores de 15 años.</p>
 
                 <div class="cta">
-                    <button>Descárga la convocatoria </button>
-                    <button>Acceso </button>
+                    <button id="convocatoria">Descárga la convocatoria </button>
+                    <button id="acceso">Acceso</button>
                 </div>
             </div>
         </div>
@@ -61,65 +61,63 @@ $dotenv->load();
         <div class="home_cards">
             <div class="card_landing">
                 <img src="./assets/img/carousel_principal/tec1.png" alt="Noticia tec">
-                <h4>Comienzan los primeros resultados</h4>
-                <span> Hoy, el Tecnológico Nacional de México (TecNM) Minatitlán, en colaboración con el Instituto Veracruzano para la Educación para Adultos (IVEA), llevó a cabo la aplicación de 19 exámenes de acreditación de conocimientos para obtener certificados de primaria y secundaria.</span>
+                <h4>Avances Educativos en TecNM Minatitlán</h4>
+                <span>Con la colaboración del IVEA, el TecNM Minatitlán ha dado un paso importante en la acreditación de conocimientos, beneficiando a 19 personas con certificados de educación básica.</span>
                 <div class="cta"><button type="button">Explorar</button></div>
             </div>
 
             <div class="card_landing">
                 <img src="./assets/img/carousel_principal/tec1.png" alt="Noticia tec">
-                <h4>Comienzan los primeros resultados</h4>
-                <span> Hoy, el Tecnológico Nacional de México (TecNM) Minatitlán, en colaboración con el Instituto Veracruzano para la Educación para Adultos (IVEA), llevó a cabo la aplicación de 19 exámenes de acreditación de conocimientos para obtener certificados de primaria y secundaria.</span>
+                <h4>IVEA y TecNM: Uniendo Fuerzas</h4>
+                <span>Gracias al trabajo conjunto del TecNM y el IVEA, más adultos tienen la oportunidad de certificar sus estudios de primaria y secundaria, reduciendo el rezago educativo en Veracruz.</span>
                 <div class="cta"><button type="button">Explorar</button></div>
             </div>
 
             <div class="card_landing">
                 <img src="./assets/img/carousel_principal/tec1.png" alt="Noticia tec">
-                <h4>Comienzan los primeros resultados</h4>
-                <span> Hoy, el Tecnológico Nacional de México (TecNM) Minatitlán, en colaboración con el Instituto Veracruzano para la Educación para Adultos (IVEA), llevó a cabo la aplicación de 19 exámenes de acreditación de conocimientos para obtener certificados de primaria y secundaria.</span>
+                <h4>Certificados Que Transforman Vidas</h4>
+                <span>El TecNM Minatitlán aplicó exámenes de acreditación, permitiendo que 19 participantes cumplan sus metas educativas y mejoren sus oportunidades laborales.</span>
                 <div class="cta"><button type="button">Explorar</button></div>
             </div>
 
             <div class="card_landing">
                 <img src="./assets/img/carousel_principal/tec1.png" alt="Noticia tec">
-                <h4>Comienzan los primeros resultados</h4>
-                <span> Hoy, el Tecnológico Nacional de México (TecNM) Minatitlán, en colaboración con el Instituto Veracruzano para la Educación para Adultos (IVEA), llevó a cabo la aplicación de 19 exámenes de acreditación de conocimientos para obtener certificados de primaria y secundaria.</span>
+                <h4>Impulso a la Educación Básica</h4>
+                <span>Con acciones concretas como estas, el TecNM e IVEA refuerzan su compromiso con la educación, ofreciendo herramientas esenciales para el desarrollo personal y profesional.</span>
                 <div class="cta"><button type="button">Explorar</button></div>
             </div>
-            
         </div>
+
 
 
 
     </main>
 
     <footer>
-        <?php  include('./src/layout/footer.php') ?>
+        <?php include('./src/layout/footer.php') ?>
     </footer>
 
     <!-- Include Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        const swiper = new Swiper('.swiper-container', {
-            // Optional parameters
-            direction: 'horizontal', // Cambié vertical a horizontal
-            loop: true,
+        // Seleccionar el botón por su ID
+        const accesoButton = document.getElementById('acceso');
 
-            // If we need pagination
-            pagination: {
-                el: '.swiper-pagination',
-            },
+        // Agregar un evento al hacer clic
+        accesoButton.addEventListener('click', () => {
+            // Redirigir al archivo login.php
+            window.location.href = './src/login.php';
+        });
 
-            // Navigation arrows
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
 
-            // And if we need scrollbar
-            scrollbar: {
-                el: '.swiper-scrollbar',
-            },
+
+        // Seleccionamos el botón por su ID
+        const button = document.getElementById('convocatoria');
+
+        // Añadimos un evento de clic al botón
+        button.addEventListener('click', () => {
+            // Redirigimos al archivo PDF
+            window.location.href = 'assets/pdf/Convocatoria_Alfabetiza_TEC_2023.pdf';
         });
     </script>
 </body>
