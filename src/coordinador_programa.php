@@ -54,19 +54,15 @@ session_start();
                 <div class="input_grupo">
                     <label for="id_nivel">Nivel:</label>
                     <select id="id_nivel" name="id_nivel" required>
-                        <option value="1">Básico</option>
-                        <option value="2">Medio Superior</option>
+                        <option value="1">Analfabeta</option>
+                        <option value="2">Inicial</option>
                         <option value="3">Superior</option>
                     </select>
                 </div>
 
                 <div class="input_grupo">
                     <label for="educador">Educador:</label>
-                    <select id="educador" name="educador" required>
-                        <option value="1">Juan</option>
-                        <option value="2">pepe Superior</option>
-                        <option value="3">paco</option>
-                    </select>
+                    <input type="text" id="educador" name="educador" required placeholder="Escribe al educador">
                 </div>
 
                 <div class="input_grupo">
@@ -84,7 +80,7 @@ session_start();
                     <input type="date" id="fin_periodo" name="fin_periodo" required>
                 </div>
 
-                <button type="submit">Enviar</button>
+                <button class="btn_submit">Enviar</button>
             </form>
 
 
@@ -249,7 +245,7 @@ session_start();
             $(window).click(function(event) {
                 if ($(event.target).is('.modal')) {
                     $('.modal').fadeOut();
-                }   
+                }
             });
 
             // Procesar formulario de modal_programa
@@ -306,7 +302,7 @@ session_start();
                                 // Opcional: reiniciar el formulario
                                 const formulario = document.getElementById('miFormulario'); // Cambiar 'miFormulario' por el ID de tu formulario
                                 formulario.reset();
-                                
+
                             });
                         } else {
                             Swal.fire({
@@ -331,6 +327,102 @@ session_start();
                 });
             });
 
+        });
+    </script>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('registrationForm');
+            const modal = document.getElementById('modal_programa');
+            const closeModal = document.querySelector('.close');
+
+            // Cierra el modal cuando se hace clic en el botón de cerrar
+            closeModal.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+
+            // Manejo del envío del formulario mediante AJAX
+            form.addEventListener('submit', async (event) => {
+                event.preventDefault(); // Evita el comportamiento por defecto del formulario
+
+                // Obtén los datos del formulario
+                const formData = new FormData(form);
+
+                // Convertir FormData a objeto simple
+                const data = {};
+                formData.forEach((value, key) => {
+                    data[key] = value;
+                });
+
+                try {
+                    // Enviar datos al servidor mediante fetch
+                    const response = await fetch('./api/addPrograma.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(data), // Enviar datos como JSON
+                    });
+
+                    // Manejar la respuesta del servidor
+                    if (response.ok) {
+                        const result = await response.json();
+                        alert('Formulario enviado con éxito: ' + result.message);
+                        form.reset(); // Limpia el formulario
+                        modal.style.display = 'none'; // Cierra el modal
+                    } else {
+                        const error = await response.json();
+                        alert('Error al enviar el formulario: ' + (error.message || 'Algo salió mal'));
+                    }
+                } catch (err) {
+                    console.error('Error en la solicitud:', err);
+                    alert('Ocurrió un error inesperado al enviar el formulario.');
+                }
+            });
+        });
+    </script>
+
+
+
+
+    <script>
+        //educadores
+        document.addEventListener('DOMContentLoaded', () => {
+            const educadorSelect = document.getElementById('educador');
+            const idTecnologico = 44; // Reemplaza con el ID dinámico del tecnológico
+
+            const cargarEducadores = async () => {
+                try {
+                    const response = await fetch(`./api/getEducadores.php?id_tecnologico=${idTecnologico}`, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    });
+
+                    if (response.ok) {
+                        const educadores = await response.json();
+                        console.log(educadores); // Mostrar los datos de los educadores en la consola
+
+                        educadorSelect.innerHTML = '<option value="">Seleccione un educador</option>';
+
+                        educadores.forEach(educador => {
+                            const option = document.createElement('option');
+                            option.value = educador.id; // ID del educador
+                            option.textContent = `Usuario ${educador.id_usuario} (${educador.modalidad})`;
+                            educadorSelect.appendChild(option);
+                        });
+                    } else {
+                        alert('Error al cargar educadores.');
+                    }
+                } catch (error) {
+                    console.error('Error al cargar educadores:', error);
+                    alert('Error en la conexión.');
+                }
+            };
+
+            // cargarEducadores();
         });
     </script>
 </body>
