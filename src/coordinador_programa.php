@@ -306,7 +306,7 @@ session_start();
                                 // Opcional: reiniciar el formulario
                                 const formulario = document.getElementById('miFormulario'); // Cambiar 'miFormulario' por el ID de tu formulario
                                 formulario.reset();
-                                location.reload(); 
+                                
                             });
                         } else {
                             Swal.fire({
