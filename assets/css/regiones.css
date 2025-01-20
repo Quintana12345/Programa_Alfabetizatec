@@ -1,0 +1,51 @@
+main {
+    padding: 1rem;
+    background-color: var(--gris_contraste);
+  }
+  
+  .container_cards {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+  }
+  
+  .container_map {
+    width: 100%;
+  }
+  
+  .container_map svg {
+    left: -4% !important;
+    position: relative !important;
+  }
+  
+  .card {
+    background-color: var(--blanco_universal);
+    padding: 1rem 3rem;
+    border-bottom: 3px solid var(--azul_TecNM);
+    position: relative;
+    overflow: hidden; /* Asegura que el contenido no se desborde durante la animación */
+    border-radius: .8rem .8rem 0rem 0rem;
+  }
+  
+  .card h3 {
+    text-align: center;
+    color: var(--azul_TecNM); /* Color inicial del texto */
+    transition: color 0.2s ease; /* Transición suave del color del texto */
+  }
+  
+  /* Clase para resaltar la tarjeta */
+  .card-highlight {
+    background-color: var(--azul_TecNM); /* Fondo azul */
+    color: white; /* Texto blanco */
+    border-bottom: 3px solid white; /* Borde inferior blanco */
+    transform: translateY(-10px); /* Movimiento hacia arriba */
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* Transición suave para todos los cambios */
+  }
+  
+
+  .card-highlight h3 {
+    color: var(--blanco_universal); /* Color inicial del texto */
+    transition: color 0.2s ease; /* Transición suave del color del texto */
+  }

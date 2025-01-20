@@ -1,56 +1,140 @@
-header{
-    background-color: var(--azul_TecNM);
-    display: flex;
-    justify-content: space-around;
-    padding: 1rem;
+header {
+  background-color: var(--azul_TecNM);
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem;
 }
 
-header img{
-    width: 10%;
-    max-height: 50px;
-    border-right: 2px solid var(--vino_sep);
-    padding-right: 2rem;
-    
+header img {
+  width: 10%;
+  max-height: 50px;
+  border-right: 2px solid var(--vino_sep);
+  padding-right: 2rem;
 }
 
-.container_form{
-    border: 1px solid red;
+main {
+  display: flex;
+  justify-content: space-around;
+  height: 88vh;
+}
+
+.container_form {
+  width: 40%;
+  display: flex;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.decorador {
+  background-image: url("../img/logotipos/Alas_logo.png");
+  background-size: cover;
+  width: 30%;
+}
+
+.form_login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  border: 3px solid var(--azul_TecNM);
+  border-radius: 1rem;
+  margin: 1rem;
+  padding: 1rem 0rem;
+  max-width: 50vh;
 }
 
 
-main{
-    display: flex;
-    justify-content: space-around;
-    height: 88vh;
+.form_login img {
+  width: 50%;
 }
 
-.container_form{
-    width: 33%;
+.content_form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 1.2rem;
+  font-weight: 600;
+  gap: 1rem;
+  color: var(--azul_TecNM);
+}
 
+.container_form input {
+  border: none;
+  outline: none;
+  border-radius: 0.3rem;
+  border-bottom: 3px solid var(--azul_TecNM);
+  height: 2.4rem;
 }
-.decorador{
-    background-image: url('../img/logotipos/Alas_logo.png');
-    background-size: cover;
-    border: 1px solid green;
-    width: 33%;
+
+.motivational_message {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: var(--azul_TecNM);
+  font-style: italic;
+  animation: fadeIn 2s ease-in-out;
+  padding: 1rem;
+  text-align: center;
 }
- 
+
+.input_form {
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  width: 100%;
+}
+
+.input_form:focus {
+  border-color: var(--azul_contraste);
+  box-shadow: 0 0 10px var(--azul_TecNM);
+}
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
+  header img:nth-child(1) {
+    display: none;
+  }
 
-    header img:nth-child(1){
-        border: 1px solid red;
-        display: none;
-    }
+  header img {
+    width: 30%;
+  }
 
-    header img{
-        width: 30%;
-    }
+  .decorador:nth-child(1) {
+    display: none;
+  }
+  main {
+    flex-direction: column;
+  }
+
+  .container_form {
+    width: 100%;
+  }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
+  /*border: 3px solid pink; */
+}
 
-    border: 3px solid pink;
-} 
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes bounceIn {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

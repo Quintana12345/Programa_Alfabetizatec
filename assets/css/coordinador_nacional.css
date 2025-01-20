@@ -1,0 +1,82 @@
+.hero_cord_nacional {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Ajusta al contenedor padre */
+    min-height: 84vh; /* Mínimo 84vh, pero puede crecer según el contenido */
+    justify-content: space-between; /* Distribuye los elementos dentro */
+    align-items: center;
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+    max-width: 1500px;
+}
+
+
+/* Cuando sea escritorio (pantallas más grandes) */
+@media (min-width: 1024px) {
+    .hero_cord_nacional {
+        flex-direction: row; /* Cambia a disposición en fila */
+    }
+
+    .map_container{
+        width: 60% !important;
+        height: max-content;
+    }
+
+
+    .hero_cord_nacional {
+       
+        align-items: center;
+      
+    }
+   
+    
+}
+main{
+    background-color: var(--gris_contraste);
+    padding: 1rem;
+
+}
+.map_container{
+    width: 85%;
+    height: max-content;
+}
+.cards_container{
+    padding: 1rem;
+    display: flex;
+    gap: 3rem;
+    flex-direction: column;
+}
+
+.card {
+    border-left: 3px solid var(--azul_TecNM);
+    border-radius:0 0.5rem 0.5rem 0rem;
+    padding: 1rem;
+    background-color: var(--blanco_universal);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra inicial */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animación para transformaciones */
+}
+
+/* Animación hover */
+.card:hover {
+    transform: translateY(-5px); /* Eleva la tarjeta ligeramente */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Incrementa la sombra */
+    border-left: 5px solid var(--azul_TecNM); /* Resalta el borde al pasar el cursor */
+}
+
+
+.card_body{
+    padding: 1rem 2rem;
+    flex-direction: column;
+    margin: auto;
+    
+}
+
+
+.card_body ul {
+    margin-bottom: 1rem;
+
+}
+#card-regiones{
+text-align: center;
+text-decoration: underline;
+color: blue;
+}

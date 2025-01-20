@@ -1,3 +1,12 @@
+<?php 
+require_once __DIR__ . '/vendor/autoload.php'; // Asegúrate de incluir el autoload de Composer
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
