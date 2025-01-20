@@ -272,6 +272,42 @@ session_start();
                 alert('Formulario Estudiante Enviado');
                 $('#modal_estudiante').fadeOut();
             });
+
+
+            //envio de educador
+            $('#registrationFormEducador').submit(function(e) {
+                e.preventDefault(); // Evitar que el formulario se envíe de forma tradicional
+
+                // Recopilar los datos del formulario con FormData
+                var formData = new FormData(this); // 'this' es el formulario que ha sido enviado
+
+                // Enviar la solicitud AJAX
+                $.ajax({
+                    url: './api/addEducador.php', // Cambia la URL a la ruta correcta de tu API
+                    type: 'POST',
+                    data: formData,
+                    processData: false, // Importante: No proceses los datos, ya que estamos usando FormData
+                    contentType: false, // Importante: No establezcas el contentType, ya que es autoajustado con FormData
+                    success: function(response) {
+                        // Convertir la respuesta a JSON si es necesario (si el servidor la envía como texto)
+                        var responseJson = JSON.parse(response);
+
+                        if (responseJson.success) {
+                            alert('Formulario enviado correctamente');
+                            console.log(responseJson.message); // Mostrar mensaje de éxito
+                        } else {
+                            alert('Error al enviar el formulario: ' + responseJson.message);
+                            console.error(responseJson.message); // Mostrar mensaje de error
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        // Manejo de errores de la solicitud AJAX
+                        alert('Hubo un error al enviar el formulario');
+                        console.error(xhr.responseText); // Ver el error del servidor
+                    }
+                });
+            });
+
         });
     </script>
 </body>
