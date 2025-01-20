@@ -1,0 +1,75 @@
+/* Estilos generales del nav */
+nav {
+  background-color: var(--azul_TecNM);
+  color: var(--blanco_universal);
+  display: flex;
+  justify-content: space-between; /* Espacio entre logos y menú */
+  align-items: center;
+  padding: 1rem;
+}
+
+nav img {
+  width: 10%;
+  height: 10%;
+  max-height: 80px;
+}
+
+.menu_layout {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.menu_layout img {
+  width: 14%;
+  margin: 0.7rem;
+}
+
+.menu_layout span {
+  margin-right: 0.5rem;
+  font-size: 1rem;
+}
+
+/* Estilos del menú desplegable */
+.dropdown_menu {
+  position: absolute;
+  top: calc(10% + 10px); /* Espaciado debajo del header */
+  right: 1rem; /* Ajusta para alinear con el contenedor */
+  background-color: var(--azul_TecNM);
+  color: var(--blanco_universal);
+  list-style: none;
+  padding: 0.5rem 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.dropdown_menu li {
+  padding: 0.5rem 1rem;
+  text-align: left;
+  cursor: pointer;
+  max-width: 170px;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+
+
+.dropdown_menu li a {
+  text-decoration: none;
+  color: var(--blanco_universal);
+}
+
+.dropdown_menu li:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Clases para ocultar/mostrar */
+.hidden {
+  display: none;
+}
+
+.show {
+  display: block;
+}

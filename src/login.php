@@ -25,7 +25,7 @@
 
             <div></div>
             <!-- Formulario de login -->
-            <form class="form_login">
+            <form class="form_login" id="form_login" method="post">
                 <img src="../assets/img/logotipos/alfabetizatec_logo.png" alt="Alfabetizate logo">
 
                 <div class="motivational_message">
