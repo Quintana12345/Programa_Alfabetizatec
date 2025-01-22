@@ -1,3 +1,5 @@
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <nav class="layout_header">
     <!-- Logotipos -->
     <img src="../assets/img/logotipos/TecNM_Azteca.png" alt="Logotipo TECNM">
@@ -16,7 +18,7 @@
             <a href="#" class="back">Volver</a>
         </li>
         <li>
-            <img src="../assets/img/svg/logout.svg" alt="volver icono">
+            <img src="../assets/img/svg/logout.svg" alt="cerrar icono">
             <a href="#" class="logout">Cerrar Sesión</a>
         </li>
     </ul>
@@ -32,38 +34,31 @@
 
         // Mostrar/Ocultar el menú desplegable
         menuLayout.addEventListener('click', () => {
-            console.log("click")
             dropdownMenu.classList.toggle('hidden');
             dropdownMenu.classList.toggle('show');
         });
 
         // Cerrar sesión
+        // Cerrar sesión
         logoutLink.addEventListener('click', (event) => {
             event.preventDefault(); // Prevenir comportamiento predeterminado
 
-            // Realizar la solicitud AJAX al endpoint de logout
-            fetch('/ruta/a/logout.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        // Redirigir al usuario a la página de inicio
-                        window.location.href = '/';
-                    } else {
-                        window.location.href = '/';
-                    }
-                })
-                .catch(error => {
-                    window.location.href = '/Alfabetizatec/';
-                    console.error('Error en la solicitud de logout:', error);
-                    alert('Hubo un problema al procesar la solicitud.');
+            // Destruir sesión automáticamente y mostrar toast
+            Swal.fire({
+                toast: true,
+                position: 'top-end',
+                icon: 'success',
+                title: 'Sesión cerrada',
+                showConfirmButton: false,
+                timer: 1000 // Mostrar el toast durante 2 segundos
+            });
 
-                });
+            // Redirigir al login después del tiempo del toast
+            setTimeout(() => {
+                window.location.href = './login.php';
+            }, 1200); // Redirigir 1 segundo después del cierre del toast
         });
+
 
         // Volver
         backLink.addEventListener('click', (event) => {

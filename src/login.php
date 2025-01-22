@@ -1,3 +1,16 @@
+<?php
+// Iniciar la sesión
+session_start();
+
+// Destruir toda la data de sesión
+session_unset(); // Elimina todas las variables de sesión
+session_destroy(); // Destruye la sesión actual
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -32,7 +45,7 @@
                     ¡Bienvenido! "Cada día es una nueva oportunidad para aprender y crecer."
                 </div>
                 <div class="content_form">
-                    <label  for="correo">Correo:</label>
+                    <label for="correo">Correo:</label>
                     <input class="input_form" type="email" id="correo" name="correo" required>
 
                     <label for="Contraseña">Contraseña:</label>
@@ -59,10 +72,10 @@
     </footer>
 
 
-        <script src="../assets/js/sweetalert.js"></script>
-        <script src="../assets/js/jquery.js"></script>
-        <script src="api/auth/login.js"></script>
-        <!-- <script>
+    <script src="../assets/js/sweetalert.js"></script>
+    <script src="../assets/js/jquery.js"></script>
+    <script src="api/auth/login.js"></script>
+    <!-- <script>
             Swal.fire("SweetAlert2 is working!");
         </script> -->
 </body>

@@ -65,7 +65,6 @@ session_start();
 
 
 <script src="../assets/js/jquery.js"></script>
-<script src="./utilidades/logout.js"></script>
 
 
 <script>

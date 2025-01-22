@@ -11,6 +11,8 @@ session_start();
     <link rel="stylesheet" href="../assets/css/root.css">
     <link rel="stylesheet" href="../assets/css/layout/header.css">
     <link rel="stylesheet" href="../assets/css/coordinador_programa.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+
 
 </head>
 
@@ -30,6 +32,30 @@ session_start();
             <button class="btn_submit_educador">Registrar educador </button>
             <button class="btn_submit_programa">Nuevo Programa </button>
             <button class="btn_submit_estudiante">Agregar Estudiante </button>
+        </div>
+
+
+        <div class="datos_tec">
+
+            <div class="info">
+                <h4>Programas:</h4>
+                <div id="Programas_tec"></div>
+            </div>
+
+
+            <div class="info">
+                <h4>Estudiantes:</h4>
+                <div id="Estudiantes_tec">
+                </div>
+
+
+            </div>
+
+            <div class="info">
+                <h4>Educadores:</h4>
+                <div id="Educadores_tec"></div>
+            </div>
+
         </div>
 
 
@@ -62,8 +88,11 @@ session_start();
 
                 <div class="input_grupo">
                     <label for="educador">Educador:</label>
-                    <input type="text" id="educador" name="educador" required placeholder="Escribe al educador">
+                    <select id="educadorSelect" name="educador" required>
+                        <option value="">Selecciona un educador</option> <!-- Opción por defecto -->
+                    </select>
                 </div>
+
 
                 <div class="input_grupo">
                     <label for="meta">Meta:</label>
@@ -145,6 +174,8 @@ session_start();
                     </select>
                 </div>
 
+                <input type="text" id="id_tec" name="id_tecnologico" value="<?php echo isset($_SESSION['id_tecnologico']) ? $_SESSION['id_tecnologico'] : ''; ?>">
+
 
                 <div class="input_grupo">
                     <label for="modalidad">Modalidad:</label>
@@ -184,247 +215,70 @@ session_start();
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2>Formulario de Registro - Estudiante</h2>
-            <form id="registrationFormEstudiante">
-                <!-- Campos del formulario aquí -->
-                <button type="submit">Enviar</button>
+            <form id="registrationFormEstudiante" class="formulario_registro">
+                <!-- Grupo para el campo de nombre -->
+                <div class="input_grupo">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" name="nombre" required maxlength="255">
+                </div>
+
+                <!-- Grupo para el campo de apellidos -->
+                <div class="input_grupo">
+                    <label for="apellidos">Apellidos:</label>
+                    <input type="text" name="apellidos" required maxlength="255">
+                </div>
+
+                <!-- Grupo para el campo de domicilio -->
+                <div class="input_grupo">
+                    <label for="domicilio">Domicilio:</label>
+                    <input type="text" name="domicilio" required maxlength="255">
+                </div>
+
+                <!-- Grupo para el campo de CURP -->
+                <div class="input_grupo">
+                    <label for="curp">CURP:</label>
+                    <input type="text" name="curp" required maxlength="18" pattern="[A-Z0-9]{18}">
+                </div>
+
+                <!-- Grupo para el campo de teléfono -->
+                <div class="input_grupo">
+                    <label for="telefono">Teléfono:</label>
+                    <input type="tel" name="telefono" required pattern="[0-9]{10}" maxlength="10">
+                </div>
+
+                <!-- Grupo para el campo de correo -->
+                <div class="input_grupo">
+                    <label for="correo">Correo:</label>
+                    <input type="email" name="correo">
+                </div>
+
+                <div class="input_grupo">
+                    <label for="programa_estudiante">Programa:</label>
+                    <select id="programa_estudiante" name="programa_estudiante" required>
+                        <option value="">Selecciona un programa</option> <!-- Opción por defecto -->
+                    </select>
+                </div>
+
+                
+
+
+
+                <!-- Botón para enviar el formulario -->
+                <button class="btn_submit" type="submit">Enviar</button>
             </form>
         </div>
     </div>
+
     <script src="../assets/js/sweetalert.js"></script>
     <script src="../assets/js/jquery.js"></script>
     <script src="api/auth/login.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 
-
-    <script>
-        $(document).ready(function() {
-
-            //formulario dinamico educador
-            // Mostrar campos adicionales si se selecciona "Estudiante"
-            $('#tipo_participante').change(function() {
-                if ($(this).val() === 'estudiante') {
-                    $('#grupo_numero_control').show();
-                    $('#grupo_carrera').show();
-                    $('#grupo_semestre').show();
-                } else {
-                    $('#grupo_numero_control').hide();
-                    $('#grupo_carrera').hide();
-                    $('#grupo_semestre').hide();
-                }
-            });
-
-            // Opcional: Asegurarse de que los campos estén ocultos al cargar la página
-            if ($('#tipo_participante').val() !== 'estudiante') {
-                $('#grupo_numero_control').hide();
-                $('#grupo_carrera').hide();
-                $('#grupo_semestre').hide();
-            }
-            //fin educador
-
-
-            // Mostrar modal_programa al hacer clic en el botón
-            $('.btn_submit_programa').click(function() {
-                $('#modal_programa').fadeIn();
-            });
-
-            // Mostrar modal_educador al hacer clic en el botón
-            $('.btn_submit_educador').click(function() {
-                $('#modal_educador').fadeIn();
-            });
-
-            // Mostrar modal_estudiante al hacer clic en el botón
-            $('.btn_submit_estudiante').click(function() {
-                $('#modal_estudiante').fadeIn();
-            });
-
-            // Cerrar modal_programa
-            $('.close').click(function() {
-                $(this).closest('.modal').fadeOut();
-            });
-
-            // Si el usuario hace clic fuera del modal, lo cierra
-            $(window).click(function(event) {
-                if ($(event.target).is('.modal')) {
-                    $('.modal').fadeOut();
-                }
-            });
-
-            // Procesar formulario de modal_programa
-            $('#registrationFormPrograma').submit(function(event) {
-                event.preventDefault();
-                $('#modal_programa').fadeOut();
-            });
-
-            // Procesar formulario de modal_educador
-            $('#registrationFormEducador').submit(function(event) {
-                event.preventDefault();
-                $('#modal_educador').fadeOut();
-            });
-
-            // Procesar formulario de modal_estudiante
-            $('#registrationFormEstudiante').submit(function(event) {
-                event.preventDefault();
-                alert('Formulario Estudiante Enviado');
-                $('#modal_estudiante').fadeOut();
-            });
-
-
-            //envio de educador
-            $('#registrationFormEducador').submit(function(e) {
-                e.preventDefault(); // Evitar que el formulario se envíe de forma tradicional
-
-                // Recopilar los datos del formulario con FormData
-                var formData = new FormData(this); // 'this' es el formulario que ha sido enviado
-
-                // Enviar la solicitud AJAX
-                $.ajax({
-                    url: './api/addEducador.php', // Cambia la URL a la ruta correcta de tu API
-                    type: 'POST',
-                    data: formData,
-                    processData: false, // Importante: No proceses los datos, ya que estamos usando FormData
-                    contentType: false, // Importante: No establezcas el contentType, ya que es autoajustado con FormData
-                    success: function(response) {
-                        // Convertir la respuesta a JSON si es necesario (si el servidor la envía como texto)
-                        var responseJson = JSON.parse(response);
-
-                        if (responseJson.success) {
-                            console.log(responseJson.message); // Mostrar mensaje de éxito
-                            Swal.fire({
-                                title: '¡Éxito!',
-                                text: responseJson.message,
-                                icon: 'success',
-                                confirmButtonText: 'Aceptar'
-                            }).then(() => {
-                                // Ocultar el modal después de aceptar el SweetAlert
-                                const modal = document.getElementById('modal_educador'); // Cambiar 'miModal' por el ID de tu modal
-                                const bootstrapModal = bootstrap.Modal.getInstance(modal);
-                                bootstrapModal.hide();
-
-                                // Opcional: reiniciar el formulario
-                                const formulario = document.getElementById('miFormulario'); // Cambiar 'miFormulario' por el ID de tu formulario
-                                formulario.reset();
-
-                            });
-                        } else {
-                            Swal.fire({
-                                title: 'Error',
-                                text: responseJson.message,
-                                icon: 'error',
-                                confirmButtonText: 'Aceptar'
-                            });
-                            console.error(responseJson.message); // Mostrar mensaje de error
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        // Manejo de errores de la solicitud AJAX
-                        Swal.fire({
-                            title: 'Error',
-                            text: 'Hubo un problema al procesar la solicitud.',
-                            icon: 'error',
-                            confirmButtonText: 'Aceptar'
-                        });
-                        console.error(xhr.responseText); // Ver el error del servidor
-                    }
-                });
-            });
-
-        });
-    </script>
-
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const form = document.getElementById('registrationForm');
-            const modal = document.getElementById('modal_programa');
-            const closeModal = document.querySelector('.close');
-
-            // Cierra el modal cuando se hace clic en el botón de cerrar
-            closeModal.addEventListener('click', () => {
-                modal.style.display = 'none';
-            });
-
-            // Manejo del envío del formulario mediante AJAX
-            form.addEventListener('submit', async (event) => {
-                event.preventDefault(); // Evita el comportamiento por defecto del formulario
-
-                // Obtén los datos del formulario
-                const formData = new FormData(form);
-
-                // Convertir FormData a objeto simple
-                const data = {};
-                formData.forEach((value, key) => {
-                    data[key] = value;
-                });
-
-                try {
-                    // Enviar datos al servidor mediante fetch
-                    const response = await fetch('./api/addPrograma.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(data), // Enviar datos como JSON
-                    });
-
-                    // Manejar la respuesta del servidor
-                    if (response.ok) {
-                        const result = await response.json();
-                        alert('Formulario enviado con éxito: ' + result.message);
-                        form.reset(); // Limpia el formulario
-                        modal.style.display = 'none'; // Cierra el modal
-                    } else {
-                        const error = await response.json();
-                        alert('Error al enviar el formulario: ' + (error.message || 'Algo salió mal'));
-                    }
-                } catch (err) {
-                    console.error('Error en la solicitud:', err);
-                    alert('Ocurrió un error inesperado al enviar el formulario.');
-                }
-            });
-        });
-    </script>
+    <script src="./utilidades/coordinador_programa.js"></script>
 
 
 
 
-    <script>
-        //educadores
-        document.addEventListener('DOMContentLoaded', () => {
-            const educadorSelect = document.getElementById('educador');
-            const idTecnologico = 44; // Reemplaza con el ID dinámico del tecnológico
-
-            const cargarEducadores = async () => {
-                try {
-                    const response = await fetch(`./api/getEducadores.php?id_tecnologico=${idTecnologico}`, {
-                        method: 'GET',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                    });
-
-                    if (response.ok) {
-                        const educadores = await response.json();
-                        console.log(educadores); // Mostrar los datos de los educadores en la consola
-
-                        educadorSelect.innerHTML = '<option value="">Seleccione un educador</option>';
-
-                        educadores.forEach(educador => {
-                            const option = document.createElement('option');
-                            option.value = educador.id; // ID del educador
-                            option.textContent = `Usuario ${educador.id_usuario} (${educador.modalidad})`;
-                            educadorSelect.appendChild(option);
-                        });
-                    } else {
-                        alert('Error al cargar educadores.');
-                    }
-                } catch (error) {
-                    console.error('Error al cargar educadores:', error);
-                    alert('Error en la conexión.');
-                }
-            };
-
-            // cargarEducadores();
-        });
-    </script>
 </body>
 
 </html>

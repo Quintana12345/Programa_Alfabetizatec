@@ -33,6 +33,22 @@ $(document).ready(function () {
 
           console.log(response);
 
+          // Guardar datos en localStorage
+          localStorage.setItem("user_id", response.user.id);
+          localStorage.setItem("user_nombre", response.user.nombre);
+          localStorage.setItem("user_apellido", response.user.apellido);
+          localStorage.setItem("user_correo", response.user.correo);
+          localStorage.setItem("user_rol_id", response.user.rol_id);
+          localStorage.setItem("tecnologico_id", response.user.id_tecnologico);
+          localStorage.setItem("id_region", response.user.id_region);
+          localStorage.setItem("nombre_region", response.user.nombre_region); // Guardar nombre de la región
+
+          
+          localStorage.setItem(
+            "tecnologico_nombre",
+            response.user.nombre_tecnologico
+          );
+
           // Redirigir según el rol usando switch
           let redirectUrl = "/"; // Ruta por defecto si no se encuentra el rol
           console.log(response.user.rol_id);
@@ -42,7 +58,7 @@ $(document).ready(function () {
               redirectUrl = "coordinador_nacional.php"; // Ruta para el panel de administración
               break;
             case 2:
-              redirectUrl = "coordinador_regional.php"; // Ruta para el panel de administración
+              redirectUrl = `vista_region.php?region=${response.user.nombre_region}`;
               break;
             case 3:
               redirectUrl = "coordinador_programa.php"; // Ruta para el panel de administración
@@ -58,7 +74,7 @@ $(document).ready(function () {
           // Redirigir después de 2 segundos
           setTimeout(() => {
             window.location.href = redirectUrl; // Usamos la ruta determinada por el rol
-          }, 2000);
+          }, 1200);
         } else {
           // Mostrar mensaje de error si no es exitoso
           console.log("Error: ", response);

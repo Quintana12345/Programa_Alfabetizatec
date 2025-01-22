@@ -24,7 +24,7 @@ $dotenv->load();
 
 <body>
     <header class="principal_header">
-        <img src="./assets/img/logotipos/sep.png" alt="Logotipo SEP">
+        <img src="./assets/img/logotipos/alfabetizatec_icon.png" alt="Logotipo SEP">
         <img src="./assets/img/logotipos/TecNM_Azteca.png" alt="Logotipo TECNM">
         <img src="./assets/img/logotipos/inea_blanco.png" alt="Logotipo INEA">
     </header>

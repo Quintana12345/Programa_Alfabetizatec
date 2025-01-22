@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Respuesta exitosa
         echo json_encode([
             'success' => true,
-            'message' => 'Programa insertado correctamente.'
+            'message' => 'Programa registrado correctamente.'
         ]);
     } catch (Exception $e) {
         // En caso de error, revertir la transacción
