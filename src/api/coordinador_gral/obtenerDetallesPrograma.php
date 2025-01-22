@@ -77,7 +77,27 @@ WHERE s.id_programa = ?
         // Agregar la lista de estudiantes al programa
         $programa['estudiantes'] = $estudiantes;
 
-        // Enviar la respuesta JSON con los detalles del programa y los estudiantes
+        // Consulta para obtener todas las solicitudes asociadas al programa
+        $querySolicitudes = "
+            SELECT id, status, id_programa, id_estudiante, fecha
+            FROM solicitudes
+            WHERE id_programa = ?
+        ";
+
+        $stmtSolicitudes = $conn->prepare($querySolicitudes);
+        $stmtSolicitudes->bind_param("i", $programaId); // Bindeamos el id del programa
+        $stmtSolicitudes->execute();
+        $resultSolicitudes = $stmtSolicitudes->get_result();
+
+        $solicitudes = [];
+        while ($solicitud = $resultSolicitudes->fetch_assoc()) {
+            $solicitudes[] = $solicitud; // Almacenamos cada solicitud en un array
+        }
+
+        // Agregar la lista de solicitudes al programa
+        $programa['solicitudes'] = $solicitudes;
+
+        // Enviar la respuesta JSON con los detalles del programa, estudiantes y solicitudes
         echo json_encode([
             'success' => true,
             'data' => $programa

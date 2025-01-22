@@ -7,10 +7,13 @@ include '../config/conexionDB.php';
 $response = [
     'status' => false,
     'message' => 'Método no permitido o error en la solicitud',
-    'data' => []
+    'data' => [],
+    'recordsTotal' => 0,  // Total de registros sin filtros
+    'recordsFiltered' => 0  // Total de registros después del filtro (si aplica)
 ];
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    // Obtener el id_tecnologico desde los parámetros de la solicitud
     $id_tecnologico = isset($_GET['id_tecnologico']) ? intval($_GET['id_tecnologico']) : 0;
 
     if ($id_tecnologico === 0) {
@@ -18,6 +21,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         echo json_encode($response);
         exit;
     }
+
+    // Obtener el parámetro de paginación
+    $start = isset($_GET['start']) ? intval($_GET['start']) : 0;
+    $length = isset($_GET['length']) ? intval($_GET['length']) : 10;
 
     // Obtener la conexión a la base de datos utilizando la clase Database
     $conn = Database::getConnection();
@@ -28,14 +35,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         exit;
     }
 
-    // Consulta SQL para obtener los docentes y sus detalles de nombre y apellido
-    $sql = "SELECT e.id, e.id_usuario, e.modalidad, u.nombre, u.apellido 
+    // Consulta para obtener el total de educadores para la paginación
+    $countSql = "SELECT COUNT(*) as total 
+                 FROM educadores e
+                 WHERE e.id_tecnologico = ? AND e.tipo_participante = 'Docente'";
+
+    $stmt = $conn->prepare($countSql);
+    $stmt->bind_param('i', $id_tecnologico);
+    $stmt->execute();
+    $countResult = $stmt->get_result();
+    $countRow = $countResult->fetch_assoc();
+    $response['recordsTotal'] = $countRow['total'];
+    $response['recordsFiltered'] = $response['recordsTotal'];  // Por defecto, sin filtros adicionales
+
+    // Consulta SQL para obtener los educadores y los detalles de la tabla usuarios (correo, telefono)
+    $sql = "SELECT e.id, e.id_usuario, e.modalidad, u.nombre, u.apellido, u.correo, u.telefono
             FROM educadores e
             INNER JOIN usuarios u ON e.id_usuario = u.id
-            WHERE e.id_tecnologico = ? AND e.tipo_participante = 'Docente'";
+            WHERE e.id_tecnologico = ? AND e.tipo_participante = 'Docente'
+            LIMIT ?, ?";
 
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param('i', $id_tecnologico);
+    $stmt->bind_param('iii', $id_tecnologico, $start, $length);  // Pagina los resultados
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -46,7 +67,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             'id_usuario' => $row['id_usuario'],
             'nombre' => $row['nombre'],
             'apellido' => $row['apellido'],
-            'modalidad' => $row['modalidad']
+            'modalidad' => $row['modalidad'],
+            'correo' => $row['correo'],  // Agregamos el correo
+            'telefono' => $row['telefono']  // Agregamos el telefono
         ];
     }
 

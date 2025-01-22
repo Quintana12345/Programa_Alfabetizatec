@@ -1,0 +1,161 @@
+/* ======== Estilos generales ======== */
+
+/* Centrado y ajuste del título del tecnológico */
+.tec_nombre {
+  text-align: center;
+  width: 100%;
+}
+
+/* ======== Estilos para el contenedor principal ======== */
+
+/* Configuración de fondo y distribución en pantallas grandes */
+main {
+  background-color: var(--gris_contraste); /* Fondo con color de contraste */
+  min-height: 84vh; /* Altura mínima para cubrir la mayor parte de la ventana */
+  justify-content: space-between; /* Espaciado uniforme entre elementos internos */
+  align-items: center; /* Centra los elementos verticalmente */
+  width: 100%; /* Ocupa todo el ancho disponible */
+  max-width: 1500px; /* Ancho máximo del contenedor */
+}
+
+/* ======== Estilos del modal ======== */
+
+/* Configuración del modal (pantalla completa, oculto por defecto) */
+.modal {
+  display: none; /* Oculto inicialmente */
+  position: fixed; /* Fijo en la pantalla */
+  z-index: 1; /* Asegura que esté sobre otros elementos */
+  left: 0;
+  top: 0;
+  width: 100%; /* Ocupa todo el ancho de la pantalla */
+  height: 100%; /* Ocupa toda la altura de la pantalla */
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+  overflow: auto; /* Permite desplazamiento si el contenido excede */
+}
+
+/* Estilos del contenido interno del modal */
+.modal-content {
+  background-color: #fff; /* Fondo blanco */
+  margin: auto; /* Centrado horizontal */
+  padding: 20px;
+  border: 1px solid #888; /* Borde gris */
+  width: 90%; /* Ocupa el 90% del ancho disponible */
+  max-width: 500px; /* Ancho máximo del contenido */
+  max-height: 90vh; /* Altura máxima para evitar desbordamiento */
+  overflow-y: auto; /* Scroll vertical si es necesario */
+  box-sizing: border-box; /* Incluye padding y borde en el tamaño total */
+}
+
+/* Botón de cierre del modal */
+.close {
+  color: #aaa; /* Color inicial */
+  font-size: 28px; /* Tamaño grande */
+  font-weight: bold; /* Negrita */
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+
+/* Efectos al pasar el mouse o enfocar el botón de cierre */
+.close:hover,
+.close:focus {
+  color: black; /* Cambia a negro al interactuar */
+  text-decoration: none; /* Sin subrayado */
+  cursor: pointer; /* Cambia el cursor a una mano */
+}
+
+/* ======== Estilos para formularios ======== */
+
+/* Configuración general del formulario de registro */
+#registrationFormEducador {
+  display: flex;
+  flex-direction: column; /* Ordena los elementos en columna */
+  justify-content: center; /* Centra verticalmente */
+  gap: 0.6rem; /* Espaciado entre elementos */
+  padding: 1.8rem 0; /* Espaciado interno */
+  max-height: 88vh; /* Limita la altura máxima */
+  margin-top: 2rem; /* Margen superior adicional */
+}
+
+/* Estilos para los grupos de entrada dentro del formulario */
+.input_grupo {
+  display: flex;
+  flex-direction: column; /* Alineación vertical */
+}
+
+.input_grupo input {
+  margin-top: 1rem; /* Espaciado superior */
+  border: none; /* Sin borde inicial */
+  outline: none; /* Sin borde al enfocar */
+  padding: 0.2rem 0; /* Espaciado interno */
+  border-bottom: 2px solid var(--azul_TecNM); /* Borde inferior personalizado */
+}
+
+/* ======== Estilos para acciones y botones ======== */
+
+/* Contenedor de acciones */
+.actions {
+  display: flex;
+  flex-wrap: wrap; /* Permite que los elementos se ajusten */
+  flex-direction: row; /* Alineación horizontal */
+  gap: 1rem; /* Espaciado entre botones */
+  padding: 1rem; /* Espaciado interno */
+  max-width: 25%; /* Ancho máximo para no ocupar toda la pantalla */
+}
+
+/* Botones dentro de las acciones */
+.actions button {
+  max-width: 40%; /* Ancho máximo de cada botón */
+  min-width: 110px;
+  padding: 1rem 1.4rem; /* Espaciado interno */
+  background-color: var(--azul_TecNM); /* Fondo principal del botón */
+  color: var(--blanco_universal); /* Texto en blanco */
+  border: none; /* Sin bordes */
+  outline: none; /* Sin contorno */
+  border-radius: 1rem; /* Bordes redondeados */
+  transition: all 0.3s ease; /* Suaviza los cambios de estilo */
+}
+
+/* Efectos al pasar el mouse sobre los botones */
+.actions button:hover {
+  background-color: var(--azul_TecNM_hover, #0056b3); /* Fondo más oscuro */
+  transform: scale(1.05); /* Aumenta ligeramente el tamaño */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Agrega una sombra */
+}
+
+/* Efectos al enfocar los botones */
+.actions button:focus {
+  outline: none; /* Sin borde por defecto */
+  box-shadow: 0 0 10px rgba(0, 120, 255, 0.5); /* Resplandor azul */
+}
+.formulario_registro {
+  display: flex;
+  flex-direction: column; /* Ordena los elementos en columna */
+  justify-content: center; /* Centra verticalmente */
+  gap: 0.6rem; /* Espaciado entre elementos */
+  padding: 1.8rem 0; /* Espaciado interno */
+  max-height: 88vh; /* Limita la altura máxima */
+}
+
+@media (max-width: 768px) {
+  .actions {
+    max-width: 100%; /* En pantallas móviles, ocupa el 100% del ancho */
+    flex-direction: column; /* Alineación vertical para pantallas pequeñas */
+    align-items: center;
+  }
+  .actions button {
+    max-width: 80%; /* Ancho máximo de cada botón */
+  }
+}
+
+.datos_tec {
+  padding: 1.3rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+
+.info{
+  margin: 1rem;
+}
