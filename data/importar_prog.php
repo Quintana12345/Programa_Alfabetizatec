@@ -3,17 +3,11 @@ require '../vendor/autoload.php'; // Autocarga de PhpSpreadsheet
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
-// Conexión a la base de datos
-$host = 'localhost';
-$username = 'root';
-$password = ''; // Cambia según tu configuración
-$dbname = 'Alfabetizatec';
+// Incluir el archivo de conexión
+include('../src/config/conexionDB.php');
 
-$conn = new mysqli($host, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Error de conexión: " . $conn->connect_error);
-}
+// Obtener la conexión
+$conn = Database::getConnection();
 
 // Ruta del archivo Excel
 $archivoExcel = './datos_prog.xlsx';
