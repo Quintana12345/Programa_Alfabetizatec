@@ -26,6 +26,10 @@ session_start();
     </header>
 
     <main>
+        <ul class="breadcrumb">
+            <li><a href="#">Home</a></li>
+
+        </ul>
         <h2 class="titulo_principal">Bienvenido <?php echo $_SESSION['nombre'] . ' ' . $_SESSION['apellido']; ?></h2>
         <div class="hero_cord_nacional">
             <div class="map_container">
@@ -36,7 +40,7 @@ session_start();
             <div class="cards_container">
                 <!-- Card de vista de regiones -->
                 <div class="card">
-                    <h3 >Vista de Regiones</h3>
+                    <h3>Vista de Regiones</h3>
                     <p>Accede a la vista detallada de las diferentes regiones del país.</p>
                     <div class="card_body ">
                         <p><strong>¿Qué puedes hacer aquí?</strong></p>
@@ -46,7 +50,7 @@ session_start();
                             <li><strong>Visualizar estadísticas:</strong> Puedes ver estadísticas relacionadas con cada región, como el rendimiento de los tecnológicos, el número de estudiantes, y otros indicadores clave.</li>
                             <li><strong>Acceder a tecnología por región:</strong> Descubre qué tecnológicos pertenecen a cada región y cómo se distribuyen a lo largo del país.</li>
                         </ul>
-                        <p id="card-regiones"  class="btn btn-primary">Acceder a la vista de regiones</p>
+                        <p id="card-regiones" class="btn btn-primary">Acceder a la vista de regiones</p>
                     </div>
                 </div>
 

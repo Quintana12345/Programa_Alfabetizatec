@@ -28,6 +28,8 @@ session_start();
         <h2 class="titulo_principal">Bienvenido <?php echo $_SESSION['nombre'] . ' ' . $_SESSION['apellido']; ?></h2>
         <p class="tec_nombre"><?php echo $_SESSION['nombre_tecnologico']; ?></p>
 
+        <a style="text-align: center;" href="./api/auth/cambiar_contrasena.php">Cambiar contraseña</a>
+
         <div class="actions">
             <button class="btn_submit_educador">Registrar educador </button>
             <button class="btn_submit_programa">Nuevo Programa </button>
@@ -38,23 +40,25 @@ session_start();
         <div class="datos_tec">
 
             <div class="info">
+                <h4>Educadores:</h4>
+                <div id="Educadores_tec"></div>
+            </div>
+
+            <div class="info">
                 <h4>Programas:</h4>
                 <div id="Programas_tec"></div>
             </div>
 
 
-            <div class="info">
+           <!--  <div class="info">
                 <h4>Estudiantes:</h4>
                 <div id="Estudiantes_tec">
                 </div>
 
 
-            </div>
+            </div> -->
 
-            <div class="info">
-                <h4>Educadores:</h4>
-                <div id="Educadores_tec"></div>
-            </div>
+
 
         </div>
 
@@ -67,7 +71,8 @@ session_start();
             <span class="close">&times;</span>
             <h2>Formulario de Registro</h2>
             <form id="registrationForm">
-                <div class="input_grupo">
+                <!-- Oculto para despues -->
+                <!-- <div class="input_grupo">
                     <label for="nombre">Nombre:</label>
                     <input type="text" id="nombre" name="nombre" required>
                 </div>
@@ -75,7 +80,7 @@ session_start();
                 <div class="input_grupo">
                     <label for="descripcion">Descripción:</label>
                     <input type="text" id="descripcion" name="descripcion" required>
-                </div>
+                </div> -->
 
                 <div class="input_grupo">
                     <label for="id_nivel">Nivel:</label>
@@ -165,21 +170,22 @@ session_start();
                 </div>
 
                 <div class="input_grupo">
-                    <label for="tipo_participante">Tipo de Participante:</label>
+                    <label for="tipo_participante">Tipo de Educador:</label>
                     <select id="tipo_participante" name="tipo_participante" class="styled-select" required>
                         <option value="" disabled selected>Seleccione</option>
-                        <option value="estudiante">Estudiante</option>
+                        <option value="estudiante Universitario">Estudiante Universitario</option>
                         <option value="docente">Docente</option>
                         <option value="externo">Externo</option>
                     </select>
                 </div>
 
-                <input type="text" id="id_tec" name="id_tecnologico" value="<?php echo isset($_SESSION['id_tecnologico']) ? $_SESSION['id_tecnologico'] : ''; ?>">
+                <input type="hidden" id="id_tec" name="id_tecnologico" value="<?php echo isset($_SESSION['id_tecnologico']) ? $_SESSION['id_tecnologico'] : ''; ?>">
 
 
                 <div class="input_grupo">
                     <label for="modalidad">Modalidad:</label>
                     <select id="modalidad" name="modalidad" required>
+                        <option value="" select selected>Selecciona</option>
                         <option value="alfabetizaTEC">Construyendo tu Servicio Social en AlfabetizaTEC</option>
                         <option value="servicio_comunitario">Servicio Social Comunitario</option>
                         <option value="creditos_complementarios">Créditos Complementarios</option>
@@ -195,7 +201,7 @@ session_start();
 
                 <div class="input_grupo" id="grupo_carrera" style="display:none;">
                     <label for="carrera">Carrera:</label>
-                    <input type="number" id="carrera" name="carrera">
+                    <input type="text" id="carrera" name="carrera">
                 </div>
 
                 <div class="input_grupo" id="grupo_semestre" style="display:none;">
@@ -203,7 +209,7 @@ session_start();
                     <input type="number" id="semestre" name="semestre">
                 </div>
 
-                <button type="btn_submit">Enviar</button>
+                <button class="submit_principal" type="btn_submit">Enviar</button>
             </form>
 
 
@@ -259,7 +265,7 @@ session_start();
                     </select>
                 </div>
 
-                
+
 
 
 

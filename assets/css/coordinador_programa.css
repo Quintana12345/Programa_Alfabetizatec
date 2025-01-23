@@ -100,7 +100,7 @@ main {
   flex-direction: row; /* Alineación horizontal */
   gap: 1rem; /* Espaciado entre botones */
   padding: 1rem; /* Espaciado interno */
-  max-width: 25%; /* Ancho máximo para no ocupar toda la pantalla */
+  max-width: 100%; /* Ancho máximo para no ocupar toda la pantalla */
 }
 
 /* Botones dentro de las acciones */
@@ -156,6 +156,30 @@ main {
   overflow-y: scroll;
 }
 
-.info{
+.info {
   margin: 1rem;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+main a {
+  text-align: center;
+}
+
+.submit_principal {
+  background-color: var(--azul_TecNM);
+  color: var(--blanco_universal);
+  border: none;
+  outline: none;
+  border-radius: 1rem;
+  margin: 1rem 2rem;
+  padding: 1rem .5rem;
+}
+
+
+.input_grupo label {
+  margin: .6rem 0rem;
 }

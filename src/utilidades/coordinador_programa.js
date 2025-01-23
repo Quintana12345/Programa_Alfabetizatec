@@ -97,14 +97,14 @@ $(document).ready(function () {
           }).then(() => {
             // Ocultar modal después de aceptar
             const modal = document.getElementById("modal_educador");
-            const bootstrapModal = bootstrap.Modal.getInstance(modal);
-            bootstrapModal.hide();
 
             // Opcional: reiniciar el formulario
-            const formulario = document.getElementById("miFormulario");
+            const formulario = document.getElementById(
+              "registrationFormEducador"
+            );
             formulario.reset();
           });
-          obtenerEducadores()
+          obtenerEducadores();
         } else {
           Swal.fire({
             title: "Error",
@@ -253,10 +253,9 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 $("#programa_estudiante").on("change", function () {
-    const selectedValue = $(this).val();
-    console.log("Programa seleccionado:", selectedValue); // Para depurar
-  });
-  
+  const selectedValue = $(this).val();
+  console.log("Programa seleccionado:", selectedValue); // Para depurar
+});
 
 // Función para obtener los programas del Tecnológico
 function obtenerProgramas() {
@@ -288,12 +287,11 @@ function obtenerProgramas() {
               <table id="tablaProgramas" class="display" style="width:100%">
                 <thead>
                   <tr>
-                    <th>Nombre</th>
-                    <th>Descripción</th>
-                    <th>ID Nivel</th>
-                    <th>Meta</th>
-                    <th>Inicio Periodo</th>
-                    <th>Fin Periodo</th>
+                  <th>ID Nivel</th>
+                  <th>Meta</th>
+                  <th>Inicio Periodo</th>
+                  <th>Fin Periodo</th>
+                  <th>Opciones</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -306,21 +304,21 @@ function obtenerProgramas() {
             // Agregar filas a la tabla
             tableHTML += `
                 <tr>
-                 <td>
-    <a href="detalles_programa.php?id=${programa.id}">${programa.programa_nombre}</a>
-</td>
+                 
 
-                  <td>${programa.programa_descripcion}</td>
                   <td>${programa.nivel_nombre}</td>
                   <td>${programa.meta}</td>
                   <td>${programa.inicio_periodo}</td>
                   <td>${programa.fin_periodo}</td>
+                  <td>
+    <a href="detalles_programa.php?id=${programa.id}">Detalles</a>
+</td>
                 </tr>
               `;
 
             // Agregar opciones al select
             selectOptionsHTML += `
-                <option value="${programa.id}">${programa.programa_nombre}</option>
+                <option value="${programa.id}">${programa.nivel_nombre}</option>
               `;
           });
 
@@ -374,7 +372,7 @@ function obtenerEstudiantes() {
     type: "GET",
     data: { id_instituto: idInstituto },
     success: function (response) {
-      if (response.success) {
+      if (response.success && response.data.length > 0) {
         let tableHTML = `
             <table id="tablaEstudiantes" class="display" style="width:100%">
               <thead>
@@ -408,7 +406,7 @@ function obtenerEstudiantes() {
             </table>
           `;
 
-        $("#Estudiantes_tec").html(tableHTML);
+       /*  $("#Estudiantes_tec").html(tableHTML); */
 
         $("#tablaEstudiantes").DataTable({
           paging: true,
@@ -416,9 +414,7 @@ function obtenerEstudiantes() {
           ordering: true,
         });
       } else {
-        $("#Estudiantes_tec").html(
-          `<p>${response.error || "No se encontraron estudiantes."}</p>`
-        );
+        $("#Estudiantes_tec").html("<p>No se encontraron estudiantes.</p>");
       }
     },
     error: function (xhr, status, error) {
@@ -472,6 +468,8 @@ function obtenerEducadores() {
                     <th>Apellido</th>
                     <th>Email</th>
                     <th>Teléfono</th>
+                    <th>Modalidad</th>
+                    <th>Tipo</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -485,6 +483,8 @@ function obtenerEducadores() {
                   <td>${educador.apellido}</td>
                   <td>${educador.correo}</td>
                   <td>${educador.telefono}</td>
+                  <td>${educador.tipo_participante}</td>
+                  <td>${educador.modalidad}</td>
                 </tr>
               `;
           });

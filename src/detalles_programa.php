@@ -42,7 +42,7 @@
                 success: function(data) {
                     if (data.success) {
                         // Mostrar los detalles del programa
-                        $('#titulo-programa').text(`Programa: ${data.data.nombre}`);
+                        $('#titulo-programa').text(`Programa: ${data.data.nivel}`);
                         $('#descripcion-programa').text(data.data.descripcion || "N/A");
                         $('#fecha-inicio').text(data.data.inicio_periodo);
                         $('#fecha-fin').text(data.data.fin_periodo);
@@ -73,7 +73,7 @@
 
                                 tableContent += `
         <tr>
-            <td><a href="./vista_detalleEstudiante.php?id=${estudiante.id}" class="text-decoration-none">${estudiante.nombre}</a></td>
+            <td><p  class="text-decoration-none">${estudiante.nombre}</p></td>
             <td>${estudiante.apellidos}</td>
             <td>${estudiante.curp}</td>
             <td>${estudiante.telefono}</td>

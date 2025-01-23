@@ -1,8 +1,9 @@
 main{
     background-color: var(--gris_contraste);
-    padding: 1rem;
 }
-
+p{
+    padding: 1.3rem;
+}
 #detallesTecnologico{
     max-width: 95%;
     flex-direction: column;

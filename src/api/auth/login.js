@@ -2,10 +2,10 @@ $(document).ready(function () {
   console.log("loaded");
 
   $("#form_login").on("submit", function (e) {
-    e.preventDefault(); // Evitar el envío estándar del formulario
+      e.preventDefault(); // Evitar el envío estándar del formulario
 
-    const $button = $(".btn_submit");
-    const $form = $(this);
+      const $button = $(".btn_submit");
+      const $form = $(this);
 
     // Deshabilitar el botón y mostrar un estado de carga
     $button.prop("disabled", true).text("Enviando...");

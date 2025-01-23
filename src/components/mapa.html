@@ -31,10 +31,13 @@
         // Some responsiveness
         small = $('#container').width() < 400;
 
+    // Asigna valores ficticios a los estados
+    var valoresFicticios = [6134, 1653, 703, 3118, 459, 2644, 934, 705, 5177, 2244, 1002, 2710, 2375, 19862, 3629, 5945, 11348, 18247, 5155, 1313, 11824, 11087, 14090, 7406, 8497, 722, 4313, 2162, 1105, 6521, 9539, 8273];
+
     // Set drilldown pointers
     $.each(data, function (i) {
         this.drilldown = this.properties['hc-key'];
-        this.value = i; // Non-random bogus data
+        this.value = valoresFicticios[i % valoresFicticios.length]; // Asigna un valor ficticio
     });
 
     // Instantiate the map

@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,6 +20,20 @@
     </header>
 
     <main>
+        <ul class="breadcrumb">
+            <?php if ($_SESSION['rol_id'] === 2): ?>
+                <li><a href="./coordinador_nacional.php">Home</a></li>
+                <li><a href="./vista_region.php?region=<?php echo urlencode($_SESSION['nombre_region']); ?>">Mi región</a></li>
+                <li><a href="javascript:history.back();">Tecnológico:</a></li>
+                <li><a href="#">Detalles por programa:</a></li>
+            <?php else: ?>
+                <li><a href="./coordinador_nacional.php">Home</a></li>
+                <li><a href="javascript:history.go(-2);">Estado:</a></li>
+                <li><a href="javascript:history.back();">Tecnológico:</a></li>
+                <li><a href="#">Detalles por programa:</a></li>
+            <?php endif; ?>
+        </ul>
+
         <h3 id="titulo-programa" class="titulo_principal"></h3>
         <p>Estudiantes:</p>
 
@@ -59,7 +76,7 @@
                                 <th>CURP</th>
                                 <th>Teléfono</th>
                                 <th>Correo</th>
-                                <th>Estado Solicitud</th> <!-- Nueva columna para el estado -->
+                                <th>Estado Solicitud</th> <!-- Nueva columna wpara el estado -->
                             </tr>
                         </thead>
                         <tbody>
@@ -68,7 +85,7 @@
                             // Agregar los estudiantes a la tabla
                             data.data.estudiantes.forEach(function(estudiante) {
                                 tableContent += '<tr>' +
-                                    `<td><a href="./vista_detalleEstudiante.php?id=${estudiante.id}" class="text-decoration-none">${estudiante.nombre}</a></td>` + // Enlace en el nombre del estudiante
+                                    `<td><p href="./vista_detalleEstudiante.php?id=${estudiante.id}" class="text-decoration-none">${estudiante.nombre}</p></td>` + // Enlace en el nombre del estudiante
                                     `<td>${estudiante.apellidos}</td>` +
                                     `<td>${estudiante.curp}</td>` +
                                     `<td>${estudiante.telefono}</td>` +

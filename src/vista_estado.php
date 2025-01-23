@@ -18,6 +18,11 @@
     </header>
 
     <main>
+    <ul class="breadcrumb">
+            <li><a href="./coordinador_nacional.php">Home</a></li>
+            <li><a href="#">Detalles por estado:</a></li>
+
+        </ul>
         <!-- Este es el título que se actualizará con el nombre de la región -->
         <h2 id="estado_title" class="titulo_principal"></h2>
         <div id="detallesEstado" class="full_center"></div>
