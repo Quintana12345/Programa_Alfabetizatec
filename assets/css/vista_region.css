@@ -1,5 +1,7 @@
 main{
     background-color: var(--gris_contraste);
+}
+p{
     padding: 1rem;
 }
 

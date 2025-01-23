@@ -41,12 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Validación de campos obligatorios
     $missing_fields = [];
 
-    if (!$nombre) {
-        $missing_fields[] = 'nombre';
-    }
-    if (!$descripcion) {
-        $missing_fields[] = 'descripcion';
-    }
+   
     if (!$id_nivel) {
         $missing_fields[] = 'id_nivel';
     }

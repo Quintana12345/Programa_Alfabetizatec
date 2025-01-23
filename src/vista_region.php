@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,6 +21,19 @@
     </header>
 
     <main>
+        <ul class="breadcrumb">
+            <?php if ($_SESSION['rol_id'] === 2): ?>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Tecnologicos por region:</a></li>
+            <?php else: ?>
+                <li><a href="./coordinador_nacional.php">Home</a></li>
+                <li><a href="./Regiones.php">Vista regiones:</a></li>
+                <li><a href="#">Tecnologicos por region:</a></li>
+            <?php endif; ?>
+        </ul>
+
+
+
         <!-- Este es el título que se actualizará con el nombre de la región -->
         <h2 id="region_title" class="titulo_principal">Detalles de región</h2>
         <div id="detallesRegion" class="full_center"></div>
@@ -309,7 +325,7 @@
         }
 
         function renderizarGraficosAvance(datos) {
-            console.log("de avances",datos)
+            console.log("de avances", datos)
             const tecnologicos = datos.tecnologicos;
 
             const labels = [];
@@ -332,7 +348,7 @@
 
             const ctx = document.getElementById("avance").getContext("2d");
 
-           
+
 
             // Crear el gráfico de barras
             window.myChart = new Chart(ctx, {
@@ -392,7 +408,7 @@
     </script>
 
     <script>
-        
+
     </script>
 </body>
 

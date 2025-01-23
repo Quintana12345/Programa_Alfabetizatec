@@ -32,7 +32,6 @@
 }
 main{
     background-color: var(--gris_contraste);
-    padding: 1rem;
 
 }
 .map_container{

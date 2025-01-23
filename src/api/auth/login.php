@@ -26,6 +26,7 @@ try {
         $stmt->execute();
         $stmt->store_result();
 
+
         if ($stmt->num_rows === 0) {
             echo json_encode(['success' => false, 'message' => 'Correo electrónico no registrado.']);
             exit();
@@ -146,4 +147,3 @@ try {
     ]);
     exit();
 }
-?>

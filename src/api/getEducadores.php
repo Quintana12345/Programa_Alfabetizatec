@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     // Consulta para obtener el total de educadores para la paginación
     $countSql = "SELECT COUNT(*) as total 
                  FROM educadores e
-                 WHERE e.id_tecnologico = ? AND e.tipo_participante = 'Docente'";
+                 WHERE e.id_tecnologico = ? ";
 
     $stmt = $conn->prepare($countSql);
     $stmt->bind_param('i', $id_tecnologico);
@@ -49,10 +49,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $response['recordsFiltered'] = $response['recordsTotal'];  // Por defecto, sin filtros adicionales
 
     // Consulta SQL para obtener los educadores y los detalles de la tabla usuarios (correo, telefono)
-    $sql = "SELECT e.id, e.id_usuario, e.modalidad, u.nombre, u.apellido, u.correo, u.telefono
+    $sql = "SELECT e.id, e.id_usuario, e.modalidad, e.tipo_participante, u.nombre, u.apellido, u.correo, u.telefono
             FROM educadores e
             INNER JOIN usuarios u ON e.id_usuario = u.id
-            WHERE e.id_tecnologico = ? AND e.tipo_participante = 'Docente'
+            WHERE e.id_tecnologico = ?
             LIMIT ?, ?";
 
     $stmt = $conn->prepare($sql);
@@ -68,6 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             'nombre' => $row['nombre'],
             'apellido' => $row['apellido'],
             'modalidad' => $row['modalidad'],
+            'tipo_participante' => $row['tipo_participante'],
             'correo' => $row['correo'],  // Agregamos el correo
             'telefono' => $row['telefono']  // Agregamos el telefono
         ];
