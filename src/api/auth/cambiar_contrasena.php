@@ -80,7 +80,7 @@
 <body>
     <header>
 
-    <a href="../../coordinador_programa.php" class="back">Volver</a>
+    <a href="../../login.php" class="back">Volver</a>
 
     </header>
     <h1>Restablecer Contraseña</h1>
@@ -107,7 +107,7 @@
                 $user = $result->fetch_assoc();
 
                 // Verificar si la contraseña permite cambios
-                $allowed_password = '$2y$10$L9ujKEY9UYcG9i4q1FPrU.utEYt0LXelnKMn1mG2rb8JFDPGz11sa';
+                $allowed_password = '$2y$10$onMcJvhkuDvol7r.m7JOH.D6XPdzA8QNQKG4xzzJgZ7gWk56.8DYC';
                 if ($user['contrasena'] === $allowed_password) {
                     if ($new_password === $confirm_password) {
                         // Generar hash de la nueva contraseña

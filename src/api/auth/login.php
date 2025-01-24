@@ -35,6 +35,8 @@ try {
         $stmt->bind_result($id, $nombre, $apellido, $telefono, $correo_db, $contrasena_db, $rol_id);
         $stmt->fetch();
 
+        
+
         if (!password_verify($contrasena, $contrasena_db)) {
             echo json_encode(['success' => false, 'message' => 'Contraseña incorrecta.']);
             exit();
@@ -111,6 +113,13 @@ try {
         $_SESSION['id_region'] = $id_region;
         $_SESSION['nombre_tecnologico'] = $nombre_tecnologico;
         $_SESSION['nombre_region'] = $nombre_region;
+        
+
+        if ($contrasena === '$2y$10$onMcJvhkuDvol7r.m7JOH.D6XPdzA8QNQKG4xzzJgZ7gWk56.8DYC'){
+            $_SESSION['contra'] = 1;  // Contraseña correcta
+        }else{
+            $_SESSION['contra']= 0;
+        }
 
         // Consulta el nombre del rol y nivel de permiso
         $rol_stmt = $conn->prepare('SELECT nombre, nivel_permiso FROM roles WHERE id = ?');
