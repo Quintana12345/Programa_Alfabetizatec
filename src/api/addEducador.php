@@ -7,20 +7,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Recibir los datos del formulario y asignar cadenas vacías a los campos opcionales
     $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : '';
-    $apellido = isset($_POST['apellido']) ? $_POST['apellido'] : '';
+    $primer_apellido = isset($_POST['primer_apellido']) ? $_POST['primer_apellido'] : '';
+    $segundo_apellido = isset($_POST['segundo_apellido']) ? $_POST['segundo_apellido'] : '';
+    $fecha_nacimiento = isset($_POST['fecha_nacimiento']) ? $_POST['fecha_nacimiento'] : '';
+    $rfc = isset($_POST['rfc']) ? $_POST['rfc'] : '';
+    $nacionalidad = isset($_POST['nacionalidad']) ? $_POST['nacionalidad'] : '';
+    $entidad_nacimiento = isset($_POST['entidad_nacimiento']) ? $_POST['entidad_nacimiento'] : '';
     $curp = isset($_POST['curp']) ? $_POST['curp'] : '';
+    $sexo = isset($_POST['sexo']) ? $_POST['sexo'] : '';
+    $estado_civil = isset($_POST['estado_civil']) ? $_POST['estado_civil'] : '';
+    $num_hijos = isset($_POST['num_hijos']) ? $_POST['num_hijos'] : '0';
     $telefono = isset($_POST['telefono']) ? $_POST['telefono'] : '';
     $correo = isset($_POST['correo']) ? $_POST['correo'] : '';
     $correo_inst = isset($_POST['correo_inst']) ? $_POST['correo_inst'] : '';
     $contrasena = isset($_POST['contrasena']) ? $_POST['contrasena'] : '';
-    $rol_id = isset($_POST['rol_id']) ? $_POST['rol_id'] : '';
+    $rol_id = 3;
+    $escolaridad = isset($_POST['escolaridad']) ? $_POST['escolaridad'] : '';
     $puesto = isset($_POST['puesto']) ? $_POST['puesto'] : '';
     $tipo_participante = isset($_POST['tipo_participante']) ? $_POST['tipo_participante'] : '';
     $modalidad = isset($_POST['modalidad']) ? $_POST['modalidad'] : '';
-    $numero_control = isset($_POST['numero_control']) ? $_POST['numero_control'] : '';
-    $carrera = isset($_POST['carrera']) ? $_POST['carrera'] : '';
-    $id_tecnologico = isset($_POST['id_tecnologico']) ? $_POST['id_tecnologico'] : '';
-    $semestre = isset($_POST['semestre']) ? $_POST['semestre'] : '';
+    $numero_control = isset($_POST['numero_control']) ? $_POST['numero_control'] : NULL;
+    $carrera = isset($_POST['carrera']) ? $_POST['carrera'] : NULL;
+    $id_tecnologico = isset($_POST['id_tecnologico']) ? $_POST['id_tecnologico'] : NULL;
+    $semestre = isset($_POST['semestre']) ? $_POST['semestre'] : '0';
 
     // Validación de campos obligatorios
     $missing_fields = [];
@@ -28,9 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!$nombre) {
         $missing_fields[] = 'nombre';
     }
-    if (!$apellido) {
-        $missing_fields[] = 'apellido';
-    }
+
     if (!$telefono) {
         $missing_fields[] = 'telefono';
     }
@@ -40,9 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!$contrasena) {
         $missing_fields[] = 'contrasena';
     }
-    if (!$rol_id) {
-        $missing_fields[] = 'rol_id';
-    }
+
     if (!$tipo_participante) {
         $missing_fields[] = 'tipo_participante';
     }
@@ -68,25 +73,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Iniciar la transacción
     $conn->begin_transaction();
 
+    $apellido =  $primer_apellido . " " . $segundo_apellido;
     try {
         // Insertar los datos en la tabla 'usuarios'
-        $query_usuario = "INSERT INTO usuarios (nombre, apellido, curp, telefono, correo, correo_inst, contrasena, rol_id, puesto)
-                          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $query_usuario = "INSERT INTO usuarios (nombre, apellido, fecha_nacimiento, telefono, correo, correo_inst, contrasena, rol_id, puesto)
+        VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         $stmt_usuario = $conn->prepare($query_usuario);
-        $stmt_usuario->bind_param('sssssssis', $nombre, $apellido, $curp, $telefono, $correo, $correo_inst, $contrasena_hash, $rol_id, $puesto);
+        $stmt_usuario->bind_param('sssssssss', $nombre, $apellido, $fecha_nacimiento, $telefono, $correo, $correo_inst, $contrasena_hash, $rol_id, $puesto);
+
+        // Ejecutar la consulta para insertar usuario
         $stmt_usuario->execute();
 
         // Obtener el ID del usuario recién insertado
         $id_usuario = $stmt_usuario->insert_id;
 
         // Insertar los datos en la tabla 'educadores' usando el ID del usuario insertado
-        $query_educador = "INSERT INTO educadores (id_usuario, tipo_participante, modalidad, numero_control, carrera, id_tecnologico, semestre)
-VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $query_educador = "INSERT INTO educadores (id_usuario, tipo_participante, modalidad, numero_control, carrera, id_tecnologico, semestre, nacionalidad, entidad_nacimiento, curp, sexo, estado_civil, num_hijos)
+VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         $stmt_educador = $conn->prepare($query_educador);
         // Asegurarse de que los tipos de datos coincidan
-        $stmt_educador->bind_param('issssii', $id_usuario, $tipo_participante, $modalidad, $numero_control, $carrera, $id_tecnologico, $semestre);
+        $stmt_educador->bind_param(
+            'issisiissssss',
+            $id_usuario,
+            $tipo_participante,
+            $modalidad,
+            $numero_control,
+            $carrera,
+            $id_tecnologico,
+            $semestre,
+            $nacionalidad,
+            $entidad_nacimiento,
+            $curp,
+            $sexo,
+            $estado_civil,
+            $num_hijos
+        );
         $stmt_educador->execute();
 
         // Confirmar la transacción

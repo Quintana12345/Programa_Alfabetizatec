@@ -72,8 +72,6 @@ main {
   justify-content: center; /* Centra verticalmente */
   gap: 0.6rem; /* Espaciado entre elementos */
   padding: 1.8rem 0; /* Espaciado interno */
-  max-height: 88vh; /* Limita la altura máxima */
-  margin-top: 2rem; /* Margen superior adicional */
 }
 
 /* Estilos para los grupos de entrada dentro del formulario */
@@ -133,7 +131,7 @@ main {
   justify-content: center; /* Centra verticalmente */
   gap: 0.6rem; /* Espaciado entre elementos */
   padding: 1.8rem 0; /* Espaciado interno */
-  max-height: 88vh; /* Limita la altura máxima */
+  max-height: 270vh; /* Limita la altura máxima */
 }
 
 @media (max-width: 768px) {
