@@ -1,0 +1,99 @@
+
+Error: Tecnológico no encontrado para 'ITS de Abasolo'.
+Error: Tecnológico no encontrado para 'I.T. de Sur de Nayarit'.
+Error: Tecnológico no encontrado para 'I.T.S. de Apatzingán'.
+Error: Tecnológico no encontrado para 'I.T. de Valle de Oaxaca'.
+Usuario '157' importado con éxito.
+Usuario '158' importado con éxito.
+Error: Tecnológico no encontrado para 'T.E.S. de Chimalhuacán'.
+Error: Tecnológico no encontrado para 'I.T.S. de Juan Rodríguez Clara'.
+Error: Tecnológico no encontrado para 'I.T. de Saltillo'.
+Error: Tecnológico no encontrado para 'I.T.S. de Coatzacoalcos'.
+Error: Tecnológico no encontrado para 'I.T. de Cd. Madero'.
+Error: Tecnológico no encontrado para 'I.T. de Frontera Comalapa'.
+Usuario '165' importado con éxito.
+Error: Tecnológico no encontrado para 'I.T. de Tlalnepantla'.
+Error: Tecnológico no encontrado para 'I.T. de Cd. Cuauhtémoc'.
+Usuario '168' importado con éxito.
+Error: Tecnológico no encontrado para 'I.T. de Valle de Etla'.
+Error: Tecnológico no encontrado para 'I.T. de Huatabampo'.
+Error: Tecnológico no encontrado para 'I.T. de Chilpancingo'.
+Error: Tecnológico no encontrado para 'I.T.S. de Mante'.
+Error: Tecnológico no encontrado para 'I.T.S. de Valladolid'.
+Error: Tecnológico no encontrado para 'I.T. de Milpa Alta'.
+Error: Tecnológico no encontrado para 'I.T. de Tuxtla Gutiérrez'.
+Error: Tecnológico no encontrado para 'I.T.S. de Sur de Guanajuato'.
+Error: Tecnológico no encontrado para 'I.T. de Cd. Guzmán'.
+Usuario '178' importado con éxito.
+Error: Tecnológico no encontrado para 'I.T.S. de Villa La Venta'.
+Error: Tecnológico no encontrado para 'I.T.S. de Tepeaca'.
+Error: Tecnológico no encontrado para 'T.E.S. de Ecatepec'.
+Error: Tecnológico no encontrado para 'I.T. de San Luis Potosí'.
+Error: Tecnológico no encontrado para 'I.T. de Boca del Río'.
+Error: Tecnológico no encontrado para 'I.T. de Pabellón de Arteaga'.
+Error: Tecnológico no encontrado para 'I.T. de Tehuacán'.
+Error: Tecnológico no encontrado para 'I.T. de Morelia'.
+Error: Tecnológico no encontrado para 'I.T. de Sinaloa de Leyva'.
+Error: Tecnológico no encontrado para 'I.T. de Sinaloa de Leyva'.
+Error: Tecnológico no encontrado para 'I.T. de Reynosa'.
+Error: Tecnológico no encontrado para 'I.T. de Reynosa'.
+Error: Tecnológico no encontrado para 'I.T. de Costa Grande'.
+Error: Tecnológico no encontrado para 'I.T. de Costa Grande'.
+Error: Tecnológico no encontrado para 'I.T. de Tecomatlán'.
+Error: Tecnológico no encontrado para 'I.T. de Tecomatlán'.
+Error: Tecnológico no encontrado para 'I.T.S. de Cd. Constitución'.
+Error: Tecnológico no encontrado para 'I.T.S. de Cd. Constitución'.
+Error: Tecnológico no encontrado para 'I.T.S. de Cd. Hidalgo'.
+Error: Tecnológico no encontrado para 'I.T.S. de Cd. Hidalgo'.
+Error: Tecnológico no encontrado para 'I.T.S. de Huetamo'.
+Error: Tecnológico no encontrado para 'I.T.S. de Huetamo'.
+Error: Tecnológico no encontrado para 'I.T.S. de Tlatlauquitepec'.
+Error: Tecnológico no encontrado para 'I.T.S. de Tlatlauquitepec'.
+Error: Tecnológico no encontrado para 'I.T.S. de Venustiano Carranza'.
+Error: Tecnológico no encontrado para 'I.T.S. de Venustiano Carranza'.
+Error: Tecnológico no encontrado para 'I.T.S. de Acayucan'.
+Error: Tecnológico no encontrado para 'I.T.S. de Acayucan'.
+Error: Tecnológico no encontrado para 'I.T.S. de Naranjos'.
+Error: Tecnológico no encontrado para 'I.T.S. de Naranjos'.
+Error: Tecnológico no encontrado para 'I.T.S. de San Andrés Tuxtla'.
+Error: Tecnológico no encontrado para 'I.T.S. de San Andrés Tuxtla'.
+Error: Tecnológico no encontrado para 'T.E.S. de San Felipe del Progreso'.
+Error: Tecnológico no encontrado para 'T.E.S. de San Felipe del Progreso'.
+Error: Tecnológico no encontrado para 'I.T. de Tláhuac III'.
+Error: Tecnológico no encontrado para 'I.T.S. de Poza Rica'.
+Error: Tecnológico no encontrado para 'I.T.S. de Teziutlán'.
+Error: Tecnológico no encontrado para 'I.T. de Altamira'.
+Error: Tecnológico no encontrado para 'T.E.S. de Villa Guerrero'.
+Error: Tecnológico no encontrado para 'I.T.S. de Martínez de la Torre'.
+Usuario '219' importado con éxito.
+Error: Tecnológico no encontrado para 'I.T. de Milpa Alta II'.
+Error: Tecnológico no encontrado para 'I.T. de Guaymas'.
+Error: Tecnológico no encontrado para 'I.T. de El Llano Aguascalientes'.
+Error: Tecnológico no encontrado para 'I.T. de Minatitlán'.
+Error: Tecnológico no encontrado para 'T.E.S. de Zamora'.
+Error: Tecnológico no encontrado para 'I.T.S. de Los Reyes'.
+Error: Tecnológico no encontrado para 'I.T.S. de Tierra Blanca'.
+Error: Tecnológico no encontrado para 'I.T.S. de Perote'.
+Error: Tecnológico no encontrado para 'I.T.E.S. de Valle de Bravo'.
+Error: Tecnológico no encontrado para 'I.T.S. de Cd. Serdán'.
+Error: Tecnológico no encontrado para 'I.T.S. de Zacatecas Occidente'.
+Usuario '231' importado con éxito.
+Error: Tecnológico no encontrado para 'I.T.S. de Juan Rodríguez Clara'.
+Usuario '233' importado con éxito.
+Error: Tecnológico no encontrado para 'I.T.S. de Cananea'.
+Error: Tecnológico no encontrado para 'I.T.S. de Santa María del Oro'.
+Error: Tecnológico no encontrado para 'I.T.S. de Loreto'.
+Error: Tecnológico no encontrado para 'I.T.S. de Coalcomán'.
+Error: Tecnológico no encontrado para 'I.T.S. de Pátzcuaro'.
+Error: Tecnológico no encontrado para 'I.T.S. de Coatzacoalcos'.
+Error: Tecnológico no encontrado para 'I.T.E.S. de Los Cabos'.
+Error: Tecnológico no encontrado para 'I.T.S. de Coatzacoalcos'.
+Usuario '244' importado con éxito.
+Usuario '245' importado con éxito.
+Error: Tecnológico no encontrado para 'I.T. de Chiná'.
+Error: Tecnológico no encontrado para 'I.T.S. de La Sierra Norte de Puebla'.
+Error: Tecnológico no encontrado para 'I.T.S. de Champotón'.
+Error: Tecnológico no encontrado para 'I.T.S. de Escárcega'.
+Error: Tecnológico no encontrado para 'I.T. de Bahía de Banderas'.
+Error: Tecnológico no encontrado para 'I.T.S. de Las Choapas'.
+Error: Tecnológico no encontrado para 'I.T.S. de Motul'.
