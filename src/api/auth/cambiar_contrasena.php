@@ -107,7 +107,7 @@
                 $user = $result->fetch_assoc();
 
                 // Verificar si la contraseña permite cambios
-                $allowed_password = '$2y$10$onMcJvhkuDvol7r.m7JOH.D6XPdzA8QNQKG4xzzJgZ7gWk56.8DYC';
+                $allowed_password = '$2y$10$Tlx2JQtCvLDValQloBiKSuk/qp5owPEgdVTRwO4e0TYYnuGXL5Ui.';
                 if ($user['contrasena'] === $allowed_password) {
                     if ($new_password === $confirm_password) {
                         // Generar hash de la nueva contraseña

@@ -115,7 +115,7 @@ try {
         $_SESSION['nombre_region'] = $nombre_region;
         
 
-        if ($contrasena === '$2y$10$onMcJvhkuDvol7r.m7JOH.D6XPdzA8QNQKG4xzzJgZ7gWk56.8DYC'){
+        if ($contrasena === '$2y$10$Tlx2JQtCvLDValQloBiKSuk/qp5owPEgdVTRwO4e0TYYnuGXL5Ui.'){
             $_SESSION['contra'] = 1;  // Contraseña correcta
         }else{
             $_SESSION['contra']= 0;
