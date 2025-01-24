@@ -80,7 +80,7 @@
 <body>
     <header>
 
-    <a href="javascript:history.back()" class="back">Volver</a>
+    <a href="../../coordinador_programa.php" class="back">Volver</a>
 
     </header>
     <h1>Restablecer Contraseña</h1>
@@ -98,7 +98,7 @@
             $confirm_password = $_POST['confirm_password'] ?? '';
 
             // Consulta para verificar la contraseña actual
-            $stmt = $conn->prepare("SELECT contrasena FROM usuarios WHERE correo_inst = ?");
+            $stmt = $conn->prepare("SELECT contrasena FROM usuarios WHERE correo = ?");
             $stmt->bind_param("s", $email);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -107,14 +107,14 @@
                 $user = $result->fetch_assoc();
 
                 // Verificar si la contraseña permite cambios
-                $allowed_password = '$2y$10$19tsorOCjhdOTqAe2arGYeIPbYUIP7lp/keOl0P2t6TDdcKM4zodG';
+                $allowed_password = '$2y$10$L9ujKEY9UYcG9i4q1FPrU.utEYt0LXelnKMn1mG2rb8JFDPGz11sa';
                 if ($user['contrasena'] === $allowed_password) {
                     if ($new_password === $confirm_password) {
                         // Generar hash de la nueva contraseña
                         $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
 
                         // Actualizar contraseña
-                        $update_stmt = $conn->prepare("UPDATE usuarios SET contrasena = ? WHERE correo_inst = ?");
+                        $update_stmt = $conn->prepare("UPDATE usuarios SET contrasena = ? WHERE correo = ?");
                         $update_stmt->bind_param("ss", $hashed_password, $email);
 
                         if ($update_stmt->execute()) {
