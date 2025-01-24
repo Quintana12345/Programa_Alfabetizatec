@@ -23,10 +23,10 @@ session_start();
     <main>
         <ul class="breadcrumb">
             <?php if ($_SESSION['rol_id'] === 2): ?>
-                <li><a href="#">Home</a></li>
+                <li><a href="#">Inicio</a></li>
                 <li><a href="#">Tecnologicos por region:</a></li>
             <?php else: ?>
-                <li><a href="./coordinador_nacional.php">Home</a></li>
+                <li><a href="./coordinador_nacional.php">Inicio</a></li>
                 <li><a href="./Regiones.php">Vista regiones:</a></li>
                 <li><a href="#">Tecnologicos por region:</a></li>
             <?php endif; ?>
@@ -103,7 +103,6 @@ session_start();
                         <th>Estado</th>
                         <th>Tecnológico</th>
                         <th>Tipo de Institución</th>
-                        <th>Director</th>
                     </tr>
                 `;
                         table.appendChild(thead);
@@ -118,7 +117,6 @@ session_start();
                                 <td>${estado.estado_nombre}</td>
                                 <td><a href="vista_tecnologico.php?id=${tecnologico.tecnologico_id}" class="tecnologico-link">${tecnologico.tecnologico_nombre}</a></td>
                                 <td>${tecnologico.tipo_de_institucion || "N/A"}</td>
-                                <td>${tecnologico.director || "N/A"}</td>
                             `;
                                     tbody.appendChild(tr);
                                 });

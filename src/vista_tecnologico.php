@@ -22,18 +22,17 @@ session_start();
     <main>
         <ul class="breadcrumb">
             <?php if ($_SESSION['rol_id'] === 2): ?>
-                <li><a href="./coordinador_nacional.php">Home</a></li>
+                <li><a href="./coordinador_nacional.php">Inicio</a></li>
                 <li><a href="./vista_region.php?region=<?php echo urlencode($_SESSION['nombre_region']); ?>">Región</a></li>
                 <li><a href="#">Detalles por tecnológico:</a></li>
             <?php else: ?>
-                <li><a href="./coordinador_nacional.php">Home</a></li>
+                <li><a href="./coordinador_nacional.php">Inicio</a></li>
                 <li><a href="javascript:history.back();">Estado:</a></li>
                 <li><a href="#">Detalles por tecnológico:</a></li>
             <?php endif; ?>
         </ul>
 
         <h3 id="titulo-tecnologico" class="titulo_principal"></h3>
-        <p>Programas</p>
 
         <div id="detallesTecnologico" class="full_center"></div>
     </main>

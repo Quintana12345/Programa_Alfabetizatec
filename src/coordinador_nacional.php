@@ -27,7 +27,7 @@ session_start();
 
     <main>
         <ul class="breadcrumb">
-            <li><a href="#">Home</a></li>
+            <li><a href="#">Inicio</a></li>
 
         </ul>
         <h2 class="titulo_principal">Bienvenido <?php echo $_SESSION['nombre'] . ' ' . $_SESSION['apellido']; ?></h2>

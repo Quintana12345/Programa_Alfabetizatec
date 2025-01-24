@@ -39,7 +39,9 @@ session_destroy(); // Destruye la sesión actual
             <div></div>
             <!-- Formulario de login -->
             <form class="form_login" id="form_login" method="post">
-                <img src="../assets/img/logotipos/alfabetizatec_logo.png" alt="Alfabetizate logo">
+                <a class="img_form full_center"  href="../index.php">
+                    <img  src="../assets/img/logotipos/alfabetizatec_logo.png" alt="Alfabetizate logo">
+                </a>
 
                 <div class="motivational_message">
                     ¡Bienvenido! "Cada día es una nueva oportunidad para aprender y crecer."

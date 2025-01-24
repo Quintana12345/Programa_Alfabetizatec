@@ -13,7 +13,6 @@ main {
   background-color: var(--gris_contraste); /* Fondo con color de contraste */
   min-height: 84vh; /* Altura mínima para cubrir la mayor parte de la ventana */
   justify-content: space-between; /* Espaciado uniforme entre elementos internos */
-  align-items: center; /* Centra los elementos verticalmente */
   width: 100%; /* Ocupa todo el ancho disponible */
   max-width: 1500px; /* Ancho máximo del contenedor */
 }
@@ -37,7 +36,7 @@ main {
 .modal-content {
   background-color: #fff; /* Fondo blanco */
   margin: auto; /* Centrado horizontal */
-  padding: 20px;
+  padding: 2.5rem 1rem;
   border: 1px solid #888; /* Borde gris */
   width: 90%; /* Ocupa el 90% del ancho disponible */
   max-width: 500px; /* Ancho máximo del contenido */
@@ -160,14 +159,6 @@ main {
   margin: 1rem;
 }
 
-main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-main a {
-  text-align: center;
-}
 
 .submit_principal {
   background-color: var(--azul_TecNM);
@@ -181,5 +172,13 @@ main a {
 
 
 .input_grupo label {
-  margin: .6rem 0rem;
+}
+
+
+.contra{
+  display: flex;
+  position: absolute;
+  margin: 1rem;
+  left: 70%;
+  top: 22%;
 }

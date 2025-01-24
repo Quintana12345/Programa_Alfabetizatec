@@ -1,5 +1,5 @@
 <div>
-    <p>Copytight 2025 - TecNM</p>
+    <p>Copyright 2025 - TecNM</p>
     <a href="./aviso_privacidad.php">Aviso de privacidad</a>
     <span>Ultima actualizacion</span>
 
