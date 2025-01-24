@@ -2,10 +2,10 @@ $(document).ready(function () {
   console.log("loaded");
 
   $("#form_login").on("submit", function (e) {
-      e.preventDefault(); // Evitar el envío estándar del formulario
+    e.preventDefault(); // Evitar el envío estándar del formulario
 
-      const $button = $(".btn_submit");
-      const $form = $(this);
+    const $button = $(".btn_submit");
+    const $form = $(this);
 
     // Deshabilitar el botón y mostrar un estado de carga
     $button.prop("disabled", true).text("Enviando...");
@@ -43,7 +43,6 @@ $(document).ready(function () {
           localStorage.setItem("id_region", response.user.id_region);
           localStorage.setItem("nombre_region", response.user.nombre_region); // Guardar nombre de la región
 
-          
           localStorage.setItem(
             "tecnologico_nombre",
             response.user.nombre_tecnologico
@@ -63,9 +62,7 @@ $(document).ready(function () {
             case 3:
               redirectUrl = "coordinador_programa.php"; // Ruta para el panel de administración
               break;
-            case 4:
-              redirectUrl = "educador.php"; // Ruta para el panel de administración
-              break;
+
             default:
               redirectUrl = "404.php"; // Ruta por defecto en caso de un rol no reconocido
               break;

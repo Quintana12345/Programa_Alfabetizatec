@@ -46,7 +46,11 @@ main {
 }
 
 
-.form_login img {
+.img_form  {
+  width: 100%;
+  
+}
+.img_form img {
   width: 50%;
 }
 

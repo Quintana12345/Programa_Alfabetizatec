@@ -7,20 +7,20 @@
 }
 
 :root {
-  --azul_TecNM: #1b386a;
+  --azul_TecNM: #1b396a;
   --blanco_universal: #ffffff;
   --gris_contraste: #f7f7f7;
-  --vino_sep: #6a1a33;
+  --vino_sep: #621132;
   --azul_contraste: #007bff;
 }
 
-.full_center{
+.full_center {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.titulo_principal{
+.titulo_principal {
   text-align: center;
   margin: 1rem;
 }
@@ -34,9 +34,41 @@
 }
 
 .principal_header img {
-  width: 10%;
   height: 10%;
   max-height: 80px;
+  max-width: 110px;
+}
+
+.logo_dinamico img:nth-of-type(1) {
+  max-width: 50px;
+}
+
+.logo_dinamico {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-align: center;
+}
+
+.logo_dinamico p:nth-child(2) {
+  font-weight: 600;
+  color: var(--vino_sep);
+  line-height: 1.5; /* Mejora la separación entre líneas */
+}
+
+.logo_dinamico p:nth-child(1) {
+  font-weight: 300;
+  color: var(--blanco_universal);
+}
+
+/* Ocultar la imagen 3 en dispositivos con ancho menor o igual a 768px */
+@media (max-width: 768px) {
+  .principal_header img:nth-of-type(2) {
+    display: none;
+  }
+  .principal_header img:nth-of-type(1) {
+    width: 70%;
+  }
 }
 
 .menu {
@@ -69,8 +101,7 @@
   background-color: var(--tecnm-blue);
 }
 
-
-.btn_submit{
+.btn_submit {
   padding: 1.3rem;
   background-color: var(--azul_TecNM);
   color: var(--blanco_universal);
@@ -83,7 +114,7 @@
 .btn_submit:hover {
   background-color: #0056b3; /* Un azul más oscuro */
   transform: scale(1.1); /* Agranda ligeramente el botón */
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 /* Style the list */
@@ -100,7 +131,7 @@ ul.breadcrumb li {
 }
 
 /* Add a slash symbol (/) before/behind each list item */
-ul.breadcrumb li+li:before {
+ul.breadcrumb li + li:before {
   padding: 8px;
   color: black;
   content: "/\00a0";
@@ -110,7 +141,7 @@ ul.breadcrumb li+li:before {
 ul.breadcrumb li a {
   color: #0275d8;
   text-decoration: none;
-  font-size: .9rem;
+  font-size: 0.9rem;
 }
 
 /* Add a color on mouse-over */
@@ -119,6 +150,11 @@ ul.breadcrumb li a:hover {
   text-decoration: underline;
 }
 
-.Bread{
-  font-size: .8rem;
+.Bread {
+  font-size: 0.8rem;
+}
+
+
+.tooltip{
+  font-size: .7rem;
 }

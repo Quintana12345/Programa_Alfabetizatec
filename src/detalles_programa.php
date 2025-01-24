@@ -17,8 +17,12 @@
     </header>
 
     <main>
-        <h3 id="titulo-programa" class="titulo_principal"></h3>
-        <p>Estudiantes:</p>
+        <ul class="breadcrumb">
+            <li><a href="./coordinador_programa.php">Inicio</a></li>
+            <li><a href="#">Detalles de programa:</a></li>
+
+        </ul>
+        <h2 id="titulo-programa" class="titulo_principal"></h2>
 
         <div id="detallesPrograma" class="full_center"></div>
     </main>

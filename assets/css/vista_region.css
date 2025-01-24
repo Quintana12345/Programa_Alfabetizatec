@@ -13,13 +13,16 @@ p{
 }
 
 #graficoBarras{
-    width: 80%;
+    width: 80% !important;
     height: 600;
+    margin: auto;
 }
 
 #avance{
-    width: 80%;
+    width: 80% !important;
     height: 600;
+    margin: auto;
+
 }
 
 

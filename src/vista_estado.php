@@ -19,7 +19,7 @@
 
     <main>
     <ul class="breadcrumb">
-            <li><a href="./coordinador_nacional.php">Home</a></li>
+            <li><a href="./coordinador_nacional.php">Inicio</a></li>
             <li><a href="#">Detalles por estado:</a></li>
 
         </ul>

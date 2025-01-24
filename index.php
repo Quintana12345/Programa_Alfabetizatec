@@ -1,6 +1,5 @@
 <?php
-require_once __DIR__ . '/vendor/autoload.php'; // Asegúrate de incluir el autoload de Composer
-
+require_once __DIR__ . '/vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
@@ -24,7 +23,13 @@ $dotenv->load();
 
 <body>
     <header class="principal_header">
-        <img src="./assets/img/logotipos/alfabetizatec_icon.png" alt="Logotipo SEP">
+        <div class="logo_dinamico">
+            <img src="./assets/img/logotipos/blanco.png" alt="Logotipo Alfabetizatec">
+           <div class="text">
+            <p> Programa Nacional</p>
+            <p>Alfabetizatec</p>
+           </div>
+        </div>
         <img src="./assets/img/logotipos/TecNM_Azteca.png" alt="Logotipo TECNM">
         <img src="./assets/img/logotipos/inea_blanco.png" alt="Logotipo INEA">
     </header>

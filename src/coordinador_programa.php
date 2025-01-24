@@ -25,15 +25,19 @@ session_start();
     </header>
 
     <main>
+        <ul class="breadcrumb">
+            <li><a href="#">Inicio</a></li>
+
+        </ul>
         <h2 class="titulo_principal">Bienvenido <?php echo $_SESSION['nombre'] . ' ' . $_SESSION['apellido']; ?></h2>
         <p class="tec_nombre"><?php echo $_SESSION['nombre_tecnologico']; ?></p>
 
-        <a style="text-align: center;" href="./api/auth/cambiar_contrasena.php">Cambiar contraseña</a>
+        <a class="contra" href="./api/auth/cambiar_contrasena.php">Cambiar contraseña</a>
 
         <div class="actions">
-            <button class="btn_submit_educador">Registrar educador </button>
-            <button class="btn_submit_programa">Nuevo Programa </button>
-            <button class="btn_submit_estudiante">Agregar Estudiante </button>
+            <button class="btn_submit_educador">1. -Registrar educador </button>
+            <button class="btn_submit_programa">2.- Nuevo Programa </button>
+            <button class="btn_submit_estudiante">3. -Agregar Estudiante </button>
         </div>
 
 
@@ -50,7 +54,7 @@ session_start();
             </div>
 
 
-           <!--  <div class="info">
+            <!--  <div class="info">
                 <h4>Estudiantes:</h4>
                 <div id="Estudiantes_tec">
                 </div>
@@ -96,6 +100,8 @@ session_start();
                     <select id="educadorSelect" name="educador" required>
                         <option value="">Selecciona un educador</option> <!-- Opción por defecto -->
                     </select>
+
+                    <span class="tooltip">Recuerda que debes registrar primero a tus educadores:</span>
                 </div>
 
 
@@ -263,6 +269,8 @@ session_start();
                     <select id="programa_estudiante" name="programa_estudiante" required>
                         <option value="">Selecciona un programa</option> <!-- Opción por defecto -->
                     </select>
+                    <span class="tooltip">Recuerda que debes registrar primero los programas:</span>
+
                 </div>
 
 
