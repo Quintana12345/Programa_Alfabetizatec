@@ -1,4 +1,4 @@
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 <nav class="layout_header">
     <!-- Logotipos -->
@@ -21,6 +21,14 @@
             <img src="../assets/img/svg/logout.svg" alt="cerrar icono">
             <a href="#" class="logout">Cerrar Sesión</a>
         </li>
+
+        <!-- Mostrar el ítem de cambiar contraseña solo si la sesión tiene contra = true -->
+        <?php if (isset($_SESSION['contra']) && $_SESSION['contra'] === 1): ?>
+            <li>
+                <img src="../assets/img/svg/logout.svg" alt="cambiar contraseña icono">
+                <a href="api/auth/cambiar_contrasena.php" class="change-password">Cambiar Contraseña</a>
+            </li>
+        <?php endif; ?>
     </ul>
 </nav>
 
@@ -38,7 +46,6 @@
             dropdownMenu.classList.toggle('show');
         });
 
-        // Cerrar sesión
         // Cerrar sesión
         logoutLink.addEventListener('click', (event) => {
             event.preventDefault(); // Prevenir comportamiento predeterminado
@@ -58,7 +65,6 @@
                 window.location.href = './login.php';
             }, 1200); // Redirigir 1 segundo después del cierre del toast
         });
-
 
         // Volver
         backLink.addEventListener('click', (event) => {

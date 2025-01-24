@@ -32,7 +32,6 @@ session_start();
         <h2 class="titulo_principal">Bienvenido <?php echo $_SESSION['nombre'] . ' ' . $_SESSION['apellido']; ?></h2>
         <p class="tec_nombre"><?php echo $_SESSION['nombre_tecnologico']; ?></p>
 
-        <a class="contra" href="./api/auth/cambiar_contrasena.php">Cambiar contraseña</a>
 
         <div class="actions">
             <button class="btn_submit_educador">1. -Registrar educador </button>
