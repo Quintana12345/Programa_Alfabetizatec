@@ -5,6 +5,9 @@
   text-align: center;
   width: 100%;
 }
+h5{
+  margin: 1rem 0rem;
+}
 
 /* ======== Estilos para el contenedor principal ======== */
 
@@ -40,7 +43,6 @@ main {
   border: 1px solid #888; /* Borde gris */
   width: 90%; /* Ocupa el 90% del ancho disponible */
   max-width: 500px; /* Ancho máximo del contenido */
-  max-height: 90vh; /* Altura máxima para evitar desbordamiento */
   overflow-y: auto; /* Scroll vertical si es necesario */
   box-sizing: border-box; /* Incluye padding y borde en el tamaño total */
 }
@@ -131,7 +133,6 @@ main {
   justify-content: center; /* Centra verticalmente */
   gap: 0.6rem; /* Espaciado entre elementos */
   padding: 1.8rem 0; /* Espaciado interno */
-  max-height: 270vh; /* Limita la altura máxima */
 }
 
 @media (max-width: 768px) {
@@ -151,6 +152,7 @@ main {
   justify-content: center;
   flex-direction: column;
   overflow-y: scroll;
+  overflow-x: scroll;
 }
 
 .info {

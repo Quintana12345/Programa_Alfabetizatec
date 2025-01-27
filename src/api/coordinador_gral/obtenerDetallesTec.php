@@ -26,7 +26,7 @@ try {
     // Consulta para obtener los detalles de un tecnológico por su id
     $queryTecnologico = "
         SELECT t.id AS tecnologico_id, t.nombre AS tecnologico_nombre, e.id AS estado_id, e.nombre AS estado_nombre,
-               t.director, t.tipo_de_institucion, t.modalidad
+               t.director, t.modalidad
         FROM tecnologicos t
         LEFT JOIN estados e ON t.estado_id = e.id
         WHERE t.id = ?

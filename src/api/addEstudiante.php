@@ -42,6 +42,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $motivacion = isset($data['motivacion']) ? implode(',', $data['motivacion']) : null;
     $id_programa = isset($data['programa_estudiante']) ? $data['programa_estudiante'] : null;
 
+    // Nuevos campos que mencionaste
+    $colonia = isset($data['colonia']) ? $data['colonia'] : '';
+    $entidad_federativa = isset($data['entidad_federativa']) ? $data['entidad_federativa'] : '';
+    $habla_otro_idioma = isset($data['habla_otro_idioma']) ? $data['habla_otro_idioma'] : '';
+    $lengua_indigena = isset($data['lengua_indigena']) ? $data['lengua_indigena'] : '';
+    $municipio = isset($data['municipio']) ? $data['municipio'] : '';
+    $otro_idioma = isset($data['otro_idioma']) ? $data['otro_idioma'] : '';
+    $proceso_nivel_ingresa = isset($data['proceso_nivel_ingresa']) ? $data['proceso_nivel_ingresa'] : '';
+    $se_considera_afromexicano = isset($data['se_considera_afromexicano']) ? $data['se_considera_afromexicano'] : '';
+    $se_considera_indigena = isset($data['se_considera_indigena']) ? $data['se_considera_indigena'] : '';
+    $servicio_educativo = isset($data['servicio_educativo']) ? $data['servicio_educativo'] : '';
+    $tiene_acceso_internet = isset($data['tiene_acceso_internet']) ? $data['tiene_acceso_internet'] : '';
+    $tiene_equipo_computo = isset($data['tiene_equipo_computo']) ? $data['tiene_equipo_computo'] : '';
+
     // Validación de campos obligatorios
     $missing_fields = [];
     $required_fields = ['nombres', 'primer_apellido', 'curp', 'telefono_celular', 'programa_estudiante'];
@@ -72,6 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ($data['num_exterior'] ? 'No. ' . $data['num_exterior'] . ' ' : '') .
                 ($data['num_interior'] ? 'Int. ' . $data['num_interior'] : '')
         );
+
         // Insertar datos del estudiante
         $query_estudiante = "INSERT INTO estudiantes (
             nombre, apellidos, domicilio, curp, telefono, correo,
@@ -79,19 +94,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             entidad_nacimiento, estado_civil, num_hijos, vialidad_tipo, 
             vialidad_nombre, num_exterior, num_interior, codigo_postal, 
             telefono_fijo, habla_lengua_indigena, situacion_laboral, 
-            discapacidad, nivel_educativo, motivacion
+            discapacidad, nivel_educativo, motivacion,
+            colonia, entidad_federativa, habla_otro_idioma, lengua_indigena, 
+            municipio, otro_idioma, proceso_nivel_ingresa, 
+            se_considera_afromexicano, se_considera_indigena, 
+            servicio_educativo, tiene_acceso_internet, tiene_equipo_computo
         ) VALUES (
-            ?, ?, ?, ?, ?, ?,
-            ?, ?, ?, ?, 
-            ?, ?, ?, ?, 
-            ?, ?, ?, ?, 
-            ?, ?, ?, 
-            ?, ?, ?
+            ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 
+            ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
+            ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
+            ?, ?, ?, ?, ?, ?
         )";
 
+        // Preparar la declaración y vincular los parámetros
         $stmt_estudiante = $conn->prepare($query_estudiante);
         $stmt_estudiante->bind_param(
-            'ssssssssssssssssssssssss',
+            'ssssssssssssssssssssssssssssssssssss',
             $nombre,
             $apellidos,
             $domicilio,
@@ -115,43 +133,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $situacion_laboral,
             $discapacidad,
             $nivel_educativo,
-            $motivacion
+            $motivacion,
+            $colonia,
+            $entidad_federativa,
+            $habla_otro_idioma,
+            $lengua_indigena,
+            $municipio,
+            $otro_idioma,
+            $proceso_nivel_ingresa,
+            $se_considera_afromexicano,
+            $se_considera_indigena,
+            $servicio_educativo,
+            $tiene_acceso_internet,
+            $tiene_equipo_computo
         );
+
+        // Ejecutar la consulta
         $stmt_estudiante->execute();
-
-        // Obtener el ID del estudiante recién creado
-        $id_estudiante = $stmt_estudiante->insert_id;
-
-        // Insertar datos en la tabla solicitudes
-        $status = 'pendiente';
-        $fecha = date('Y-m-d');
-        $query_solicitud = "INSERT INTO solicitudes (status, id_programa, id_estudiante, fecha)
-                            VALUES (?, ?, ?, ?)";
-        $stmt_solicitud = $conn->prepare($query_solicitud);
-        $stmt_solicitud->bind_param('siss', $status, $id_programa, $id_estudiante, $fecha);
-        $stmt_solicitud->execute();
-
-        // Confirmar la transacción
         $conn->commit();
-
-        echo json_encode([
-            'success' => true,
-            'message' => 'Estudiante y solicitud registrados correctamente.'
-        ]);
+        echo json_encode(['success' => true]);
     } catch (Exception $e) {
         $conn->rollback();
         echo json_encode([
             'success' => false,
-            'message' => 'Error al insertar los datos: ' . $e->getMessage()
+            'message' => 'Error: ' . $e->getMessage()
         ]);
     }
-
-    $stmt_estudiante->close();
-    $stmt_solicitud->close();
-    $conn->close();
-} else {
-    echo json_encode([
-        'success' => false,
-        'message' => 'Método de solicitud no válido.'
-    ]);
 }

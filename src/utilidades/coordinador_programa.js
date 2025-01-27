@@ -318,7 +318,7 @@ function obtenerProgramas() {
 
             // Agregar opciones al select
             selectOptionsHTML += `
-                <option value="${programa.id}">${programa.nivel_nombre}</option>
+                <option value="${programa.id}">${programa.nivel_nombre}: ${programa.inicio_periodo} -  ${programa.fin_periodo} </option>
               `;
           });
 

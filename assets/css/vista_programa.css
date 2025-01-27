@@ -1,5 +1,6 @@
 main {
   background-color: var(--gris_contraste);
+  min-height: 85vh;
 }
 p {
   padding: 1.3rem;

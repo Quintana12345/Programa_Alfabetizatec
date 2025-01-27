@@ -42,7 +42,7 @@
             </button>
 
             <!-- DataTable container -->
-            <table id="coordinadoresTable" class="display" style="width:100%; margin:auto; width:70%">
+            <table id="coordinadoresTable" class="display" >
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -248,8 +248,7 @@
 
             // Inicializar DataTable
             const table = $('#coordinadoresTable').DataTable({
-                "processing": true,
-                "serverSide": true,
+                
                 "ajax": {
                     "url": apiUrl,
                     "dataSrc": "data", // La respuesta del API tiene los datos en "data"

@@ -56,37 +56,57 @@
 </div>
 
 <style>
-    footer {
-        background-color: var(--azul_TecNM);
-        padding: 1rem 3rem;
-        display: flex;
-        justify-content: center;
-        color: var(--blanco_universal);
-        text-align: center;
+  footer {
+    background-color: var(--azul_TecNM);
+    padding: 1rem 3rem;
+    display: flex;
+    justify-content: center;
+    color: var(--blanco_universal);
+    text-align: center;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin-top: 1rem;
+    gap: 1rem;
+    flex-wrap: wrap; /* Permite que los elementos se ajusten en varias líneas si es necesario */
+}
+
+.lista {
+    list-style: none;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: .7rem;
+}
+
+.list_footer {
+    margin-top: 1rem;
+}
+
+.list_footer a {
+    color: white;
+}
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Cambia a columna en pantallas pequeñas */
+        align-items: flex-start; /* Alinea los elementos al principio */
     }
 
-    .container{
-        width: 100%;
-        display: flex;
-        align-items: center;
-        list-style: none;
-        margin-top: 1rem;
-        gap: 1rem;
-    }
-    .lista{
-        list-style: none;
-        text-align: left;
-        display: flex;
-        flex-direction: column;
-        gap: .7rem;
+    .col-sm-3, .col {
+        width: 100%; /* Asegura que las columnas ocupen todo el ancho */
+        text-align: center; /* Centra el contenido dentro de cada columna */
     }
 
-    .list_footer {
-        margin-top: 1rem;
+    .list-footer {
+        margin-top: 0.5rem;
     }
+}
 
-    .list_footer a {
-        color: white;
-    }
     
 </style>

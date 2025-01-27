@@ -144,7 +144,7 @@ session_start();
 
                 <div class="input_grupo">
                     <label for="segundo_apellido">Segundo Apellido:</label>
-                    <input type="text" id="segundo_apellido" name="segundo_apellido">
+                    <input type="text" id="segundo_apellido" name="segundo_apellido" required>
                 </div>
 
 
@@ -170,7 +170,7 @@ session_start();
 
                 <div class="input_grupo">
                     <label for="entidad_nacimiento">Entidad de Nacimiento:</label>
-                    <select id="entidad_nacimiento" name="entidad_nacimiento">
+                    <select id="entidad_nacimiento" name="entidad_nacimiento" required>
                         <option value="">Seleccione</option>
                         <option value="Aguascalientes">Aguascalientes</option>
                         <option value="Baja California">Baja California</option>
@@ -209,7 +209,7 @@ session_start();
 
                 <div class="input_grupo">
                     <label for="curp">CURP:</label>
-                    <input type="text" id="curp" name="curp">
+                    <input type="text" id="curp" name="curp" required>
                 </div>
 
                 <div class="input_grupo">
@@ -223,7 +223,7 @@ session_start();
 
                 <div class="input_grupo">
                     <label for="estado_civil">Estado Civil:</label>
-                    <select id="estado_civil" name="estado_civil">
+                    <select id="estado_civil" name="estado_civil" required>
                         <option value="">Seleccione</option>
                         <option value="soltero">Soltero</option>
                         <option value="union_libre">Unión Libre</option>
@@ -236,7 +236,7 @@ session_start();
 
                 <div class="input_grupo">
                     <label for="num_hijos">No. de Hijos:</label>
-                    <input type="number" id="num_hijos" name="num_hijos" min="0">
+                    <input type="number" id="num_hijos" name="num_hijos" min="0" required>
                 </div>
 
                 <div class="input_grupo">
@@ -254,14 +254,11 @@ session_start();
                     <input type="email" id="correo_inst" name="correo_inst">
                 </div>
 
-                <div class="input_grupo">
-                    <label for="contrasena">Contraseña:</label>
-                    <input type="password" id="contrasena" name="contrasena" required>
-                </div>
+
 
                 <div class="input_grupo">
                     <label for="escolaridad">Escolaridad:</label>
-                    <select id="escolaridad" name="escolaridad">
+                    <select id="escolaridad" name="escolaridad" required>
                         <option value="">Seleccione</option>
                         <option value="primaria_completa">Primaria Completa</option>
                         <option value="secundaria_completa">Secundaria Completa</option>
@@ -273,17 +270,92 @@ session_start();
                 </div>
 
                 <div class="input_grupo">
+                    <label for="ocupacion">Ocupación:</label>
+                    <select id="ocupacion" name="ocupacion" required>
+                        <option value="Operador de trans. o maq. mov.">Operador de trans. o maq. mov.</option>
+                        <option value="Trabajador en ser. al púb. o pers.">Trabajador en ser. al púb. o pers.</option>
+                        <option value="Desempleado">Desempleado</option>
+                        <option value="Trabajador agropecuario">Trabajador agropecuario</option>
+                        <option value="Jefe de actividades administrativas">Jefe de actividades administrativas</option>
+                        <option value="Trabajador doméstico">Trabajador doméstico</option>
+                        <option value="Trabajador de la educación">Trabajador de la educación</option>
+                        <option value="Inspector o supervisor">Inspector o supervisor</option>
+                        <option value="Trabajador administrativo">Trabajador administrativo</option>
+                        <option value="Protección o vigilancia">Protección o vigilancia</option>
+                        <option value="Trabajador del arte o deportes">Trabajador del arte o deportes</option>
+                        <option value="Artesano u obrero">Artesano u obrero</option>
+                        <option value="Comerciante o dependiente">Comerciante o dependiente</option>
+                        <option value="Quehaceres del hogar">Quehaceres del hogar</option>
+                        <option value="Funcionario o directivo">Funcionario o directivo</option>
+                        <option value="Operador de maquinaria fija">Operador de maquinaria fija</option>
+                        <option value="Trabajador ambulante">Trabajador ambulante</option>
+                        <option value="Profesionista">Profesionista</option>
+                        <option value="Empleado de gobierno">Empleado de gobierno</option>
+                        <option value="Ayudante o similar">Ayudante o similar</option>
+                        <option value="Estudiante">Estudiante</option>
+                        <option value="Pensionado">Pensionado</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+
+                <div class="input_grupo">
+                    <label for="rol">Rol (es) de la persona operativa:</label>
+                    <select id="rol" name="rol" required>
+                        <option value="Asesor educativo">Asesor educativo</option>
+                        <option value="Responsable de Área en Inst Estatal / UO">Responsable de Área en Inst Estatal / UO</option>
+                        <option value="Personal en Inst Estatal / UO">Personal en Inst Estatal / UO</option>
+                        <option value="Aplicador de exámenes">Aplicador de exámenes</option>
+                        <option value="Coordinador Regional">Coordinador Regional</option>
+                        <option value="Personal en Coordinación de Zona">Personal en Coordinación de Zona</option>
+                        <option value="Persona Técnico Docente">Persona Técnico Docente</option>
+                        <option value="Coordinador de Zona">Coordinador de Zona</option>
+                        <option value="Director Inst Estatal / UO">Director Inst Estatal / UO</option>
+                        <option value="Responsable de Informática en CZ">Responsable de Informática en CZ</option>
+                        <option value="Responsable de Informática en Inst Estatal / UO">Responsable de Informática en Inst Estatal / UO</option>
+                        <option value="Responsable de Acreditación en CZ">Responsable de Acreditación en CZ</option>
+                        <option value="Responsable de Acreditación en Inst Estatal / UO">Responsable de Acreditación en Inst Estatal / UO</option>
+                        <option value="Responsable de Planeación en CZ">Responsable de Planeación en CZ</option>
+                        <option value="Responsable de Planeación en Inst Estatal / UO">Responsable de Planeación en Inst Estatal / UO</option>
+                        <option value="Personal en Oficinas Centrales">Personal en Oficinas Centrales</option>
+                        <option value="SASA-02">SASA-02</option>
+                        <option value="Responsable de Servicios Educativos en Inst Estatal / UO">Responsable de Servicios Educativos en Inst Estatal / UO</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+
+                <div class="input_grupo">
+                    <label for="fecha_registro">Fecha de Registro:</label>
+                    <input type="date" id="fecha_registro" name="fecha_registro" required>
+                </div>
+
+                <div class="input_grupo">
+                    <label for="alianza">Alianza o convenio:</label>
+                    <input type="text" id="alianza" name="alianza">
+                </div>
+
+                <div class="input_grupo">
+                    <label for="subproyecto">Subproyecto:</label>
+                    <input type="text" id="subproyecto" name="subproyecto">
+                </div>
+
+                <div class="input_grupo">
+                    <label for="tipo_vinculacion">Tipo de vinculación:</label>
+                    <input type="text" id="tipo_vinculacion" name="tipo_vinculacion">
+                </div>
+
+
+                <div class="input_grupo">
                     <label for="puesto">Puesto:</label>
-                    <input type="text" id="puesto" name="puesto">
+                    <input type="text" id="puesto" name="puesto" required>
                 </div>
 
                 <div class="input_grupo">
                     <label for="tipo_participante">Tipo de Educador:</label>
                     <select id="tipo_participante" name="tipo_participante" class="styled-select" required>
                         <option value="" disabled selected>Seleccione</option>
-                        <option value="estudiante_universitario">Estudiante Universitario</option>
-                        <option value="docente">Docente</option>
-                        <option value="externo">Externo</option>
+                        <option value="Estudiante Universitario">Estudiante Universitario</option>
+                        <option value="Docente">Docente</option>
+                        <option value="Externo">Externo</option>
                     </select>
                 </div>
 
@@ -291,11 +363,11 @@ session_start();
                     <label for="modalidad">Modalidad:</label>
                     <select id="modalidad" name="modalidad" required>
                         <option value="" selected>Selecciona</option>
-                        <option value="alfabetizaTEC">Construyendo tu Servicio Social en AlfabetizaTEC</option>
-                        <option value="servicio_comunitario">Servicio Social Comunitario</option>
-                        <option value="creditos_complementarios">Créditos Complementarios</option>
-                        <option value="valor_curricular">Constancia de Valor Curricular</option>
-                        <option value="participacion_honorifica">Diploma de Participación Honorífica</option>
+                        <option value="AlfabetizaTEC">Construyendo tu Servicio Social en AlfabetizaTEC</option>
+                        <option value="Servicio Social Comunitario">Servicio Social Comunitario</option>
+                        <option value="Créditos Complementarios">Créditos Complementarios</option>
+                        <option value="Constancia de Valor Curricular">Constancia de Valor Curricular</option>
+                        <option value="Diploma de Participación Honorífica">Diploma de Participación Honorífica</option>
                     </select>
                 </div>
 
@@ -330,6 +402,8 @@ session_start();
             <span class="close">&times;</span>
             <h2>Formulario de Registro - Estudiante</h2>
             <form id="registrationFormEstudiante" class="formulario_registro">
+
+                <h5>Datos generales:</h5>
                 <!-- Datos Generales -->
                 <div class="input_grupo">
                     <label for="nombres">Nombre(s):</label>
@@ -341,7 +415,7 @@ session_start();
                 </div>
                 <div class="input_grupo">
                     <label for="segundo_apellido">Segundo Apellido:</label>
-                    <input type="text" name="segundo_apellido" maxlength="100">
+                    <input type="text" name="segundo_apellido" maxlength="100" required>
                 </div>
 
                 <div class="input_grupo">
@@ -412,11 +486,11 @@ session_start();
                     </select>
                 </div>
 
-
+                <h5> Estado Civil:</h5>
                 <!-- Estado Civil -->
                 <div class="input_grupo">
                     <label>Estado Civil:</label>
-                    <select name="estado_civil">
+                    <select name="estado_civil" required>
                         <option value="">Seleccionar</option>
                         <option value="soltero">Soltero</option>
                         <option value="casado">Casado</option>
@@ -428,13 +502,14 @@ session_start();
                 </div>
                 <div class="input_grupo">
                     <label for="num_hijos">Número de Hijos:</label>
-                    <input type="number" name="num_hijos" min="0" max="20">
+                    <input type="number" name="num_hijos" min="0" max="20" required>
                 </div>
 
                 <!-- Domicilio Detallado -->
+                <h5>Domicilio:</h5>
                 <div class="input_grupo">
                     <label for="vialidad_tipo">Tipo de Vialidad:</label>
-                    <select name="vialidad_tipo">
+                    <select name="vialidad_tipo" required>
                         <option value="">Seleccionar</option>
                         <option value="calle">Calle</option>
                         <option value="avenida">Avenida</option>
@@ -460,6 +535,79 @@ session_start();
                     <input type="text" name="codigo_postal" pattern="[0-9]{5}" required>
                 </div>
 
+                <!-- Colonia -->
+                <div class="input_grupo">
+                    <label>Colonia</label>
+                    <input type="text" name="colonia" placeholder="Especifica tu colonia" required>
+                </div>
+
+                <!-- Municipio -->
+                <div class="input_grupo">
+                    <label>Municipio</label>
+                    <input type="text" name="municipio" placeholder="Especifica tu municipio" required>
+                </div>
+
+                <!-- Entidad Federativa -->
+                <div class="input_grupo">
+                    <label>Entidad Federativa</label>
+                    <select name="entidad_federativa" id="entidad_federativa" required>
+                        <option value="" disabled selected>Seleccione una opción</option>
+                        <option value="Aguascalientes">Aguascalientes</option>
+                        <option value="Baja California">Baja California</option>
+                        <option value="Baja California Sur">Baja California Sur</option>
+                        <option value="Campeche">Campeche</option>
+                        <option value="Chiapas">Chiapas</option>
+                        <option value="Chihuahua">Chihuahua</option>
+                        <option value="Ciudad de México">Ciudad de México</option>
+                        <option value="Coahuila">Coahuila</option>
+                        <option value="Colima">Colima</option>
+                        <option value="Durango">Durango</option>
+                        <option value="Estado de México">Estado de México</option>
+                        <option value="Guanajuato">Guanajuato</option>
+                        <option value="Guerrero">Guerrero</option>
+                        <option value="Hidalgo">Hidalgo</option>
+                        <option value="Jalisco">Jalisco</option>
+                        <option value="Michoacán">Michoacán</option>
+                        <option value="Morelos">Morelos</option>
+                        <option value="Nayarit">Nayarit</option>
+                        <option value="Nuevo León">Nuevo León</option>
+                        <option value="Oaxaca">Oaxaca</option>
+                        <option value="Puebla">Puebla</option>
+                        <option value="Querétaro">Querétaro</option>
+                        <option value="Quintana Roo">Quintana Roo</option>
+                        <option value="San Luis Potosí">San Luis Potosí</option>
+                        <option value="Sinaloa">Sinaloa</option>
+                        <option value="Sonora">Sonora</option>
+                        <option value="Tabasco">Tabasco</option>
+                        <option value="Tamaulipas">Tamaulipas</option>
+                        <option value="Tlaxcala">Tlaxcala</option>
+                        <option value="Veracruz">Veracruz</option>
+                        <option value="Yucatán">Yucatán</option>
+                        <option value="Zacatecas">Zacatecas</option>
+                    </select>
+                </div>
+
+                <!-- Tiene equipo de cómputo -->
+                <div class="input_grupo">
+                    <label>¿Tiene equipo de cómputo?</label>
+                    <select name="tiene_equipo_computo" id="tiene_equipo_computo" required>
+                        <option value="no">No</option>
+                        <option value="si">Sí</option>
+                    </select>
+                </div>
+
+
+
+                <!-- Tiene acceso a Internet -->
+                <div class="input_grupo">
+                    <label>¿Tiene acceso a Internet?</label>
+                    <select name="tiene_acceso_internet" id="tiene_acceso_internet" required>
+                        <option value="no">No</option>
+                        <option value="si">Sí</option>
+                    </select>
+                </div>
+
+
                 <!-- Contacto -->
                 <div class="input_grupo">
                     <label for="telefono_fijo">Teléfono Fijo:</label>
@@ -477,16 +625,72 @@ session_start();
                 <!-- Idioma -->
                 <div class="input_grupo">
                     <label>Habla Lengua Indígena:</label>
-                    <select name="habla_lengua_indigena">
+                    <select name="habla_lengua_indigena" id="habla_lengua_indigena" required>
                         <option value="no">No</option>
                         <option value="si">Sí</option>
                     </select>
                 </div>
 
+                <div class="input_grupo" id="lengua_indigena_input" style="display: none;">
+                    <label>¿Cuál?</label>
+                    <input type="text" name="lengua_indigena" placeholder="Especifica la lengua indígena">
+                </div>
+
+                <div class="input_grupo">
+                    <label>¿Habla algún idioma además del Español?</label>
+                    <select name="habla_otro_idioma" id="habla_otro_idioma" required>
+                        <option value="no">No</option>
+                        <option value="si">Sí</option>
+                    </select>
+                </div>
+
+                <div class="input_grupo" id="otro_idioma_input" style="display: none;">
+                    <label>¿Cuál?</label>
+                    <input type="text" name="otro_idioma" placeholder="Especifica el idioma">
+                </div>
+
+                <div class="input_grupo">
+                    <label>De acuerdo con su cultura, ¿usted se considera indígena?</label>
+                    <select name="se_considera_indigena" id="se_considera_indigena" required>
+                        <option value="no">No</option>
+                        <option value="si">Sí</option>
+                    </select>
+                </div>
+
+                <div class="input_grupo">
+                    <label>¿Usted se considera afromexicano(a), negro(a) o afrodescendiente?</label>
+                    <select name="se_considera_afromexicano" id="se_considera_afromexicano" required>
+                        <option value="no">No</option>
+                        <option value="si">Sí</option>
+                    </select>
+                </div>
+
+                <script>
+                    // Mostrar u ocultar campo para otro idioma
+                    document.getElementById('habla_otro_idioma').addEventListener('change', function() {
+                        var otroIdiomaInput = document.getElementById('otro_idioma_input');
+                        if (this.value === 'si') {
+                            otroIdiomaInput.style.display = 'block';
+                        } else {
+                            otroIdiomaInput.style.display = 'none';
+                        }
+                    });
+
+                    document.getElementById('habla_lengua_indigena').addEventListener('change', function() {
+                        var lenguaIndigenaInput = document.getElementById('lengua_indigena_input');
+                        if (this.value === 'si') {
+                            lenguaIndigenaInput.style.display = 'block';
+                        } else {
+                            lenguaIndigenaInput.style.display = 'none';
+                        }
+                    });
+                </script>
+
+
                 <!-- Ocupación -->
                 <div class="input_grupo">
                     <label>Situación Laboral:</label>
-                    <select name="situacion_laboral">
+                    <select name="situacion_laboral" required>
                         <option value="">Seleccionar</option>
                         <option value="trabajando">Trabajando</option>
                         <option value="jubilado">Jubilado/Pensionado</option>
@@ -499,7 +703,7 @@ session_start();
                 <!-- Discapacidad -->
                 <div class="input_grupo">
                     <label>¿Tiene alguna discapacidad?</label>
-                    <select name="discapacidad" multiple>
+                    <select name="discapacidad" multiple required>
                         <option value="ninguna">Ninguna</option>
                         <option value="fisica">Física o Motriz</option>
                         <option value="visual">Visual</option>
@@ -512,7 +716,7 @@ session_start();
                 <!-- Nivel Educativo -->
                 <div class="input_grupo">
                     <label>Nivel Educativo:</label>
-                    <select name="nivel_educativo">
+                    <select name="nivel_educativo" required>
                         <option value="">Seleccionar</option>
                         <option value="sin_estudios">Sin Estudios</option>
                         <option value="primaria_incompleta">Primaria Incompleta</option>
@@ -522,10 +726,33 @@ session_start();
                     </select>
                 </div>
 
+                <!-- Proceso o nivel al que ingresa -->
+                <div class="input_grupo">
+                    <label>Proceso o nivel al que ingresa:</label>
+                    <select name="proceso_nivel_ingresa" id="proceso_nivel_ingresa" required>
+                        <option value="alfabetizacion">Alfabetización</option>
+                        <option value="primaria">Primaria</option>
+                        <option value="secundaria">Secundaria</option>
+                        <option value="alfabetizacion_indigena_bilingue">Alfabetización indígena bilingüe</option>
+                        <option value="etnia_lengua">Etnia/Lengua</option>
+                    </select>
+                </div>
+
+                <!-- Servicio educativo seleccionado -->
+                <div class="input_grupo">
+                    <label>Servicio educativo seleccionado:</label>
+                    <select name="servicio_educativo" id="servicio_educativo" required>
+                        <option value="examen_diagnostico">Examen diagnóstico</option>
+                        <option value="reconocimiento_saberes">Reconocimiento de saberes</option>
+                        <option value="atencion_educativa">Atención educativa</option>
+                    </select>
+                </div>
+
+
                 <!-- Motivación para Estudiar -->
                 <div class="input_grupo">
                     <label>Motivación para Estudiar:</label>
-                    <select name="motivacion" multiple>
+                    <select name="motivacion" multiple required>
                         <option value="certificado">Obtener Certificado</option>
                         <option value="educacion">Continuar Educación</option>
                         <option value="empleo">Mejorar Oportunidades de Empleo</option>

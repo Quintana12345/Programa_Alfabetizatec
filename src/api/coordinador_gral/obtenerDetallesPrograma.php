@@ -58,10 +58,18 @@ try {
 
         // Consulta para obtener la lista de estudiantes asociados al programa
         $queryEstudiantes = "
-SELECT e.id, e.nombre, e.apellidos, e.domicilio, e.curp, e.telefono, e.correo, s.status
+SELECT e.id, 
+       e.nombre, 
+       CONCAT(e.apellidos, ' ', e.segundo_apellido) AS apellidos, 
+       e.domicilio, 
+       e.curp, 
+       e.telefono, 
+       e.correo, 
+       s.status
 FROM estudiantes e
 JOIN solicitudes s ON e.id = s.id_estudiante
 WHERE s.id_programa = ?
+
 ";
 
         $stmtEstudiantes = $conn->prepare($queryEstudiantes);

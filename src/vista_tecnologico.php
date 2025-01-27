@@ -68,7 +68,6 @@ session_start();
                                     <thead>
                                         <tr>
                                             <th>Programa</th>
-                                            <th>Descripción</th>
                                             <th>Inicio Periodo</th>
                                             <th>Fin Periodo</th>
                                         </tr>
@@ -80,7 +79,6 @@ session_start();
                                 data.data.programas.forEach(function(programa) {
                                     tableContent += '<tr>' +
                                         `<td><a href="./vista_programa.php?id=${programa.id}" >${programa.nivel}</a></td>` +
-                                        '<td>' + (programa.descripcion || "N/A") + '</td>' +
                                         '<td>' + programa.inicio_periodo + '</td>' +
                                         '<td>' + programa.fin_periodo + '</td>' +
                                         '</tr>';

@@ -23,7 +23,8 @@
 
         </ul>
         <h2 id="titulo-programa" class="titulo_principal"></h2>
-
+        <span id="fecha-inicio"></span>
+        <span id="fecha-fin"></span>
         <div id="detallesPrograma" class="full_center"></div>
     </main>
 
@@ -36,6 +37,17 @@
         // Obtener el id del programa de la URL
         const idPrograma = urlParams.get('id');
 
+        // Función para formatear las fechas
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const day = date.getDate().toString().padStart(2, '0');
+            const month = (date.getMonth() + 1).toString().padStart(2, '0');
+            const year = date.getFullYear();
+            console.log("aaa",day,month,year)
+
+            return `${day}/${month}/${year}`;
+        }
+
         // Verificar si se tiene el id del programa
         if (idPrograma) {
             // Realizar la petición AJAX para obtener los detalles del programa y la lista de estudiantes
@@ -45,11 +57,12 @@
                 dataType: 'json',
                 success: function(data) {
                     if (data.success) {
+                        const inicioPeriodo = formatDate(data.data.inicio_periodo);
+                        const finPeriodo = formatDate(data.data.fin_periodo);
                         // Mostrar los detalles del programa
-                        $('#titulo-programa').text(`Programa: ${data.data.nivel}`);
+                        $('#titulo-programa').text(`Programa: ${data.data.nivel} : ${inicioPeriodo} - ${finPeriodo} `);
                         $('#descripcion-programa').text(data.data.descripcion || "N/A");
-                        $('#fecha-inicio').text(data.data.inicio_periodo);
-                        $('#fecha-fin').text(data.data.fin_periodo);
+
                         $('#nivel-programa').text(data.data.nivel);
 
                         // Crear la tabla de estudiantes
