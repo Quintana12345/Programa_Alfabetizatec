@@ -1,5 +1,9 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+<?php
+$user_id = isset($_SESSION['rol_id']) ? $_SESSION['rol_id'] : null; // Obtener el user_id de la sesión
+?>
+
 <nav class="layout_header">
     <!-- Logotipos -->
     <img src="../assets/img/logotipos/TecNM_Azteca.png" alt="Logotipo TECNM">
@@ -13,10 +17,29 @@
 
     <!-- Opciones del menú -->
     <ul class="dropdown_menu hidden">
-        <li class="menu_item">
-            <img src="../assets/img/svg/back.svg" alt="volver icono">
-            <a href="#" class="back">Volver</a>
-        </li>
+
+        <?php if ($user_id > 2): ?>
+            <li class="menu_item">
+                <img src="../assets/img/svg/back.svg" alt="volver icono">
+                <a href="#" class="back">Volver</a>
+            </li>
+        <?php endif; ?>
+
+
+        <!-- Condición para mostrar el item de administrar solo si el user_id es 1 o 2 -->
+        <?php if ($user_id == 1): ?>
+            <li>
+                <img src="../assets/img/svg/user.svg" alt="usuarios icono">
+                <a href="./usuarios.php?tipo=regional" class="admin-users">Administrar usuarios</a>
+            </li>
+        <?php elseif ($user_id == 2): ?>
+            <li>
+                <img src="../assets/img/svg/user.svg" alt="usuarios icono">
+                <a  href="./usuarios.php?tipo=programa" class="admin-users">Administrar usuarios</a>
+            </li>
+        <?php endif; ?>
+
+
         <li>
             <img src="../assets/img/svg/logout.svg" alt="cerrar icono">
             <a href="#" class="logout">Cerrar Sesión</a>
@@ -39,6 +62,8 @@
         const dropdownMenu = document.querySelector('.dropdown_menu');
         const logoutLink = document.querySelector('.logout');
         const backLink = document.querySelector('.back');
+
+ 
 
         // Mostrar/Ocultar el menú desplegable
         menuLayout.addEventListener('click', () => {

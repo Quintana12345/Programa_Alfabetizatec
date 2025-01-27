@@ -8,7 +8,6 @@ if (!empty($_SESSION)) {
     echo "<pre>";
     print_r($_SESSION); // Muestra todo el contenido de la sesión
     echo "</pre>";
-    echo BASE_URL;
 } else {
     echo "La sesión no contiene datos.";
 }
