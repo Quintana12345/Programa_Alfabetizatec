@@ -133,13 +133,78 @@ session_start();
             <h2>Formulario de Registro - Educador</h2>
             <form id="registrationFormEducador">
                 <div class="input_grupo">
-                    <label for="nombre">Nombre:</label>
+                    <label for="nombre">Nombre(s):</label>
                     <input type="text" id="nombre" name="nombre" required>
                 </div>
 
                 <div class="input_grupo">
-                    <label for="apellido">Apellido:</label>
-                    <input type="text" id="apellido" name="apellido" required>
+                    <label for="primer_apellido">Primer Apellido:</label>
+                    <input type="text" id="primer_apellido" name="primer_apellido" required>
+                </div>
+
+                <div class="input_grupo">
+                    <label for="segundo_apellido">Segundo Apellido:</label>
+                    <input type="text" id="segundo_apellido" name="segundo_apellido">
+                </div>
+
+
+
+                <div class="input_grupo">
+                    <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
+                    <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
+                </div>
+
+                <div class="input_grupo">
+                    <label for="rfc">RFC:</label>
+                    <input type="text" id="rfc" name="rfc">
+                </div>
+
+                <div class="input_grupo">
+                    <label for="nacionalidad">Nacionalidad:</label>
+                    <select id="nacionalidad" name="nacionalidad" required>
+                        <option value="">Seleccione</option>
+                        <option value="mexicano">Mexicano</option>
+                        <option value="extranjero">Extranjero</option>
+                    </select>
+                </div>
+
+                <div class="input_grupo">
+                    <label for="entidad_nacimiento">Entidad de Nacimiento:</label>
+                    <select id="entidad_nacimiento" name="entidad_nacimiento">
+                        <option value="">Seleccione</option>
+                        <option value="Aguascalientes">Aguascalientes</option>
+                        <option value="Baja California">Baja California</option>
+                        <option value="Baja California Sur">Baja California Sur</option>
+                        <option value="Campeche">Campeche</option>
+                        <option value="Chiapas">Chiapas</option>
+                        <option value="Chihuahua">Chihuahua</option>
+                        <option value="Ciudad de México">Ciudad de México</option>
+                        <option value="Coahuila">Coahuila</option>
+                        <option value="Colima">Colima</option>
+                        <option value="Durango">Durango</option>
+                        <option value="Guanajuato">Guanajuato</option>
+                        <option value="Guerrero">Guerrero</option>
+                        <option value="Hidalgo">Hidalgo</option>
+                        <option value="Jalisco">Jalisco</option>
+                        <option value="México">México</option>
+                        <option value="Michoacán">Michoacán</option>
+                        <option value="Morelos">Morelos</option>
+                        <option value="Nayarit">Nayarit</option>
+                        <option value="Nuevo León">Nuevo León</option>
+                        <option value="Oaxaca">Oaxaca</option>
+                        <option value="Puebla">Puebla</option>
+                        <option value="Querétaro">Querétaro</option>
+                        <option value="Quintana Roo">Quintana Roo</option>
+                        <option value="San Luis Potosí">San Luis Potosí</option>
+                        <option value="Sinaloa">Sinaloa</option>
+                        <option value="Sonora">Sonora</option>
+                        <option value="Tabasco">Tabasco</option>
+                        <option value="Tamaulipas">Tamaulipas</option>
+                        <option value="Tlaxcala">Tlaxcala</option>
+                        <option value="Veracruz">Veracruz</option>
+                        <option value="Yucatán">Yucatán</option>
+                        <option value="Zacatecas">Zacatecas</option>
+                    </select>
                 </div>
 
                 <div class="input_grupo">
@@ -148,12 +213,39 @@ session_start();
                 </div>
 
                 <div class="input_grupo">
+                    <label for="sexo">Sexo:</label>
+                    <select id="sexo" name="sexo" required>
+                        <option value="">Seleccione</option>
+                        <option value="mujer">Mujer</option>
+                        <option value="hombre">Hombre</option>
+                    </select>
+                </div>
+
+                <div class="input_grupo">
+                    <label for="estado_civil">Estado Civil:</label>
+                    <select id="estado_civil" name="estado_civil">
+                        <option value="">Seleccione</option>
+                        <option value="soltero">Soltero</option>
+                        <option value="union_libre">Unión Libre</option>
+                        <option value="casado">Casado</option>
+                        <option value="separado">Separado</option>
+                        <option value="divorciado">Divorciado</option>
+                        <option value="viudo">Viudo</option>
+                    </select>
+                </div>
+
+                <div class="input_grupo">
+                    <label for="num_hijos">No. de Hijos:</label>
+                    <input type="number" id="num_hijos" name="num_hijos" min="0">
+                </div>
+
+                <div class="input_grupo">
                     <label for="telefono">Teléfono:</label>
                     <input type="tel" id="telefono" name="telefono" required>
                 </div>
 
                 <div class="input_grupo">
-                    <label for="correo">Correo:</label>
+                    <label for="correo">Correo Personal:</label>
                     <input type="email" id="correo" name="correo" required>
                 </div>
 
@@ -167,7 +259,18 @@ session_start();
                     <input type="password" id="contrasena" name="contrasena" required>
                 </div>
 
-                <input type="hidden" value="4" id="rol_id" name="rol_id" required>
+                <div class="input_grupo">
+                    <label for="escolaridad">Escolaridad:</label>
+                    <select id="escolaridad" name="escolaridad">
+                        <option value="">Seleccione</option>
+                        <option value="primaria_completa">Primaria Completa</option>
+                        <option value="secundaria_completa">Secundaria Completa</option>
+                        <option value="bachillerato_completo">Bachillerato Completo</option>
+                        <option value="tecnica_completa">Carrera Técnica Completa</option>
+                        <option value="licenciatura_completa">Licenciatura Completa</option>
+                        <option value="postgrado_completo">Postgrado Completo</option>
+                    </select>
+                </div>
 
                 <div class="input_grupo">
                     <label for="puesto">Puesto:</label>
@@ -178,19 +281,16 @@ session_start();
                     <label for="tipo_participante">Tipo de Educador:</label>
                     <select id="tipo_participante" name="tipo_participante" class="styled-select" required>
                         <option value="" disabled selected>Seleccione</option>
-                        <option value="estudiante Universitario">Estudiante Universitario</option>
+                        <option value="estudiante_universitario">Estudiante Universitario</option>
                         <option value="docente">Docente</option>
                         <option value="externo">Externo</option>
                     </select>
                 </div>
 
-                <input type="hidden" id="id_tec" name="id_tecnologico" value="<?php echo isset($_SESSION['id_tecnologico']) ? $_SESSION['id_tecnologico'] : ''; ?>">
-
-
                 <div class="input_grupo">
                     <label for="modalidad">Modalidad:</label>
                     <select id="modalidad" name="modalidad" required>
-                        <option value="" select selected>Selecciona</option>
+                        <option value="" selected>Selecciona</option>
                         <option value="alfabetizaTEC">Construyendo tu Servicio Social en AlfabetizaTEC</option>
                         <option value="servicio_comunitario">Servicio Social Comunitario</option>
                         <option value="creditos_complementarios">Créditos Complementarios</option>
@@ -214,7 +314,10 @@ session_start();
                     <input type="number" id="semestre" name="semestre">
                 </div>
 
-                <button class="submit_principal" type="btn_submit">Enviar</button>
+                <input type="hidden" value="4" id="rol_id" name="rol_id" required>
+                <input type="hidden" id="id_tec" name="id_tecnologico" value="<?php echo isset($_SESSION['id_tecnologico']) ? $_SESSION['id_tecnologico'] : ''; ?>">
+
+                <button class="submit_principal" type="submit">Enviar</button>
             </form>
 
 
@@ -227,40 +330,208 @@ session_start();
             <span class="close">&times;</span>
             <h2>Formulario de Registro - Estudiante</h2>
             <form id="registrationFormEstudiante" class="formulario_registro">
-                <!-- Grupo para el campo de nombre -->
+                <!-- Datos Generales -->
                 <div class="input_grupo">
-                    <label for="nombre">Nombre:</label>
-                    <input type="text" name="nombre" required maxlength="255">
+                    <label for="nombres">Nombre(s):</label>
+                    <input type="text" name="nombres" required maxlength="100">
+                </div>
+                <div class="input_grupo">
+                    <label for="primer_apellido">Primer Apellido:</label>
+                    <input type="text" name="primer_apellido" required maxlength="100">
+                </div>
+                <div class="input_grupo">
+                    <label for="segundo_apellido">Segundo Apellido:</label>
+                    <input type="text" name="segundo_apellido" maxlength="100">
                 </div>
 
-                <!-- Grupo para el campo de apellidos -->
-                <div class="input_grupo">
-                    <label for="apellidos">Apellidos:</label>
-                    <input type="text" name="apellidos" required maxlength="255">
-                </div>
-
-                <!-- Grupo para el campo de domicilio -->
-                <div class="input_grupo">
-                    <label for="domicilio">Domicilio:</label>
-                    <input type="text" name="domicilio" required maxlength="255">
-                </div>
-
-                <!-- Grupo para el campo de CURP -->
                 <div class="input_grupo">
                     <label for="curp">CURP:</label>
                     <input type="text" name="curp" required maxlength="18" pattern="[A-Z0-9]{18}">
                 </div>
 
-                <!-- Grupo para el campo de teléfono -->
+
+                <!-- Información Personal -->
                 <div class="input_grupo">
-                    <label for="telefono">Teléfono:</label>
-                    <input type="tel" name="telefono" required pattern="[0-9]{10}" maxlength="10">
+                    <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
+                    <input type="date" name="fecha_nacimiento" required>
+                </div>
+                <div class="input_grupo">
+                    <label>Sexo:</label>
+                    <select name="sexo" required>
+                        <option value="">Seleccionar</option>
+                        <option value="mujer">Mujer</option>
+                        <option value="hombre">Hombre</option>
+                        <option value="no_binario">No binario</option>
+                    </select>
+                </div>
+                <div class="input_grupo">
+                    <label for="nacionalidad">Nacionalidad:</label>
+                    <select name="nacionalidad" id="nacionalidad" required>
+                        <option value="" disabled selected>Seleccione una opción</option>
+                        <option value="mexicana">Mexicana</option>
+                        <option value="extranjera">Extranjera</option>
+                    </select>
                 </div>
 
-                <!-- Grupo para el campo de correo -->
                 <div class="input_grupo">
-                    <label for="correo">Correo:</label>
-                    <input type="email" name="correo">
+                    <label for="entidad_nacimiento">Entidad de Nacimiento:</label>
+                    <select name="entidad_nacimiento" id="entidad_nacimiento" required>
+                        <option value="" disabled selected>Seleccione una opción</option>
+                        <option value="Aguascalientes">Aguascalientes</option>
+                        <option value="Baja California">Baja California</option>
+                        <option value="Baja California Sur">Baja California Sur</option>
+                        <option value="Campeche">Campeche</option>
+                        <option value="Chiapas">Chiapas</option>
+                        <option value="Chihuahua">Chihuahua</option>
+                        <option value="Ciudad de México">Ciudad de México</option>
+                        <option value="Coahuila">Coahuila</option>
+                        <option value="Colima">Colima</option>
+                        <option value="Durango">Durango</option>
+                        <option value="Estado de México">Estado de México</option>
+                        <option value="Guanajuato">Guanajuato</option>
+                        <option value="Guerrero">Guerrero</option>
+                        <option value="Hidalgo">Hidalgo</option>
+                        <option value="Jalisco">Jalisco</option>
+                        <option value="Michoacán">Michoacán</option>
+                        <option value="Morelos">Morelos</option>
+                        <option value="Nayarit">Nayarit</option>
+                        <option value="Nuevo León">Nuevo León</option>
+                        <option value="Oaxaca">Oaxaca</option>
+                        <option value="Puebla">Puebla</option>
+                        <option value="Querétaro">Querétaro</option>
+                        <option value="Quintana Roo">Quintana Roo</option>
+                        <option value="San Luis Potosí">San Luis Potosí</option>
+                        <option value="Sinaloa">Sinaloa</option>
+                        <option value="Sonora">Sonora</option>
+                        <option value="Tabasco">Tabasco</option>
+                        <option value="Tamaulipas">Tamaulipas</option>
+                        <option value="Tlaxcala">Tlaxcala</option>
+                        <option value="Veracruz">Veracruz</option>
+                        <option value="Yucatán">Yucatán</option>
+                        <option value="Zacatecas">Zacatecas</option>
+                    </select>
+                </div>
+
+
+                <!-- Estado Civil -->
+                <div class="input_grupo">
+                    <label>Estado Civil:</label>
+                    <select name="estado_civil">
+                        <option value="">Seleccionar</option>
+                        <option value="soltero">Soltero</option>
+                        <option value="casado">Casado</option>
+                        <option value="union_libre">Unión Libre</option>
+                        <option value="separado">Separado</option>
+                        <option value="divorciado">Divorciado</option>
+                        <option value="viudo">Viudo</option>
+                    </select>
+                </div>
+                <div class="input_grupo">
+                    <label for="num_hijos">Número de Hijos:</label>
+                    <input type="number" name="num_hijos" min="0" max="20">
+                </div>
+
+                <!-- Domicilio Detallado -->
+                <div class="input_grupo">
+                    <label for="vialidad_tipo">Tipo de Vialidad:</label>
+                    <select name="vialidad_tipo">
+                        <option value="">Seleccionar</option>
+                        <option value="calle">Calle</option>
+                        <option value="avenida">Avenida</option>
+                        <option value="boulevard">Boulevard</option>
+                        <option value="privada">Privada</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                </div>
+                <div class="input_grupo">
+                    <label for="vialidad_nombre">Nombre de Vialidad:</label>
+                    <input type="text" name="vialidad_nombre" required>
+                </div>
+                <div class="input_grupo">
+                    <label for="num_exterior">Número Exterior:</label>
+                    <input type="text" name="num_exterior" required>
+                </div>
+                <div class="input_grupo">
+                    <label for="num_interior">Número Interior:</label>
+                    <input type="text" name="num_interior">
+                </div>
+                <div class="input_grupo">
+                    <label for="codigo_postal">Código Postal:</label>
+                    <input type="text" name="codigo_postal" pattern="[0-9]{5}" required>
+                </div>
+
+                <!-- Contacto -->
+                <div class="input_grupo">
+                    <label for="telefono_fijo">Teléfono Fijo:</label>
+                    <input type="tel" name="telefono_fijo" pattern="[0-9]{10}" maxlength="10">
+                </div>
+                <div class="input_grupo">
+                    <label for="telefono_celular">Teléfono Celular:</label>
+                    <input type="tel" name="telefono_celular" pattern="[0-9]{10}" maxlength="10" required>
+                </div>
+                <div class="input_grupo">
+                    <label for="correo_personal">Correo Electrónico Personal:</label>
+                    <input type="email" name="correo_personal">
+                </div>
+
+                <!-- Idioma -->
+                <div class="input_grupo">
+                    <label>Habla Lengua Indígena:</label>
+                    <select name="habla_lengua_indigena">
+                        <option value="no">No</option>
+                        <option value="si">Sí</option>
+                    </select>
+                </div>
+
+                <!-- Ocupación -->
+                <div class="input_grupo">
+                    <label>Situación Laboral:</label>
+                    <select name="situacion_laboral">
+                        <option value="">Seleccionar</option>
+                        <option value="trabajando">Trabajando</option>
+                        <option value="jubilado">Jubilado/Pensionado</option>
+                        <option value="desempleado">Desempleado</option>
+                        <option value="estudiante">Estudiante</option>
+                        <option value="hogar">Quehaceres del Hogar</option>
+                    </select>
+                </div>
+
+                <!-- Discapacidad -->
+                <div class="input_grupo">
+                    <label>¿Tiene alguna discapacidad?</label>
+                    <select name="discapacidad" multiple>
+                        <option value="ninguna">Ninguna</option>
+                        <option value="fisica">Física o Motriz</option>
+                        <option value="visual">Visual</option>
+                        <option value="auditiva">Auditiva</option>
+                        <option value="intelectual">Intelectual</option>
+                        <option value="psicosocial">Psicosocial</option>
+                    </select>
+                </div>
+
+                <!-- Nivel Educativo -->
+                <div class="input_grupo">
+                    <label>Nivel Educativo:</label>
+                    <select name="nivel_educativo">
+                        <option value="">Seleccionar</option>
+                        <option value="sin_estudios">Sin Estudios</option>
+                        <option value="primaria_incompleta">Primaria Incompleta</option>
+                        <option value="primaria_completa">Primaria Completa</option>
+                        <option value="secundaria_incompleta">Secundaria Incompleta</option>
+                        <option value="secundaria_completa">Secundaria Completa</option>
+                    </select>
+                </div>
+
+                <!-- Motivación para Estudiar -->
+                <div class="input_grupo">
+                    <label>Motivación para Estudiar:</label>
+                    <select name="motivacion" multiple>
+                        <option value="certificado">Obtener Certificado</option>
+                        <option value="educacion">Continuar Educación</option>
+                        <option value="empleo">Mejorar Oportunidades de Empleo</option>
+                        <option value="laborales">Mejorar Condiciones Laborales</option>
+                        <option value="hijos">Ayudar a Hijos/Nietos con Tareas</option>
+                    </select>
                 </div>
 
                 <div class="input_grupo">
@@ -269,15 +540,9 @@ session_start();
                         <option value="">Selecciona un programa</option> <!-- Opción por defecto -->
                     </select>
                     <span class="tooltip">Recuerda que debes registrar primero los programas:</span>
-
                 </div>
 
-
-
-
-
-                <!-- Botón para enviar el formulario -->
-                <button class="btn_submit" type="submit">Enviar</button>
+                <button class="btn_submit" type="submit">Registrar</button>
             </form>
         </div>
     </div>
