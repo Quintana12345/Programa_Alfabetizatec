@@ -25,10 +25,10 @@ $dotenv->load();
     <header class="principal_header">
         <div class="logo_dinamico">
             <img src="./assets/img/logotipos/blanco.png" alt="Logotipo Alfabetizatec">
-           <div class="text">
-            <p> Programa Nacional</p>
-            <p>Alfabetizatec</p>
-           </div>
+            <div class="text">
+                <p> Programa Nacional</p>
+                <p>Alfabetizatec</p>
+            </div>
         </div>
         <img src="./assets/img/logotipos/TecNM_Azteca.png" alt="Logotipo TECNM">
         <img src="./assets/img/logotipos/inea_blanco.png" alt="Logotipo INEA">
@@ -60,7 +60,15 @@ $dotenv->load();
                     El programa Alfabetizatec del TecNM busca combatir el rezago educativo en México al brindar educación básica a personas que no saben leer ni escribir.
                     En esencia, su objetivo principal es erradicar el analfabetismo en el país a través de la participación activa de los estudiantes de los Institutos Tecnológicos Federales como voluntarios en la enseñanza de habilidades fundamentales como la lectura, escritura y aritmética.
                 </p>
+
             </div>
+            <a style="position: relative; left:2%;" href="./assets/pdf/Marco.pdf" target="_blank">Marco de Referencia del programa</a>
+
+            <video width="600" height="300" style="margin: auto; padding-top:3rem;" controls>
+                <source src="./assets/videos/final_alfabetizatec.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+
         </section>
 
         <div class="home_cards">
@@ -122,7 +130,7 @@ $dotenv->load();
         // Añadimos un evento de clic al botón
         button.addEventListener('click', () => {
             // Redirigimos al archivo PDF
-            window.location.href = 'assets/pdf/Convocatoria_Alfabetiza_TEC_2023.pdf';
+            window.location.href = 'assets/pdf/CONVOCATORIA_AlfabetizaTEC.pdf';
         });
     </script>
 </body>
