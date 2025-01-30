@@ -46,6 +46,11 @@ $dotenv->load();
             </div>
         </div>
 
+        <video width="600" height="300" style=" padding-top:3rem;" controls>
+            <source src="./assets/videos/final_alfabetizatec.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
         <section>
             <h3>
                 Programa Nacional AlfabetizaTEC
@@ -64,10 +69,7 @@ $dotenv->load();
             </div>
             <a style="position: relative; left:2%;" href="./assets/pdf/Marco.pdf" target="_blank">Marco de Referencia del programa</a>
 
-            <video width="600" height="300" style="margin: auto; padding-top:3rem;" controls>
-                <source src="./assets/videos/final_alfabetizatec.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+
 
         </section>
 
