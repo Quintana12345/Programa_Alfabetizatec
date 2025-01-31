@@ -27,7 +27,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $puesto = isset($_POST['puesto']) ? $_POST['puesto'] : '';
     $tipo_participante = isset($_POST['tipo_participante']) ? $_POST['tipo_participante'] : '';
     $modalidad = isset($_POST['modalidad']) ? $_POST['modalidad'] : '';
-    $numero_control = isset($_POST['numero_control']) ? $_POST['numero_control'] : NULL;
     $carrera = isset($_POST['carrera']) ? $_POST['carrera'] : NULL;
     $semestre = isset($_POST['semestre']) ? $_POST['semestre'] : '0';
     $rol_id = isset($_POST['rol_id']) ? $_POST['rol_id'] : '4';
@@ -54,16 +53,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $conn = Database::getConnection();
     $contrasena_hash = '$2y$10$Tlx2JQtCvLDValQloBiKSuk/qp5owPEgdVTRwO4e0TYYnuGXL5Ui.';
 
-    // Depuración: Ver datos recibidos
-
     $conn->begin_transaction();
 
     try {
         // Construir apellido completo
         $apellido = trim($primer_apellido . " " . $segundo_apellido);
-
-        // Depuración: Ver los datos que se van a insertar
-        
 
         // Insertar usuario
         $query_usuario = "INSERT INTO usuarios (nombre, apellido, fecha_nacimiento, telefono, correo, correo_inst, contrasena, rol_id, puesto)
@@ -85,8 +79,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt_usuario->execute();
         $id_usuario = $stmt_usuario->insert_id;
 
-        
-
         // Insertar educador
         $query_educador = "INSERT INTO educadores (
             id_usuario, tipo_participante, modalidad, 
@@ -98,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $stmt_educador = $conn->prepare($query_educador);
         $stmt_educador->bind_param(
-            'iissssssssssssssss',  // 19 parámetros
+            'iissssssssssssssss',  // 18 parámetros
             $id_usuario,
             $tipo_participante,
             $modalidad,
@@ -119,10 +111,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $tipo_vinculacion
         );
 
-
         $stmt_educador->execute();
 
-      
         $conn->commit();
 
         echo json_encode([
