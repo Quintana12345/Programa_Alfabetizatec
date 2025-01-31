@@ -80,12 +80,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Insertar educador
         $query_educador = "INSERT INTO educadores (
-            id_usuario, tipo_participante, modalidad, carrera, 
+            id_usuario, tipo_participante, modalidad, 
             id_tecnologico, semestre, nacionalidad, 
             entidad_nacimiento, curp, sexo, estado_civil, num_hijos,
             escolaridad, ocupacion, fecha_registro, alianza, 
             subproyecto, tipo_vinculacion
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         $stmt_educador = $conn->prepare($query_educador);
         $stmt_educador->bind_param(
@@ -93,7 +93,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id_usuario,
             $tipo_participante,
             $modalidad,
-            $carrera,
             $id_tecnologico,
             $semestre,
             $nacionalidad,
