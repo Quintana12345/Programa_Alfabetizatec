@@ -123,7 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $conn->rollback();
         echo json_encode([
             'success' => false,
-            'message' => 'Error al insertar los datos: ' . $e->getMessage()
+            'message' => 'Error al insertar los datos: ' 
         ]);
     } finally {
         if (isset($stmt_usuario)) $stmt_usuario->close();
