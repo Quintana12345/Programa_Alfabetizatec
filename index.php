@@ -63,7 +63,7 @@ $dotenv->load();
 
             <div class="row">
                 <div class="izq">
-                    <img src="./assets/img/carousel_principal/ensenansa.png" alt="Enseñanza imagen">
+                    <img src="./assets/img/carousel_principal/6.jpg" alt="Enseñanza imagen">
                 </div>
                 <div class="texto">
                     <p>
