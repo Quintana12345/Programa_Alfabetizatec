@@ -57,7 +57,8 @@
   margin: 1rem 0;
   border-radius: 1rem;
   cursor: pointer;
-  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, background-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 /* Animación al pasar el cursor */
@@ -72,7 +73,7 @@
   transform: scale(0.95); /* Reduce el tamaño ligeramente al hacer clic */
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Reduce la sombra */
 }
-main{
+main {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -85,11 +86,11 @@ main{
     text-align: center; /* Texto centrado */
   }
 
-   .hero .content h1 {
+  .hero .content h1 {
     font-size: 2rem; /* Tamaño ajustado para pantallas más pequeñas */
   }
 
-  section{
+  section {
     max-width: 80%;
     padding: 1rem;
   }
@@ -166,8 +167,6 @@ section h3 {
     text-align: center;
   }
 
- 
-
   .izq img {
     max-width: 80%; /* Reducir el tamaño de la imagen en móviles */
   }
@@ -183,12 +182,9 @@ section h3 {
     padding: 1rem 0; /* Reducir padding en móviles pequeños */
   }
 
-  .card_landing{
-   
+  .card_landing {
     max-width: 80%;
-
-    
-}
+  }
 
   .izq img {
     max-width: 100%; /* Imagen ocupa el ancho completo */
@@ -202,30 +198,114 @@ section h3 {
 .home_cards {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center ;
+  justify-content: center;
   padding: 1rem;
   gap: 2rem;
 }
 
+.card_landing {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 50%;
+  border-bottom: 3px solid var(--azul_TecNM);
+  max-width: 300px;
+}
 
-.card_landing{
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content:    center ;
-    max-width: 50%;
-    border-bottom: 3px solid var(--azul_TecNM);
-    max-width: 300px;
-    
+.card_landing h4 {
+  margin: 1rem 0rem;
+  border-bottom: 3px solid var(--azul_TecNM);
+  padding: 1rem;
+}
+
+.card_landing span {
+  padding: 1rem;
+}
+
+.titulo_land{
+  
+}
+
+.bienvenida {
+   text-align: center;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bienvenida h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.bienvenida video {
+  max-width: 60%;
+  height: auto;
+  padding-top: 1rem;
+}
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 600px) {
+  .bienvenida h2 {
+    font-size: 1.5rem;
+  }
 }
 
 
-.card_landing h4{
-    margin: 1rem 0rem;
-    border-bottom: 3px solid var(--azul_TecNM);
-    padding: 1rem;
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+  text-align: justify;
 }
 
-.card_landing span{
-    padding: 1rem;
+.izq img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.texto {
+  flex: 1;
+  max-width: 600px;
+}
+
+.texto h3 {
+  color: #d35400;
+  margin-top: 1.5rem;
+}
+
+.texto ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.texto ul li {
+  background: #fbe9e7;
+  padding: 10px;
+  margin-bottom: 8px;
+  border-radius: 5px;
+}
+
+/* 📱 Media Query para pantallas pequeñas */
+@media (max-width: 768px) {
+  .row {
+      flex-direction: column;
+      text-align: center;
+  }
+
+  .texto {
+      max-width: 100%;
+  }
+
+  .texto ul li {
+      text-align: left;
+  }
 }

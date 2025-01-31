@@ -41,33 +41,68 @@ $dotenv->load();
 
                 <div class="cta">
                     <button id="convocatoria">Descárga la convocatoria </button>
+                    <button id="referencia">Marco de Referencia del programa</button>
                     <button id="acceso">Acceso</button>
                 </div>
             </div>
         </div>
 
-        <video width="600" height="300" style=" padding-top:3rem;" controls>
-            <source src="./assets/videos/final_alfabetizatec.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+        <section class="bienvenida">
+            <h2>Mensaje de bienvenida</h2>
+            <video controls>
+                <source src="./assets/videos/final_alfabetizatec.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </section>
+
 
         <section>
-            <h3>
-                Programa Nacional AlfabetizaTEC
-                “Brigadas TecNM en Movimiento Nacional por la Alfabetización
-            </h3>
+            <h2 class="titulo_land">
+                𝐈𝐧𝐢𝐜𝐢𝐚 𝐞𝐥 𝐏𝐫𝐨𝐠𝐫𝐚𝐦𝐚 𝐀𝐥𝐟𝐚𝐛𝐞𝐭𝐢𝐳𝐚𝐓𝐞𝐜 𝐞𝐧 𝐞𝐥 𝐈𝐧𝐬𝐭𝐢𝐭𝐮𝐭𝐨 𝐓𝐞𝐜𝐧𝐨𝐥𝐨́𝐠𝐢𝐜𝐨 𝐝𝐞 𝐓𝐢𝐳𝐢𝐦𝐢́𝐧
+            </h2>
 
             <div class="row">
                 <div class="izq">
                     <img src="./assets/img/carousel_principal/ensenansa.png" alt="Enseñanza imagen">
                 </div>
-                <p>
-                    El programa Alfabetizatec del TecNM busca combatir el rezago educativo en México al brindar educación básica a personas que no saben leer ni escribir.
-                    En esencia, su objetivo principal es erradicar el analfabetismo en el país a través de la participación activa de los estudiantes de los Institutos Tecnológicos Federales como voluntarios en la enseñanza de habilidades fundamentales como la lectura, escritura y aritmética.
-                </p>
+                <div class="texto">
+                    <p>
+                        <strong>30 de Enero.-</strong> En el marco de la firma del convenio de colaboración entre el
+                        Tecnológico Nacional de México (TecNM) y el Instituto Nacional para la Educación de los Adultos (INEA),
+                        encabezados por el profesor Ramón Jiménez López y Armando Contreras Castillo, respectivamente, se anunció
+                        una iniciativa clave para combatir el rezago educativo en el país. Actualmente, se estima que 27 millones
+                        de personas no han concluido la secundaria y casi 5 millones son analfabetas.
+                    </p>
 
+                    <p>
+                        Este esfuerzo se alinea con la propuesta de la presidenta de México, Claudia Sheinbaum Pardo, de declarar
+                        <strong>"Bandera Blanca"</strong> en 2026, lo que significa reducir la tasa de analfabetismo a menos del 4%
+                        de la población, conforme a los parámetros de la ONU. En este contexto, surge la convocatoria para el
+                        Programa Nacional AlfabetizaTec ("Brigadas TecNM en Movimiento Nacional por la Alfabetización"), el cual
+                        busca involucrar a los estudiantes como agentes de cambio en sus comunidades, brindando enseñanza a adultos
+                        que no han tenido la oportunidad de aprender a leer y escribir.
+                    </p>
+
+                    <h3>📌 Modalidades de participación en AlfabetizaTec:</h3>
+                    <ul>
+                        <li><strong>1. Construyendo tu Servicio Social en AlfabetizaTec:</strong> Dirigido a estudiantes de 1º a 7º semestre.</li>
+                        <li><strong>2. Servicio Social Comunitario:</strong> Para estudiantes con al menos el 70% de los créditos aprobados.</li>
+                        <li><strong>3. Créditos complementarios:</strong> Oportunidad para obtener puntos complementarios.</li>
+                        <li><strong>4. Constancia con Valor Curricular:</strong> Certificación oficial que acredita experiencia para el currículum.</li>
+                        <li><strong>5. Diploma de Participación Honorífica:</strong> Reconocimiento por la labor comunitaria en el programa.</li>
+                    </ul>
+
+                    <p> 
+                        El evento de lanzamiento se llevó a cabo en el Auditorio 2 de la Institución, con la presencia del director del
+                        Tecnológico de Tizimín, Baltazar Loría Avilés; la coordinadora del Instituto de Educación para Adultos del Estado
+                        de Yucatán en Tizimín, Alejandra del Mar Tun Jiménez; la responsable del programa en la institución,
+                        Mtra. Mayra Mendoza Lagunes; así como subdirectores, personal directivo y docentes.
+                    </p>
+
+                    <p><strong>#TransformamosLaEducación</strong></p>
+                </div>
             </div>
-            <a style="position: relative; left:2%;" href="./assets/pdf/Marco.pdf" target="_blank">Marco de Referencia del programa</a>
+
 
 
 
