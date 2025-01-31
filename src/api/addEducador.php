@@ -7,13 +7,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $primer_apellido = isset($_POST['primer_apellido']) ? $_POST['primer_apellido'] : '';
     $segundo_apellido = isset($_POST['segundo_apellido']) ? $_POST['segundo_apellido'] : '';
     $fecha_nacimiento = isset($_POST['fecha_nacimiento']) ? $_POST['fecha_nacimiento'] : '';
-    $rfc = isset($_POST['rfc']) ? $_POST['rfc'] : '';
-    $nacionalidad = isset($_POST['nacionalidad']) ? $_POST['nacionalidad'] : '';
-    $entidad_nacimiento = isset($_POST['entidad_nacimiento']) ? $_POST['entidad_nacimiento'] : '';
-    $curp = isset($_POST['curp']) ? $_POST['curp'] : '';
-    $sexo = isset($_POST['sexo']) ? $_POST['sexo'] : '';
-    $estado_civil = isset($_POST['estado_civil']) ? $_POST['estado_civil'] : '';
-    $num_hijos = isset($_POST['num_hijos']) ? $_POST['num_hijos'] : '0';
     $telefono = isset($_POST['telefono']) ? $_POST['telefono'] : '';
     $correo = isset($_POST['correo']) ? $_POST['correo'] : '';
     $correo_inst = isset($_POST['correo_inst']) ? $_POST['correo_inst'] : '';
@@ -31,6 +24,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $semestre = isset($_POST['semestre']) ? $_POST['semestre'] : '0';
     $rol_id = isset($_POST['rol_id']) ? $_POST['rol_id'] : '4';
     $id_tecnologico = isset($_POST['id_tecnologico']) ? $_POST['id_tecnologico'] : NULL;
+    $nacionalidad = isset($_POST['nacionalidad']) ? $_POST['nacionalidad'] : '';
+    $entidad_nacimiento = isset($_POST['entidad_nacimiento']) ? $_POST['entidad_nacimiento'] : '';
+    $curp = isset($_POST['curp']) ? $_POST['curp'] : '';
+    $sexo = isset($_POST['sexo']) ? $_POST['sexo'] : '';
+    $estado_civil = isset($_POST['estado_civil']) ? $_POST['estado_civil'] : '';
+    $num_hijos = isset($_POST['num_hijos']) ? $_POST['num_hijos'] : '';
 
     // Validación de campos obligatorios
     $missing_fields = [];
@@ -81,8 +80,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Insertar educador
         $query_educador = "INSERT INTO educadores (
-            id_usuario, tipo_participante, modalidad, 
-            carrera, id_tecnologico, semestre, nacionalidad, 
+            id_usuario, tipo_participante, modalidad, carrera, 
+            id_tecnologico, semestre, nacionalidad, 
             entidad_nacimiento, curp, sexo, estado_civil, num_hijos,
             escolaridad, ocupacion, fecha_registro, alianza, 
             subproyecto, tipo_vinculacion
@@ -90,13 +89,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $stmt_educador = $conn->prepare($query_educador);
         $stmt_educador->bind_param(
-            'iissssssssssssssss',  // 18 parámetros
+            'isssiissssssssssss',
             $id_usuario,
             $tipo_participante,
             $modalidad,
-            $carrera,           // bigint
-            $id_tecnologico,    // bigint
-            $semestre,          // bigint
+            $carrera,
+            $id_tecnologico,
+            $semestre,
             $nacionalidad,
             $entidad_nacimiento,
             $curp,
@@ -112,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         );
 
         $stmt_educador->execute();
-
+        
         $conn->commit();
 
         echo json_encode([
@@ -123,7 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $conn->rollback();
         echo json_encode([
             'success' => false,
-            'message' => 'Error al insertar los datos: ' 
+            'message' => 'Error al insertar los datos: ' . $e->getMessage()
         ]);
     } finally {
         if (isset($stmt_usuario)) $stmt_usuario->close();
