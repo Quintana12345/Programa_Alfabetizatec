@@ -48,7 +48,7 @@ $dotenv->load();
         </div>
 
         <section class="bienvenida">
-            <h2>Mensaje de bienvenida :)</h2>
+            <h2>Mensaje de bienvenida</h2>
             <video controls>
                 <source src="./assets/videos/final_alfabetizatec.mp4" type="video/mp4">
                 Your browser does not support the video tag.
