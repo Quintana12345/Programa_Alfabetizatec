@@ -256,8 +256,9 @@
 
                 <div class="input_grupo">
                     <label for="telefono">Teléfono:</label>
-                    <input type="tel" id="telefono" name="telefono" required>
+                    <input type="tel" id="telefono" name="telefono" pattern="[0-9]{10}" required maxlength="10" placeholder="Ingresa solo números (10 dígitos)">
                 </div>
+
 
                 <div class="input_grupo">
                     <label for="correo">Correo Personal:</label>
