@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,13 +9,31 @@ session_start();
     <link rel="stylesheet" href="../assets/css/layout/header.css">
     <link rel="stylesheet" href="../assets/css/coordinador_programa.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- SweetAlert ya importado -->
 
 
 </head>
 
-
 <body>
+    <?php
+    session_start(); // Asegúrate de iniciar la sesión al principio del archivo
 
+    // Verifica si 'rol_id' está presente en la sesión
+    if (!isset($_SESSION['correo']) || !isset($_SESSION['rol_id']) || !isset($_SESSION['id_tecnologico'])) {
+        // Muestra la alerta y redirige a login.php
+        echo "<script>
+            Swal.fire({
+                icon: 'warning',
+                title: 'Sesión Expirada',
+                text: 'Por favor, inicia sesión nuevamente.',
+                confirmButtonText: 'Aceptar'
+            }).then(() => {
+                window.location.href = 'login.php';
+            });
+        </script>";
+        exit(); // Detiene el script para que no se cargue el contenido HTML posterior
+    }
+    ?>
 
     <header>
         <?php include('./layout/header.php') ?>
