@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $primer_apellido = isset($_POST['primer_apellido']) ? $_POST['primer_apellido'] : '';
     $segundo_apellido = isset($_POST['segundo_apellido']) ? $_POST['segundo_apellido'] : '';
     $fecha_nacimiento = isset($_POST['fecha_nacimiento']) ? $_POST['fecha_nacimiento'] : '';
-    $telefono = isset($_POST['telefono']) ? $_POST['telefono'] : '';
+    $telefono = isset($_POST['telefono']) ? str_replace(' ', '', $_POST['telefono']) : '';
     $correo = isset($_POST['correo']) ? $_POST['correo'] : '';
     $correo_inst = isset($_POST['correo_inst']) ? $_POST['correo_inst'] : '';
     $escolaridad = isset($_POST['escolaridad']) ? $_POST['escolaridad'] : '';
