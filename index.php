@@ -88,25 +88,25 @@ $dotenv->load();
 
 
 
-               <div>
-               <h3>📌 Modalidades de participación en AlfabetizaTec:</h3>
-                <ul>
-                    <li><strong>1. Construyendo tu Servicio Social en AlfabetizaTec:</strong> Dirigido a estudiantes de 1º a 7º semestre.</li>
-                    <li><strong>2. Servicio Social Comunitario:</strong> Para estudiantes con al menos el 70% de los créditos aprobados.</li>
-                    <li><strong>3. Créditos complementarios:</strong> Oportunidad para obtener puntos complementarios.</li>
-                    <li><strong>4. Constancia con Valor Curricular:</strong> Certificación oficial que acredita experiencia para el currículum.</li>
-                    <li><strong>5. Diploma de Participación Honorífica:</strong> Reconocimiento por la labor comunitaria en el programa.</li>
-                </ul>
+                <div>
+                    <h3>📌 Modalidades de participación en AlfabetizaTec:</h3>
+                    <ul>
+                        <li><strong>1. Construyendo tu Servicio Social en AlfabetizaTec:</strong> Dirigido a estudiantes de 1º a 7º semestre.</li>
+                        <li><strong>2. Servicio Social Comunitario:</strong> Para estudiantes con al menos el 70% de los créditos aprobados.</li>
+                        <li><strong>3. Créditos complementarios:</strong> Oportunidad para obtener puntos complementarios.</li>
+                        <li><strong>4. Constancia con Valor Curricular:</strong> Certificación oficial que acredita experiencia para el currículum.</li>
+                        <li><strong>5. Diploma de Participación Honorífica:</strong> Reconocimiento por la labor comunitaria en el programa.</li>
+                    </ul>
 
-                <p>
-                    El evento de lanzamiento se llevó a cabo en el Auditorio 2 de la Institución, con la presencia del director del
-                    Tecnológico de Tizimín, Baltazar Loría Avilés; la coordinadora del Instituto de Educación para Adultos del Estado
-                    de Yucatán en Tizimín, Alejandra del Mar Tun Jiménez; la responsable del programa en la institución,
-                    Mtra. Mayra Mendoza Lagunes; así como subdirectores, personal directivo y docentes.
-                </p>
+                    <p>
+                        El evento de lanzamiento se llevó a cabo en el Auditorio 2 de la Institución, con la presencia del director del
+                        Tecnológico de Tizimín, Baltazar Loría Avilés; la coordinadora del Instituto de Educación para Adultos del Estado
+                        de Yucatán en Tizimín, Alejandra del Mar Tun Jiménez; la responsable del programa en la institución,
+                        Mtra. Mayra Mendoza Lagunes; así como subdirectores, personal directivo y docentes.
+                    </p>
 
-                <p><strong>#TransformamosLaEducación</strong></p>
-               </div>
+                    <p><strong>#TransformamosLaEducación</strong></p>
+                </div>
             </div>
 
 
@@ -176,6 +176,15 @@ $dotenv->load();
         button.addEventListener('click', () => {
             // Redirigimos al archivo PDF
             window.location.href = 'assets/pdf/CONVOCATORIA_AlfabetizaTEC.pdf';
+        });
+
+        // Seleccionamos el botón por su ID
+        const buttonReferencia = document.getElementById('referencia');
+
+        // Añadimos un evento de clic al botón referencia
+        buttonReferencia.addEventListener('click', () => {
+            // Redirigimos al archivo PDF de Marco de Referencia
+            window.location.href = 'assets/pdf/Marco.pdf';
         });
     </script>
 </body>
