@@ -288,7 +288,7 @@
                 <div class="input_grupo">
                     <label for="correo_inst">Correo Institucional:</label>
                     <input type="email" id="correo_inst" name="correo_inst" placeholder="Ej. juan.perez@institucion.com">
-                    <span class="tooltip">Ingresa tu correo institucional (opcional).</span>
+                    <span class="tooltip">Ingresa el correo institucional (opcional).</span>
                 </div>
 
                 <div class="input_grupo">
@@ -409,19 +409,19 @@
                 <div class="input_grupo" id="grupo_numero_control" style="display:none;">
                     <label for="numero_control">Número de Control:</label>
                     <input type="number" id="numero_control" name="numero_control" placeholder="Ej. 123456">
-                    <span class="tooltip">Ingresa tu número de control (opcional).</span>
+                    <span class="tooltip">Ingresa el número de control (opcional).</span>
                 </div>
 
                 <div class="input_grupo" id="grupo_carrera" style="display:none;">
                     <label for="carrera">Carrera:</label>
                     <input type="text" id="carrera" name="carrera" placeholder="Ej. Ingeniería en Sistemas">
-                    <span class="tooltip">Ingresa tu carrera (opcional).</span>
+                    <span class="tooltip">Ingresa la carrera (opcional).</span>
                 </div>
 
                 <div class="input_grupo" id="grupo_semestre" style="display:none;">
                     <label for="semestre">Semestre:</label>
                     <input type="number" id="semestre" name="semestre" placeholder="Ej. 6">
-                    <span class="tooltip">Ingresa tu semestre (opcional).</span>
+                    <span class="tooltip">Ingresa la semestre (opcional).</span>
                 </div>
 
                 <input type="hidden" value="4" id="rol_id" name="rol_id" required>
@@ -445,23 +445,23 @@
                 <div class="input_grupo">
                     <label for="nombres">Nombre(s):</label>
                     <input type="text" name="nombres" required maxlength="100">
-                    <span class="tooltip">Ingresa tu(s) nombre(s) sin apellidos.</span>
+                    <span class="tooltip">Ingresa el(s) nombre(s) sin apellidos.</span>
                 </div>
                 <div class="input_grupo">
                     <label for="primer_apellido">Primer Apellido:</label>
                     <input type="text" name="primer_apellido" required maxlength="100">
-                    <span class="tooltip">Ingresa tu primer apellido.</span>
+                    <span class="tooltip">Ingresa el primer apellido.</span>
                 </div>
                 <div class="input_grupo">
                     <label for="segundo_apellido">Segundo Apellido:</label>
                     <input type="text" name="segundo_apellido" maxlength="100" required>
-                    <span class="tooltip">Ingresa tu segundo apellido (opcional).</span>
+                    <span class="tooltip">Ingresa el segundo apellido (opcional).</span>
                 </div>
 
                 <div class="input_grupo">
                     <label for="curp">CURP:</label>
                     <input type="text" name="curp" required maxlength="18" pattern="[A-Z0-9]{18}">
-                    <span class="tooltip">Ingresa tu CURP (18 caracteres alfanuméricos).</span>
+                    <span class="tooltip">Ingresa el CURP (18 caracteres alfanuméricos).</span>
                 </div>
 
                 <!-- Información Personal -->
@@ -478,7 +478,7 @@
                         <option value="hombre">Hombre</option>
                         <option value="no_binario">No binario</option>
                     </select>
-                    <span class="tooltip">Selecciona tu sexo.</span>
+                    <span class="tooltip">Selecciona el sexo.</span>
                 </div>
                 <div class="input_grupo">
                     <label for="nacionalidad">Nacionalidad:</label>
@@ -487,7 +487,7 @@
                         <option value="mexicana">Mexicana</option>
                         <option value="extranjera">Extranjera</option>
                     </select>
-                    <span class="tooltip">Selecciona tu nacionalidad.</span>
+                    <span class="tooltip">Selecciona la nacionalidad.</span>
                 </div>
 
                 <div class="input_grupo">
@@ -527,7 +527,7 @@
                         <option value="Yucatán">Yucatán</option>
                         <option value="Zacatecas">Zacatecas</option>
                     </select>
-                    <span class="tooltip">Selecciona tu entidad de nacimiento.</span>
+                    <span class="tooltip">Selecciona la entidad de nacimiento.</span>
                 </div>
 
                 <h5> Estado Civil:</h5>
@@ -543,7 +543,7 @@
                         <option value="divorciado">Divorciado</option>
                         <option value="viudo">Viudo</option>
                     </select>
-                    <span class="tooltip">Selecciona tu estado civil.</span>
+                    <span class="tooltip">Selecciona el estado civil.</span>
                 </div>
                 <div class="input_grupo">
                     <label for="num_hijos">Número de Hijos:</label>
@@ -583,21 +583,21 @@
                 <div class="input_grupo">
                     <label for="codigo_postal">Código Postal:</label>
                     <input type="text" name="codigo_postal" pattern="[0-9]{5}" required>
-                    <span class="tooltip">Ingresa tu código postal (5 dígitos).</span>
+                    <span class="tooltip">Ingresa el código postal (5 dígitos).</span>
                 </div>
 
                 <!-- Colonia -->
                 <div class="input_grupo">
                     <label>Colonia</label>
-                    <input type="text" name="colonia" placeholder="Especifica tu colonia" required>
-                    <span class="tooltip">Ingresa el nombre de tu colonia.</span>
+                    <input type="text" name="colonia" placeholder="Especifica la colonia" required>
+                    <span class="tooltip">Ingresa el nombre de la colonia.</span>
                 </div>
 
                 <!-- Municipio -->
                 <div class="input_grupo">
                     <label>Municipio</label>
-                    <input type="text" name="municipio" placeholder="Especifica tu municipio" required>
-                    <span class="tooltip">Ingresa el nombre de tu municipio.</span>
+                    <input type="text" name="municipio" placeholder="Especifica el municipio" required>
+                    <span class="tooltip">Ingresa el nombre de el municipio.</span>
                 </div>
 
                 <!-- Entidad Federativa -->
@@ -638,7 +638,7 @@
                         <option value="Yucatán">Yucatán</option>
                         <option value="Zacatecas">Zacatecas</option>
                     </select>
-                    <span class="tooltip">Selecciona tu entidad federativa.</span>
+                    <span class="tooltip">Selecciona la entidad federativa.</span>
                 </div>
 
                 <!-- Tiene equipo de cómputo -->
@@ -665,17 +665,17 @@
                 <div class="input_grupo">
                     <label for="telefono_fijo">Teléfono Fijo:</label>
                     <input type="tel" name="telefono_fijo" pattern="[0-9]{10}" maxlength="10">
-                    <span class="tooltip">Ingresa tu teléfono fijo (10 dígitos, opcional).</span>
+                    <span class="tooltip">Ingresa el teléfono fijo (10 dígitos, opcional).</span>
                 </div>
                 <div class="input_grupo">
                     <label for="telefono_celular">Teléfono Celular:</label>
                     <input type="tel" name="telefono_celular" pattern="[0-9]{10}" maxlength="10" required>
-                    <span class="tooltip">Ingresa tu teléfono celular (10 dígitos).</span>
+                    <span class="tooltip">Ingresa el teléfono celular (10 dígitos).</span>
                 </div>
                 <div class="input_grupo">
                     <label for="correo_personal">Correo Electrónico Personal:</label>
                     <input type="email" name="correo_personal">
-                    <span class="tooltip">Ingresa tu correo electrónico personal (opcional).</span>
+                    <span class="tooltip">Ingresa el correo electrónico personal (opcional).</span>
                 </div>
 
                 <!-- Idioma -->
