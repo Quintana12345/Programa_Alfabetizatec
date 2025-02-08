@@ -89,39 +89,25 @@
             <span class="close">&times;</span>
             <h2>Formulario de Registro</h2>
             <form id="registrationForm">
-                <!-- Oculto para despues -->
-                <!-- <div class="input_grupo">
-                    <label for="nombre">Nombre:</label>
-                    <input type="text" id="nombre" name="nombre" required>
+                <div class="input_grupo">
+                    <label for="educador">Educador:</label>
+                    <select id="educadorSelect" name="educador" required>
+                        <option value="">Selecciona un educador</option>
+                    </select>
+                    <span class="tooltip">Recuerda que debes registrar primero a tus educadores:</span>
                 </div>
 
                 <div class="input_grupo">
-                    <label for="descripcion">Descripción:</label>
-                    <input type="text" id="descripcion" name="descripcion" required>
-                </div> -->
-
-                <div class="input_grupo">
                     <label for="id_nivel">Nivel:</label>
-                    <select id="id_nivel" name="id_nivel" required>
+                    <select id="id_nivel" name="id_nivel[]" multiple required>
                         <option value="1">Analfabeta</option>
                         <option value="2">Inicial</option>
                         <option value="3">Superior</option>
                     </select>
                 </div>
 
-                <div class="input_grupo">
-                    <label for="educador">Educador:</label>
-                    <select id="educadorSelect" name="educador" required>
-                        <option value="">Selecciona un educador</option> <!-- Opción por defecto -->
-                    </select>
-
-                    <span class="tooltip">Recuerda que debes registrar primero a tus educadores:</span>
-                </div>
-
-
-                <div class="input_grupo">
-                    <label for="meta">Meta:</label>
-                    <input type="number" id="meta" name="meta" required>
+                <div id="metasContainer">
+                    <!-- Aquí se agregarán dinámicamente los campos de meta -->
                 </div>
 
                 <div class="input_grupo">
@@ -136,10 +122,46 @@
 
                 <button class="btn_submit">Enviar</button>
             </form>
-
-
         </div>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const nivelSelect = document.getElementById("id_nivel");
+            const metasContainer = document.getElementById("metasContainer");
+            const niveles = {
+                "1": "Analfabeta",
+                "2": "Inicial",
+                "3": "Superior"
+            };
+
+            nivelSelect.addEventListener("change", function() {
+                metasContainer.innerHTML = ""; // Limpiar contenido anterior
+                const inicioPeriodo = document.getElementById("inicio_periodo").value || "Inicio";
+                const finPeriodo = document.getElementById("fin_periodo").value || "Fin";
+
+                Array.from(nivelSelect.selectedOptions).forEach(option => {
+                    const nivelId = option.value;
+                    const nivelNombre = niveles[nivelId];
+
+                    const metaGrupo = document.createElement("div");
+                    metaGrupo.classList.add("input_grupo");
+
+                    metaGrupo.innerHTML = `
+                <label for="meta_${nivelId}">Meta ${nivelNombre} (${inicioPeriodo} - ${finPeriodo}):</label>
+                <input type="number" id="meta_${nivelId}" name="meta[${nivelId}]" required>
+            `;
+
+                    metasContainer.appendChild(metaGrupo);
+                });
+            });
+
+            // Actualizar etiquetas cuando cambien las fechas del período
+            document.getElementById("inicio_periodo").addEventListener("change", nivelSelect.dispatchEvent.bind(nivelSelect, new Event("change")));
+            document.getElementById("fin_periodo").addEventListener("change", nivelSelect.dispatchEvent.bind(nivelSelect, new Event("change")));
+        });
+    </script>
+
 
     <!-- Modal Educador -->
     <div id="modal_educador" class="modal">
