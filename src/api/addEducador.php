@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $alianza = isset($_POST['alianza']) ? $_POST['alianza'] : '';
     $subproyecto = isset($_POST['subproyecto']) ? $_POST['subproyecto'] : '';
     $tipo_vinculacion = isset($_POST['tipo_vinculacion']) ? $_POST['tipo_vinculacion'] : '';
-    $puesto = isset($_POST['puesto']) ? $_POST['puesto'] : '';
+    $puesto = '';
     $tipo_participante = isset($_POST['tipo_participante']) ? $_POST['tipo_participante'] : '';
     $modalidad = isset($_POST['modalidad']) ? $_POST['modalidad'] : '';
     $carrera = isset($_POST['carrera']) ? intval($_POST['carrera']) : NULL; // Convertir a entero

@@ -68,15 +68,6 @@
             </div>
 
 
-            <!--  <div class="info">
-                <h4>Estudiantes:</h4>
-                <div id="Estudiantes_tec">
-                </div>
-
-
-            </div> -->
-
-
 
         </div>
 
@@ -94,7 +85,7 @@
                     <select id="educadorSelect" name="educador" required>
                         <option value="">Selecciona un educador</option>
                     </select>
-                    <span class="tooltip">Recuerda que debes registrar primero a tus educadores:</span>
+                    <span class="tooltip">Recuerda que debes registrar primero a tus educadores.</span>
                 </div>
 
                 <div class="input_grupo">
@@ -104,6 +95,7 @@
                         <option value="2">Primaria</option>
                         <option value="3">Secundaria</option>
                     </select>
+                    <span class="tooltip">Selecciona uno o más niveles (usa Ctrl + clic para seleccionar múltiples).</span>
                 </div>
 
                 <div id="metasContainer">
@@ -113,11 +105,13 @@
                 <div class="input_grupo">
                     <label for="inicio_periodo">Inicio Periodo:</label>
                     <input type="date" id="inicio_periodo" name="inicio_periodo" required>
+                    <span class="tooltip">Formato: DD/MM/AAAA</span>
                 </div>
 
                 <div class="input_grupo">
                     <label for="fin_periodo">Fin Periodo:</label>
                     <input type="date" id="fin_periodo" name="fin_periodo" required>
+                    <span class="tooltip">Formato: DD/MM/AAAA</span>
                 </div>
 
                 <button class="btn_submit">Enviar</button>
@@ -148,7 +142,7 @@
                     metaGrupo.classList.add("input_grupo");
 
                     metaGrupo.innerHTML = `
-                <label for="meta_${nivelId}">Meta ${nivelNombre} (${inicioPeriodo} - ${finPeriodo}):</label>
+                <label for="meta_${nivelId}">Meta del nivel: ${nivelNombre} </label>
                 <input type="number" id="meta_${nivelId}" name="meta[${nivelId}]" required>
             `;
 
@@ -156,7 +150,7 @@
                 });
             });
 
-          
+
         });
     </script>
 
@@ -169,29 +163,32 @@
             <form id="registrationFormEducador">
                 <div class="input_grupo">
                     <label for="nombre">Nombre(s):</label>
-                    <input type="text" id="nombre" name="nombre" required>
+                    <input type="text" id="nombre" name="nombre" required placeholder="Ej. Juan Carlos">
+                    <span class="tooltip">Ingresa el nombre(s) sin apellidos.</span>
                 </div>
 
                 <div class="input_grupo">
                     <label for="primer_apellido">Primer Apellido:</label>
-                    <input type="text" id="primer_apellido" name="primer_apellido" required>
+                    <input type="text" id="primer_apellido" name="primer_apellido" required placeholder="Ej. Pérez">
+                    <span class="tooltip">Ingresa el primer apellido.</span>
                 </div>
 
                 <div class="input_grupo">
                     <label for="segundo_apellido">Segundo Apellido:</label>
-                    <input type="text" id="segundo_apellido" name="segundo_apellido" required>
+                    <input type="text" id="segundo_apellido" name="segundo_apellido" placeholder="Ej. López">
+                    <span class="tooltip">Ingresa el segundo apellido (opcional).</span>
                 </div>
-
-
 
                 <div class="input_grupo">
                     <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
                     <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
+                    <span class="tooltip">Formato: DD/MM/AAAA</span>
                 </div>
 
                 <div class="input_grupo">
                     <label for="rfc">RFC:</label>
-                    <input type="text" id="rfc" name="rfc">
+                    <input type="text" id="rfc" name="rfc" placeholder="Ej. PERJ800101XXX" pattern="[A-Z]{4}[0-9]{6}[A-Z0-9]{3}">
+                    <span class="tooltip">Ingresa el RFC (opcional).</span>
                 </div>
 
                 <div class="input_grupo">
@@ -244,7 +241,8 @@
 
                 <div class="input_grupo">
                     <label for="curp">CURP:</label>
-                    <input type="text" id="curp" name="curp" required>
+                    <input type="text" id="curp" name="curp" required placeholder="Ej. PERJ800101HDFLNR01">
+                    <span class="tooltip">Ingresa la CURP (18 caracteres).</span>
                 </div>
 
                 <div class="input_grupo">
@@ -271,26 +269,27 @@
 
                 <div class="input_grupo">
                     <label for="num_hijos">No. de Hijos:</label>
-                    <input type="number" id="num_hijos" name="num_hijos" min="0" required>
+                    <input type="number" id="num_hijos" name="num_hijos" min="0" required placeholder="Ej. 2">
+                    <span class="tooltip">Ingresa el número de hijos (0 si no tiene).</span>
                 </div>
 
                 <div class="input_grupo">
                     <label for="telefono">Teléfono:</label>
-                    <input type="tel" id="telefono" name="telefono" pattern="[0-9]{10}" required maxlength="10" placeholder="Ingresa solo números (10 dígitos)">
+                    <input type="tel" id="telefono" name="telefono" pattern="[0-9]{10}" required maxlength="10" placeholder="Ej. 5512345678">
+                    <span class="tooltip">Ingresa solo números (10 dígitos).</span>
                 </div>
-
 
                 <div class="input_grupo">
                     <label for="correo">Correo Personal:</label>
-                    <input type="email" id="correo" name="correo" required>
+                    <input type="email" id="correo" name="correo" required placeholder="Ej. juan.perez@gmail.com">
+                    <span class="tooltip">Ingresa un correo válido.</span>
                 </div>
 
                 <div class="input_grupo">
                     <label for="correo_inst">Correo Institucional:</label>
-                    <input type="email" id="correo_inst" name="correo_inst">
+                    <input type="email" id="correo_inst" name="correo_inst" placeholder="Ej. juan.perez@institucion.com">
+                    <span class="tooltip">Ingresa tu correo institucional (opcional).</span>
                 </div>
-
-
 
                 <div class="input_grupo">
                     <label for="escolaridad">Escolaridad:</label>
@@ -362,27 +361,25 @@
                 <div class="input_grupo">
                     <label for="fecha_registro">Fecha de Registro:</label>
                     <input type="date" id="fecha_registro" name="fecha_registro" required>
+                    <span class="tooltip">Formato: DD/MM/AAAA</span>
                 </div>
 
                 <div class="input_grupo">
                     <label for="alianza">Alianza o convenio:</label>
-                    <input type="text" id="alianza" name="alianza">
+                    <input type="text" id="alianza" name="alianza" placeholder="Ej. Alianza con XYZ">
+                    <span class="tooltip">Ingresa el nombre de la alianza o convenio (opcional).</span>
                 </div>
 
                 <div class="input_grupo">
                     <label for="subproyecto">Subproyecto:</label>
-                    <input type="text" id="subproyecto" name="subproyecto">
+                    <input type="text" id="subproyecto" name="subproyecto" placeholder="Ej. Subproyecto ABC">
+                    <span class="tooltip">Ingresa el nombre del subproyecto (opcional).</span>
                 </div>
 
                 <div class="input_grupo">
                     <label for="tipo_vinculacion">Tipo de vinculación:</label>
-                    <input type="text" id="tipo_vinculacion" name="tipo_vinculacion">
-                </div>
-
-
-                <div class="input_grupo">
-                    <label for="puesto">Puesto:</label>
-                    <input type="text" id="puesto" name="puesto" required>
+                    <input type="text" id="tipo_vinculacion" name="tipo_vinculacion" placeholder="Ej. Vinculación directa">
+                    <span class="tooltip">Ingresa el tipo de vinculación (opcional).</span>
                 </div>
 
                 <div class="input_grupo">
@@ -392,6 +389,8 @@
                         <option value="Estudiante Universitario">Estudiante Universitario</option>
                         <option value="Docente">Docente</option>
                         <option value="Externo">Externo</option>
+                        <option value="Directivo">Directivo</option>
+                        <option value="Administrativo">Administrativo</option>
                     </select>
                 </div>
 
@@ -409,17 +408,20 @@
 
                 <div class="input_grupo" id="grupo_numero_control" style="display:none;">
                     <label for="numero_control">Número de Control:</label>
-                    <input type="number" id="numero_control" name="numero_control">
+                    <input type="number" id="numero_control" name="numero_control" placeholder="Ej. 123456">
+                    <span class="tooltip">Ingresa tu número de control (opcional).</span>
                 </div>
 
                 <div class="input_grupo" id="grupo_carrera" style="display:none;">
                     <label for="carrera">Carrera:</label>
-                    <input type="text" id="carrera" name="carrera">
+                    <input type="text" id="carrera" name="carrera" placeholder="Ej. Ingeniería en Sistemas">
+                    <span class="tooltip">Ingresa tu carrera (opcional).</span>
                 </div>
 
                 <div class="input_grupo" id="grupo_semestre" style="display:none;">
                     <label for="semestre">Semestre:</label>
-                    <input type="number" id="semestre" name="semestre">
+                    <input type="number" id="semestre" name="semestre" placeholder="Ej. 6">
+                    <span class="tooltip">Ingresa tu semestre (opcional).</span>
                 </div>
 
                 <input type="hidden" value="4" id="rol_id" name="rol_id" required>
@@ -438,32 +440,35 @@
             <span class="close">&times;</span>
             <h2>Formulario de Registro - Estudiante</h2>
             <form id="registrationFormEstudiante" class="formulario_registro">
-
                 <h5>Datos generales:</h5>
                 <!-- Datos Generales -->
                 <div class="input_grupo">
                     <label for="nombres">Nombre(s):</label>
                     <input type="text" name="nombres" required maxlength="100">
+                    <span class="tooltip">Ingresa tu(s) nombre(s) sin apellidos.</span>
                 </div>
                 <div class="input_grupo">
                     <label for="primer_apellido">Primer Apellido:</label>
                     <input type="text" name="primer_apellido" required maxlength="100">
+                    <span class="tooltip">Ingresa tu primer apellido.</span>
                 </div>
                 <div class="input_grupo">
                     <label for="segundo_apellido">Segundo Apellido:</label>
                     <input type="text" name="segundo_apellido" maxlength="100" required>
+                    <span class="tooltip">Ingresa tu segundo apellido (opcional).</span>
                 </div>
 
                 <div class="input_grupo">
                     <label for="curp">CURP:</label>
                     <input type="text" name="curp" required maxlength="18" pattern="[A-Z0-9]{18}">
+                    <span class="tooltip">Ingresa tu CURP (18 caracteres alfanuméricos).</span>
                 </div>
-
 
                 <!-- Información Personal -->
                 <div class="input_grupo">
                     <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
                     <input type="date" name="fecha_nacimiento" required>
+                    <span class="tooltip">Formato: DD/MM/AAAA.</span>
                 </div>
                 <div class="input_grupo">
                     <label>Sexo:</label>
@@ -473,6 +478,7 @@
                         <option value="hombre">Hombre</option>
                         <option value="no_binario">No binario</option>
                     </select>
+                    <span class="tooltip">Selecciona tu sexo.</span>
                 </div>
                 <div class="input_grupo">
                     <label for="nacionalidad">Nacionalidad:</label>
@@ -481,6 +487,7 @@
                         <option value="mexicana">Mexicana</option>
                         <option value="extranjera">Extranjera</option>
                     </select>
+                    <span class="tooltip">Selecciona tu nacionalidad.</span>
                 </div>
 
                 <div class="input_grupo">
@@ -520,6 +527,7 @@
                         <option value="Yucatán">Yucatán</option>
                         <option value="Zacatecas">Zacatecas</option>
                     </select>
+                    <span class="tooltip">Selecciona tu entidad de nacimiento.</span>
                 </div>
 
                 <h5> Estado Civil:</h5>
@@ -535,10 +543,12 @@
                         <option value="divorciado">Divorciado</option>
                         <option value="viudo">Viudo</option>
                     </select>
+                    <span class="tooltip">Selecciona tu estado civil.</span>
                 </div>
                 <div class="input_grupo">
                     <label for="num_hijos">Número de Hijos:</label>
                     <input type="number" name="num_hijos" min="0" max="20" required>
+                    <span class="tooltip">Ingresa el número de hijos (0 si no tienes).</span>
                 </div>
 
                 <!-- Domicilio Detallado -->
@@ -553,34 +563,41 @@
                         <option value="privada">Privada</option>
                         <option value="otro">Otro</option>
                     </select>
+                    <span class="tooltip">Selecciona el tipo de vialidad.</span>
                 </div>
                 <div class="input_grupo">
                     <label for="vialidad_nombre">Nombre de Vialidad:</label>
                     <input type="text" name="vialidad_nombre" required>
+                    <span class="tooltip">Ingresa el nombre de la vialidad.</span>
                 </div>
                 <div class="input_grupo">
                     <label for="num_exterior">Número Exterior:</label>
                     <input type="text" name="num_exterior" required>
+                    <span class="tooltip">Ingresa el número exterior.</span>
                 </div>
                 <div class="input_grupo">
                     <label for="num_interior">Número Interior:</label>
                     <input type="text" name="num_interior">
+                    <span class="tooltip">Ingresa el número interior (opcional).</span>
                 </div>
                 <div class="input_grupo">
                     <label for="codigo_postal">Código Postal:</label>
                     <input type="text" name="codigo_postal" pattern="[0-9]{5}" required>
+                    <span class="tooltip">Ingresa tu código postal (5 dígitos).</span>
                 </div>
 
                 <!-- Colonia -->
                 <div class="input_grupo">
                     <label>Colonia</label>
                     <input type="text" name="colonia" placeholder="Especifica tu colonia" required>
+                    <span class="tooltip">Ingresa el nombre de tu colonia.</span>
                 </div>
 
                 <!-- Municipio -->
                 <div class="input_grupo">
                     <label>Municipio</label>
                     <input type="text" name="municipio" placeholder="Especifica tu municipio" required>
+                    <span class="tooltip">Ingresa el nombre de tu municipio.</span>
                 </div>
 
                 <!-- Entidad Federativa -->
@@ -621,6 +638,7 @@
                         <option value="Yucatán">Yucatán</option>
                         <option value="Zacatecas">Zacatecas</option>
                     </select>
+                    <span class="tooltip">Selecciona tu entidad federativa.</span>
                 </div>
 
                 <!-- Tiene equipo de cómputo -->
@@ -630,9 +648,8 @@
                         <option value="no">No</option>
                         <option value="si">Sí</option>
                     </select>
+                    <span class="tooltip">Selecciona si tienes equipo de cómputo.</span>
                 </div>
-
-
 
                 <!-- Tiene acceso a Internet -->
                 <div class="input_grupo">
@@ -641,21 +658,24 @@
                         <option value="no">No</option>
                         <option value="si">Sí</option>
                     </select>
+                    <span class="tooltip">Selecciona si tienes acceso a Internet.</span>
                 </div>
-
 
                 <!-- Contacto -->
                 <div class="input_grupo">
                     <label for="telefono_fijo">Teléfono Fijo:</label>
                     <input type="tel" name="telefono_fijo" pattern="[0-9]{10}" maxlength="10">
+                    <span class="tooltip">Ingresa tu teléfono fijo (10 dígitos, opcional).</span>
                 </div>
                 <div class="input_grupo">
                     <label for="telefono_celular">Teléfono Celular:</label>
                     <input type="tel" name="telefono_celular" pattern="[0-9]{10}" maxlength="10" required>
+                    <span class="tooltip">Ingresa tu teléfono celular (10 dígitos).</span>
                 </div>
                 <div class="input_grupo">
                     <label for="correo_personal">Correo Electrónico Personal:</label>
                     <input type="email" name="correo_personal">
+                    <span class="tooltip">Ingresa tu correo electrónico personal (opcional).</span>
                 </div>
 
                 <!-- Idioma -->
@@ -665,11 +685,13 @@
                         <option value="no">No</option>
                         <option value="si">Sí</option>
                     </select>
+                    <span class="tooltip">Selecciona si hablas una lengua indígena.</span>
                 </div>
 
                 <div class="input_grupo" id="lengua_indigena_input" style="display: none;">
                     <label>¿Cuál?</label>
                     <input type="text" name="lengua_indigena" placeholder="Especifica la lengua indígena">
+                    <span class="tooltip">Especifica la lengua indígena que hablas.</span>
                 </div>
 
                 <div class="input_grupo">
@@ -678,11 +700,13 @@
                         <option value="no">No</option>
                         <option value="si">Sí</option>
                     </select>
+                    <span class="tooltip">Selecciona si hablas otro idioma además del español.</span>
                 </div>
 
                 <div class="input_grupo" id="otro_idioma_input" style="display: none;">
                     <label>¿Cuál?</label>
                     <input type="text" name="otro_idioma" placeholder="Especifica el idioma">
+                    <span class="tooltip">Especifica el idioma que hablas.</span>
                 </div>
 
                 <div class="input_grupo">
@@ -691,6 +715,7 @@
                         <option value="no">No</option>
                         <option value="si">Sí</option>
                     </select>
+                    <span class="tooltip">Selecciona si te consideras indígena.</span>
                 </div>
 
                 <div class="input_grupo">
@@ -699,6 +724,7 @@
                         <option value="no">No</option>
                         <option value="si">Sí</option>
                     </select>
+                    <span class="tooltip">Selecciona si te consideras afromexicano, negro o afrodescendiente.</span>
                 </div>
 
                 <script>
@@ -721,7 +747,6 @@
                         }
                     });
                 </script>
-
 
                 <!-- Ocupación -->
                 <div class="input_grupo">
@@ -802,7 +827,7 @@
                     <select id="programa_estudiante" name="programa_estudiante" required>
                         <option value="">Selecciona un programa</option> <!-- Opción por defecto -->
                     </select>
-                    <span class="tooltip">Recuerda que debes registrar primero los programas:</span>
+                    <span class="tooltip">⚠️ Recuerda que debes registrar primero los programas:</span>
                 </div>
 
                 <button class="btn_submit" type="submit">Registrar</button>
@@ -810,12 +835,12 @@
         </div>
     </div>
 
-    <script src="../assets/js/sweetalert.js"></script>
-    <script src="../assets/js/jquery.js"></script>
-    <script src="api/auth/login.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+                <script src="../assets/js/sweetalert.js"></script>
+                <script src="../assets/js/jquery.js"></script>
+                <script src="api/auth/login.js"></script>
+                <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 
-    <script src="./utilidades/coordinador_programa.js"></script>
+                <script src="./utilidades/coordinador_programa.js"></script>
 
 
 
