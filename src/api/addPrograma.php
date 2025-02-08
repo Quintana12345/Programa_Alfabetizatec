@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $descripcion = isset($data['descripcion']) ? $data['descripcion'] : '';
     $id_nivel = isset($data['id_nivel']) ? $data['id_nivel'] : '';
     $meta = isset($data['meta']) ? $data['meta'] : '';
-    $id_coordinador = isset($data['id_coordinador']) ? $data['id_coordinador'] : ''; // Esto debe estar en los datos enviados
+    $id_coordinador = isset($data['educador']) ? $data['educador'] : ''; // Usar 'educador' si ese es el campo correcto
     $inicio_periodo = isset($data['inicio_periodo']) ? $data['inicio_periodo'] : '';
     $fin_periodo = isset($data['fin_periodo']) ? $data['fin_periodo'] : '';
 
