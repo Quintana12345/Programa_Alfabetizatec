@@ -274,6 +274,13 @@ function obtenerProgramas() {
   // Mostramos un mensaje mientras esperamos la respuesta
   $("#Programas_tec").html("<p>Cargando programas...</p>");
 
+  function formatDate(dateString) {
+    const date = new Date(dateString); // Convertir la cadena de fecha a un objeto Date
+    const month = date.getMonth() + 1; // getMonth() devuelve un índice basado en 0, por lo que sumamos 1
+    const year = date.getFullYear().toString().slice(-2); // Obtener los últimos 2 dígitos del año
+    return `${month}/${year}`; // Devolver el formato mes/año
+  }
+
   // Realizar la solicitud AJAX
   $.ajax({
     url: "./api/getProgramas.php", // Ruta al endpoint que devuelve los programas
@@ -308,7 +315,7 @@ function obtenerProgramas() {
                  
 
                   <td>${programa.nivel_nombre}</td>
-                  <td>${programa.coordinador_nombre	}</td>
+                  <td>${programa.coordinador_nombre}</td>
                   <td>${programa.meta}</td>
                   <td>${programa.inicio_periodo}</td>
                   <td>${programa.fin_periodo}</td>
@@ -320,8 +327,15 @@ function obtenerProgramas() {
 
             // Agregar opciones al select
             selectOptionsHTML += `
-                <option value="${programa.id}">${programa.nivel_nombre}: ${programa.inicio_periodo} -  ${programa.fin_periodo} </option>
-              `;
+    <option value="${programa.id}">
+         ${programa.nivel_nombre.substring(
+              0,
+              5
+            )} - ${programa.coordinador_nombre} ${formatDate(
+              programa.inicio_periodo
+            )} - ${formatDate(programa.fin_periodo)}
+    </option>
+`;
           });
 
           tableHTML += `</tbody></table>`;
@@ -408,7 +422,7 @@ function obtenerEstudiantes() {
             </table>
           `;
 
-       /*  $("#Estudiantes_tec").html(tableHTML); */
+        /*  $("#Estudiantes_tec").html(tableHTML); */
 
         $("#tablaEstudiantes").DataTable({
           paging: true,
