@@ -73,3 +73,11 @@ table tbody tr:hover {
   background-color: #0056b3; /* Fondo del botón de la página actual */
   color: white;
 }
+
+
+#detallesPrograma h2{
+  text-align: center;
+}
+
+#detallesPrograma div{
+margin: 1rem 0rem;}
