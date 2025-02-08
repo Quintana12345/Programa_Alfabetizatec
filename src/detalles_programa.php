@@ -22,9 +22,13 @@
             <li><a href="#">Detalles de programa:</a></li>
 
         </ul>
-        <h2 id="titulo-programa" class="titulo_principal"></h2>
-        <span id="fecha-inicio"></span>
-        <span id="fecha-fin"></span>
+        <h1 class="titulo_seccion">📄 Mostrando detalles del programa</h1>
+
+        <h4 id="titulo-programa" class="titulo_principal"></h4>
+
+        
+        <p id="educador_nombre" class="educador_info"></p>
+
         <div id="detallesPrograma" class="full_center"></div>
     </main>
 
@@ -43,7 +47,7 @@
             const day = date.getDate().toString().padStart(2, '0');
             const month = (date.getMonth() + 1).toString().padStart(2, '0');
             const year = date.getFullYear();
-            console.log("aaa",day,month,year)
+            console.log("aaa", day, month, year)
 
             return `${day}/${month}/${year}`;
         }
@@ -60,10 +64,13 @@
                         const inicioPeriodo = formatDate(data.data.inicio_periodo);
                         const finPeriodo = formatDate(data.data.fin_periodo);
                         // Mostrar los detalles del programa
-                        $('#titulo-programa').text(`Nivel: ${data.data.nivel} : ${inicioPeriodo} - ${finPeriodo} `);
-                        $('#descripcion-programa').text(data.data.descripcion || "N/A");
+                        $('#titulo-programa').text(`📌 Programa de Nivel: ${data.data.nivel} | 📅 Periodo: ${inicioPeriodo} - ${finPeriodo}`);
 
-                        $('#nivel-programa').text(data.data.nivel);
+                        $('#descripcion-programa').text(data.data.descripcion ? data.data.descripcion : "ℹ️ Descripción no disponible.");
+
+                        $('#nivel-programa').text(`🎓 Nivel académico: ${data.data.nivel}`);
+
+                        $('#educador_nombre').text(`👨‍🏫Educador responsable: ${data.data.nombre_coordinador} ${data.data.apellido_coordinador}`);
 
                         // Crear la tabla de estudiantes
                         if (data.data.estudiantes && data.data.estudiantes.length > 0) {

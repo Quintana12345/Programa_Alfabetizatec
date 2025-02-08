@@ -2,32 +2,14 @@ main {
   background-color: var(--gris_contraste);
   min-height: 85vh;
 }
-p {
-  padding: 1.3rem;
-}
+
 
 #detallesPrograma {
   max-width: 95%;
   flex-direction: column;
   margin-top: 4rem;
 }
-/* 
 
-#graficoBarras{
-    width: 80%;
-    height: 600;
-}
-
-#avance{
-    width: 80%;
-    height: 600;
-}
-
-
-.avance_metas h4{
-    font-size: 1.4rem;
-} */
-/* Estilo de la tabla */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -75,9 +57,17 @@ table tbody tr:hover {
 }
 
 
-#detallesPrograma h2{
+#detallesPrograma h4, h1{
   text-align: center;
+}
+
+  h1{
+margin: 2rem 0rem;
 }
 
 #detallesPrograma div{
 margin: 1rem 0rem;}
+
+#educador_nombre {
+  text-align: center;
+}
