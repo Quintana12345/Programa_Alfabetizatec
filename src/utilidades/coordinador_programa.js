@@ -287,7 +287,8 @@ function obtenerProgramas() {
               <table id="tablaProgramas" class="display" style="width:100%">
                 <thead>
                   <tr>
-                  <th>ID Nivel</th>
+                  <th> Nivel</th>
+                  <th>Educador</th>
                   <th>Meta</th>
                   <th>Inicio Periodo</th>
                   <th>Fin Periodo</th>
@@ -307,6 +308,7 @@ function obtenerProgramas() {
                  
 
                   <td>${programa.nivel_nombre}</td>
+                  <td>${programa.coordinador_nombre	}</td>
                   <td>${programa.meta}</td>
                   <td>${programa.inicio_periodo}</td>
                   <td>${programa.fin_periodo}</td>
