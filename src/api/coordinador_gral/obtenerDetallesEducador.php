@@ -41,7 +41,7 @@ try {
         $nivelId = $programa['id_nivel'];
         $queryNivel = "SELECT nombre FROM niveles WHERE id = ?";
         $stmtNivel = $conn->prepare($queryNivel);
-        $stmtNivel->bind_param("i", $nivelId); // Bindeamos el id del nivel
+        $stmtNivel->bind_param("i", $nivelId);
         $stmtNivel->execute();
         $resultNivel = $stmtNivel->get_result();
 
@@ -70,43 +70,48 @@ try {
         ";
 
         $stmtEstudiantes = $conn->prepare($queryEstudiantes);
-        $stmtEstudiantes->bind_param("i", $programa['id']); // Bindeamos el id del programa
+        $stmtEstudiantes->bind_param("i", $programa['id']);
         $stmtEstudiantes->execute();
         $resultEstudiantes = $stmtEstudiantes->get_result();
 
         $estudiantes = [];
         while ($estudiante = $resultEstudiantes->fetch_assoc()) {
-            $estudiantes[] = $estudiante; // Almacenamos cada estudiante en un array
+            $estudiantes[] = $estudiante;
         }
 
         // Agregar la lista de estudiantes al programa
         $programa['estudiantes'] = $estudiantes;
 
-        // Obtener el nombre del educador (coordinador)
-        $queryEducador = "SELECT nombre, apellido FROM usuarios WHERE id = ?";
-        $stmtEducador = $conn->prepare($queryEducador);
-        $stmtEducador->bind_param("i", $educadorId); // Bindeamos el id del educador
-        $stmtEducador->execute();
-        $resultEducador = $stmtEducador->get_result();
+        // Obtener el nombre del coordinador
+        $queryCoordinador = "
+SELECT u.nombre, u.apellido 
+FROM usuarios u
+JOIN educadores e ON u.id = e.id_usuario
+WHERE e.id = ?
+";
+        $stmtCoordinador = $conn->prepare($queryCoordinador);
+        $stmtCoordinador->bind_param("i", $programa['id_coordinador']);
+        $stmtCoordinador->execute();
+        $resultCoordinador = $stmtCoordinador->get_result();
 
-        $educadorNombre = '';
-        if ($resultEducador->num_rows > 0) {
-            $educador = $resultEducador->fetch_assoc();
-            $educadorNombre = $educador['nombre'] . ' ' . $educador['apellido'];
+        $coordinadorNombre = '';
+        if ($resultCoordinador->num_rows > 0) {
+            $coordinador = $resultCoordinador->fetch_assoc();
+            $coordinadorNombre = $coordinador['nombre'] . ' ' . $coordinador['apellido'];
         }
 
-        // Agregar el nombre del educador al programa
-        $programa['educador'] = $educadorNombre;
+        // Agregar el nombre del coordinador al programa
+        // Agregar el nombre del coordinador al programa
+        $programa['coordinador'] = $coordinadorNombre;
 
-        $programas[] = $programa; // Almacenamos el programa y su información
+        $programas[] = $programa;
     }
 
-    // Enviar la respuesta JSON con los programas, sus estudiantes y el educador
+    // Enviar la respuesta JSON con los programas, sus estudiantes y el coordinador
     echo json_encode([
         'success' => true,
         'data' => $programas
     ]);
-
 } catch (Exception $e) {
     // Manejo de errores
     echo json_encode([

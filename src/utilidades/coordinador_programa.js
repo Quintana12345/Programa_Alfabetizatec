@@ -467,7 +467,7 @@ function obtenerEducadores() {
           let optionsHTML = '<option value="">Selecciona un educador</option>';
           response.data.forEach((educador) => {
             optionsHTML += `
-                <option value="${educador.id_usuario}">${educador.nombre} ${educador.apellido}</option>
+                <option value="${educador.id}">${educador.nombre} ${educador.apellido}</option>
               `;
           });
 

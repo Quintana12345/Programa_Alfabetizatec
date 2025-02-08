@@ -20,9 +20,9 @@
         <ul class="breadcrumb">
             <li><a href="./coordinador_programa.php">Inicio</a></li>
             <li><a href="#">Detalles del educador:</a></li>
-
+    <div id="detallesPrograma"></div>
         </ul>
-       
+
     </main>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -32,7 +32,7 @@
         // Obtener el id del programa de la URL
         const urlParams = new URLSearchParams(window.location.search);
         // Obtener el id del programa de la URL
-        const idPrograma = urlParams.get('id');
+        const idCooordinador = urlParams.get('id');
 
         // Función para formatear las fechas
         function formatDate(dateString) {
@@ -40,108 +40,92 @@
             const day = date.getDate().toString().padStart(2, '0');
             const month = (date.getMonth() + 1).toString().padStart(2, '0');
             const year = date.getFullYear();
-            console.log("aaa",day,month,year)
+            console.log("aaa", day, month, year)
 
             return `${day}/${month}/${year}`;
         }
 
-        // Verificar si se tiene el id del programa
-        if (idPrograma) {
+        // Verificar si se tiene el id del coordinador
+        if (idCooordinador) {
             // Realizar la petición AJAX para obtener los detalles del programa y la lista de estudiantes
             $.ajax({
-                url: `./api/coordinador_gral/obtenerDetallesEducador.php?id=${idPrograma}`, // Cambia esta URL a la correcta
+                url: `./api/coordinador_gral/obtenerDetallesEducador.php?id=${idCooordinador}`,
                 type: 'GET',
                 dataType: 'json',
                 success: function(data) {
                     if (data.success) {
-                        const inicioPeriodo = formatDate(data.data.inicio_periodo);
-                        const finPeriodo = formatDate(data.data.fin_periodo);
-                        // Mostrar los detalles del programa
-                        $('#titulo-programa').text(`Nivel: ${data.data.nivel} : ${inicioPeriodo} - ${finPeriodo} `);
-                        $('#descripcion-programa').text(data.data.descripcion || "N/A");
+                        console.log(data.data);
 
-                        $('#nivel-programa').text(data.data.nivel);
+                        // Limpiar el contenedor antes de agregar nuevos elementos
+                        $('#detallesPrograma').empty();
 
-                        // Crear la tabla de estudiantes
-                        if (data.data.estudiantes && data.data.estudiantes.length > 0) {
-                            let tableContent = `
-                    <table id="estudiantesTable" class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Apellidos</th>
-                                <th>CURP</th>
-                                <th>Teléfono</th>
-                                <th>Correo</th>
-                                <th>Estado Solicitud</th> <!-- Nueva columna para el estado -->
-                            </tr>
-                        </thead>
-                        <tbody>
-                    `;
+                        // Obtener el nombre del educador
+                        let nombreEducador = data.data.length > 0 ? data.data[0].coordinador : "Desconocido";
+                        $('#detallesPrograma').append(`<h2>Educador: ${nombreEducador}</h2>`);
 
-                            // Agregar los estudiantes a la tabla
-                            // Agregar los estudiantes a la tabla
-                            data.data.estudiantes.forEach(function(estudiante) {
-                                // Buscar la solicitud del estudiante (suponiendo que solo haya una solicitud por estudiante)
-                                const solicitud = data.data.solicitudes.find(solicitud => solicitud.id_estudiante === estudiante.id);
+                        if (data.data.length > 0) {
+                            data.data.forEach(programa => {
+                                $('#detallesPrograma').append(`<h3>${programa.nivel}</h3>`);
 
-                                tableContent += `
-        <tr>
-            <td><p  class="text-decoration-none">${estudiante.nombre}</p></td>
-            <td>${estudiante.apellidos}</td>
-            <td>${estudiante.curp}</td>
-            <td>${estudiante.telefono}</td>
-            <td>${estudiante.correo || "N/A"}</td>
-            <td>
-                <form>
-                    <!-- Agregar el id_solicitud de la solicitud -->
-                    <input type="hidden" name="id_solicitud" value="${solicitud ? solicitud.id : ''}"> 
-                    <label>
-                        <input type="radio" name="estado_${estudiante.id}" value="pendiente" ${estudiante.status === 'pendiente' ? 'checked' : ''}>
-                        Pendiente
-                    </label>
-                    <label>
-                        <input type="radio" name="estado_${estudiante.id}" value="aprobado" ${estudiante.status === 'aprobado' ? 'checked' : ''}>
-                        Aprobado
-                    </label>
-                    <label>
-                        <input type="radio" name="estado_${estudiante.id}" value="desaprobado" ${estudiante.status === 'desaprobado' ? 'checked' : ''}>
-                        Desaprobado
-                    </label>
-                </form>
-            </td>
-        </tr>
-    `;
-                            });
+                                if (programa.estudiantes.length > 0) {
+                                    let tableContent = `
+                                <table id="estudiantesTable_${programa.id}" class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Apellidos</th>
+                                            <th>CURP</th>
+                                            <th>Teléfono</th>
+                                            <th>Correo</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                            `;
 
-                            tableContent += '</tbody></table>';
-                            $('#detallesPrograma').append(tableContent);
+                                    programa.estudiantes.forEach(estudiante => {
+                                        tableContent += `
+                                    <tr>
+                                        <td><p class="text-decoration-none">${estudiante.nombre}</p></td>
+                                        <td>${estudiante.apellidos}</td>
+                                        <td>${estudiante.curp}</td>
+                                        <td>${estudiante.telefono}</td>
+                                        <td>${estudiante.correo || "N/A"}</td>
+                                        
+                                    </tr>
+                                `;
+                                    });
 
-                            // Inicializar DataTable sobre la tabla de estudiantes
-                            $('#estudiantesTable').DataTable({
-                                paging: true,
-                                searching: true,
-                                ordering: true,
-                                info: true,
-                                lengthChange: true, // Permitir seleccionar cantidad de registros por página
-                                language: {
-                                    search: "Buscar:",
-                                    lengthMenu: "Mostrar _MENU_ registros por página",
-                                    info: "Mostrando de _START_ a _END_ de _TOTAL_ registros",
-                                    infoEmpty: "Mostrando 0 a 0 de 0 registros",
-                                    infoFiltered: "(filtrado de _MAX_ registros en total)",
-                                    paginate: {
-                                        first: "Primero",
-                                        previous: "Anterior",
-                                        next: "Siguiente",
-                                        last: "Último"
-                                    }
+                                    tableContent += '</tbody></table>';
+                                    $('#detallesPrograma').append(tableContent);
+
+                                    // Inicializar DataTable para cada tabla generada
+                                    $(`#estudiantesTable_${programa.id}`).DataTable({
+                                        paging: true,
+                                        searching: true,
+                                        ordering: true,
+                                        info: true,
+                                        lengthChange: true,
+                                        language: {
+                                            search: "Buscar:",
+                                            lengthMenu: "Mostrar _MENU_ registros por página",
+                                            info: "Mostrando de _START_ a _END_ de _TOTAL_ registros",
+                                            infoEmpty: "Mostrando 0 a 0 de 0 registros",
+                                            infoFiltered: "(filtrado de _MAX_ registros en total)",
+                                            paginate: {
+                                                first: "Primero",
+                                                previous: "Anterior",
+                                                next: "Siguiente",
+                                                last: "Último"
+                                            }
+                                        }
+                                    });
+                                } else {
+                                    $('#detallesPrograma').append('<p>No hay estudiantes registrados en este nivel.</p>');
                                 }
                             });
                         } else {
-                            $('#detallesPrograma').append('<p>No hay estudiantes registrados para este programa.</p>');
+                            $('#detallesPrograma').append('<p>No hay programas registrados para este educador.</p>');
                         }
-
                     } else {
                         alert(data.message || 'Hubo un error al obtener los detalles del programa.');
                     }
@@ -150,9 +134,8 @@
                     console.log('Error al obtener los detalles del programa:', error);
                 }
             });
-        } else {
-            console.log('No se encontró el id del programa en la URL');
         }
+
 
         $(document).on('change', 'input[type="radio"]', function() {
             // Obtener el ID del estudiante del atributo name
