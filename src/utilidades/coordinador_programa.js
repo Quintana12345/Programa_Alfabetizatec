@@ -481,7 +481,6 @@ function obtenerEducadores() {
                   <tr>
                     <th>ID</th>
                     <th>Nombre</th>
-                    <th>Apellido</th>
                     <th>Email</th>
                     <th>Teléfono</th>
                     <th>Modalidad</th>
@@ -495,8 +494,7 @@ function obtenerEducadores() {
             tableHTML += `
                 <tr>
                   <td>${educador.id}</td>
-                  <td>${educador.nombre}</td>
-                  <td>${educador.apellido}</td>
+                  <td>  <a href="detalles_educador.php?id=${educador.id}">${educador.nombre} ${educador.apellido}</a> </td>
                   <td>${educador.correo}</td>
                   <td>${educador.telefono}</td>
                   <td>${educador.tipo_participante}</td>
