@@ -78,8 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $conn->begin_transaction();
 
     try {
-
-        // Construct domicilio from address components
+        // Construir domicilio a partir de los componentes de la dirección
         $domicilio = trim(
             ($data['vialidad_tipo'] ? $data['vialidad_tipo'] . ' ' : '') .
                 ($data['vialidad_nombre'] ? $data['vialidad_nombre'] . ' ' : '') .
@@ -150,6 +149,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Ejecutar la consulta
         $stmt_estudiante->execute();
+
+        // Obtener el ID del estudiante recién insertado
+        $id_estudiante = $stmt_estudiante->insert_id;
+
+        // Insertar en la tabla `solicitudes`
+        $query_solicitud = "INSERT INTO solicitudes (
+            status, id_programa, id_estudiante, fecha
+        ) VALUES (
+            'Pendiente', ?, ?, NOW()
+        )";
+
+        $stmt_solicitud = $conn->prepare($query_solicitud);
+        $stmt_solicitud->bind_param('ii', $id_programa, $id_estudiante);
+        $stmt_solicitud->execute();
+
+        // Confirmar la transacción
         $conn->commit();
         echo json_encode(['success' => true]);
     } catch (Exception $e) {
