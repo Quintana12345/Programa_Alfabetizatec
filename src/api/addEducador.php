@@ -29,6 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $entidad_nacimiento = isset($_POST['entidad_nacimiento']) ? $_POST['entidad_nacimiento'] : '';
     $curp = isset($_POST['curp']) ? $_POST['curp'] : '';
     $sexo = isset($_POST['sexo']) ? $_POST['sexo'] : '';
+    $depedencia = isset($_POST['depedencia']) ? $_POST['depedencia'] : '';
     $estado_civil = isset($_POST['estado_civil']) ? $_POST['estado_civil'] : '';
     $num_hijos = isset($_POST['num_hijos']) ? $_POST['num_hijos'] : '';
 
@@ -85,12 +86,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             id_tecnologico, semestre, nacionalidad, 
             entidad_nacimiento, curp, sexo, estado_civil, num_hijos,
             escolaridad, ocupacion, fecha_registro, alianza, 
-            subproyecto, tipo_vinculacion
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            subproyecto, tipo_vinculacion, dependencia
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
 
         $stmt_educador = $conn->prepare($query_educador);
         $stmt_educador->bind_param(
-            'isssiisssssssssss',
+            'isssiissssssssssss',
             $id_usuario,
             $tipo_participante,
             $modalidad,
@@ -107,7 +108,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $fecha_registro,
             $alianza,
             $subproyecto,
-            $tipo_vinculacion
+            $tipo_vinculacion,
+            $depedencia
         );
 
         $stmt_educador->execute();

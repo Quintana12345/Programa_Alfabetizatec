@@ -383,6 +383,12 @@
                 </div>
 
                 <div class="input_grupo">
+                    <label for="dependencia">Dependencia:</label>
+                    <input type="text" id="dependencia" name="dependencia" placeholder="Dependencia ... ">
+                    <span class="tooltip">Ingresa el tipo de dependencia (opcional).</span>
+                </div>
+
+                <div class="input_grupo">
                     <label for="tipo_participante">Tipo de Educador:</label>
                     <select id="tipo_participante" name="tipo_participante" class="styled-select" required>
                         <option value="" disabled selected>Seleccione</option>
