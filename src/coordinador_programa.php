@@ -156,9 +156,7 @@
                 });
             });
 
-            // Actualizar etiquetas cuando cambien las fechas del período
-            document.getElementById("inicio_periodo").addEventListener("change", nivelSelect.dispatchEvent.bind(nivelSelect, new Event("change")));
-            document.getElementById("fin_periodo").addEventListener("change", nivelSelect.dispatchEvent.bind(nivelSelect, new Event("change")));
+          
         });
     </script>
 

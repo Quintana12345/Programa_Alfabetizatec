@@ -204,10 +204,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const formData = new FormData(form); // Recoge los datos del formulario
 
     // Convertir FormData a objeto simple
-    const data = {};
-    formData.forEach((value, key) => {
-      data[key] = value;
-    });
+    const data = {
+      educador: formData.get("educador"),
+      id_nivel: formData.getAll("id_nivel[]"), // Obtener todos los niveles seleccionados
+      inicio_periodo: formData.get("inicio_periodo"),
+      fin_periodo: formData.get("fin_periodo"),
+      metas: {},
+    };
+
+    // Obtener metas por cada nivel seleccionado
+    data.id_nivel.forEach(nivelId => {
+      const metaInput = document.getElementById(`meta_${nivelId}`);
+      if (metaInput) {
+          data.metas[nivelId] = metaInput.value;
+      }
+  });
 
     try {
       const response = await fetch("./api/addPrograma.php", {
@@ -328,12 +339,11 @@ function obtenerProgramas() {
             // Agregar opciones al select
             selectOptionsHTML += `
     <option value="${programa.id}">
-         ${programa.nivel_nombre.substring(
-              0,
-              5
-            )} - ${programa.coordinador_nombre} ${formatDate(
-              programa.inicio_periodo
-            )} - ${formatDate(programa.fin_periodo)}
+         ${programa.nivel_nombre.substring(0, 5)} - ${
+              programa.coordinador_nombre
+            } ${formatDate(programa.inicio_periodo)} - ${formatDate(
+              programa.fin_periodo
+            )}
     </option>
 `;
           });
