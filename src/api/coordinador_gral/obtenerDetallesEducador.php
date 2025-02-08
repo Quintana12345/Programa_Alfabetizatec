@@ -23,6 +23,24 @@ try {
         exit();
     }
 
+    // Obtener el nombre del educador (coordinador)
+    $queryCoordinador = "
+        SELECT u.nombre, u.apellido 
+        FROM usuarios u
+        JOIN educadores e ON u.id = e.id_usuario
+        WHERE e.id = ?
+    ";
+    $stmtCoordinador = $conn->prepare($queryCoordinador);
+    $stmtCoordinador->bind_param("i", $educadorId);
+    $stmtCoordinador->execute();
+    $resultCoordinador = $stmtCoordinador->get_result();
+
+    $coordinadorNombre = '';
+    if ($resultCoordinador->num_rows > 0) {
+        $coordinador = $resultCoordinador->fetch_assoc();
+        $coordinadorNombre = $coordinador['nombre'] . ' ' . $coordinador['apellido'];
+    }
+
     // Si se proporciona el ID del educador, obtener los programas asociados a ese educador
     $queryProgramasEducador = "
         SELECT p.id, p.nombre, p.descripcion, p.inicio_periodo, p.fin_periodo, p.id_nivel, p.id_coordinador
@@ -82,35 +100,14 @@ try {
         // Agregar la lista de estudiantes al programa
         $programa['estudiantes'] = $estudiantes;
 
-        // Obtener el nombre del coordinador
-        $queryCoordinador = "
-SELECT u.nombre, u.apellido 
-FROM usuarios u
-JOIN educadores e ON u.id = e.id_usuario
-WHERE e.id = ?
-";
-        $stmtCoordinador = $conn->prepare($queryCoordinador);
-        $stmtCoordinador->bind_param("i", $programa['id_coordinador']);
-        $stmtCoordinador->execute();
-        $resultCoordinador = $stmtCoordinador->get_result();
-
-        $coordinadorNombre = '';
-        if ($resultCoordinador->num_rows > 0) {
-            $coordinador = $resultCoordinador->fetch_assoc();
-            $coordinadorNombre = $coordinador['nombre'] . ' ' . $coordinador['apellido'];
-        }
-
-        // Agregar el nombre del coordinador al programa
-        // Agregar el nombre del coordinador al programa
-        $programa['coordinador'] = $coordinadorNombre;
-
         $programas[] = $programa;
     }
 
-    // Enviar la respuesta JSON con los programas, sus estudiantes y el coordinador
+    // Enviar la respuesta JSON con el nombre del educador y los programas
     echo json_encode([
         'success' => true,
-        'data' => $programas
+        'educador' => $coordinadorNombre,
+        'programas' => $programas
     ]);
 } catch (Exception $e) {
     // Manejo de errores

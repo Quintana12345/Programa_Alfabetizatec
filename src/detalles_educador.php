@@ -47,28 +47,31 @@
 
         // Verificar si se tiene el id del coordinador
         if (idCooordinador) {
-            // Realizar la petición AJAX para obtener los detalles del programa y la lista de estudiantes
-            $.ajax({
-                url: `./api/coordinador_gral/obtenerDetallesEducador.php?id=${idCooordinador}`,
-                type: 'GET',
-                dataType: 'json',
-                success: function(data) {
-                    if (data.success) {
-                        console.log(data.data);
+    // Realizar la petición AJAX para obtener los detalles del programa y la lista de estudiantes
+    $.ajax({
+        url: `./api/coordinador_gral/obtenerDetallesEducador.php?id=${idCooordinador}`,
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            if (data.success) {
+                console.log(data);
 
-                        // Limpiar el contenedor antes de agregar nuevos elementos
-                        $('#detallesPrograma').empty();
+                // Limpiar el contenedor antes de agregar nuevos elementos
+                $('#detallesPrograma').empty();
 
-                        // Obtener el nombre del educador
-                        let nombreEducador = data.data.length > 0 ? data.data[0].coordinador : "Desconocido";
-                        $('#detallesPrograma').append(`<h2>Educador: ${nombreEducador}</h2>`);
+                // Obtener el nombre del educador desde la nueva estructura de respuesta
+                let nombreEducador = data.educador || "Desconocido";
+                $('#detallesPrograma').append(`<h2>Educador: ${nombreEducador}</h2>`);
 
-                        if (data.data.length > 0) {
-                            data.data.forEach(programa => {
-                                $('#detallesPrograma').append(`<h3>${programa.nivel}</h3>`);
+                // Verificar si hay programas
+                if (data.programas.length > 0) {
+                    data.programas.forEach(programa => {
+                        // Mostrar el nivel del programa
+                        $('#detallesPrograma').append(`<h3>${programa.nivel}</h3>`);
 
-                                if (programa.estudiantes.length > 0) {
-                                    let tableContent = `
+                        // Verificar si hay estudiantes en el programa
+                        if (programa.estudiantes.length > 0) {
+                            let tableContent = `
                                 <table id="estudiantesTable_${programa.id}" class="table table-striped">
                                     <thead>
                                         <tr>
@@ -82,59 +85,63 @@
                                     <tbody>
                             `;
 
-                                    programa.estudiantes.forEach(estudiante => {
-                                        tableContent += `
+                            // Agregar filas para cada estudiante
+                            programa.estudiantes.forEach(estudiante => {
+                                tableContent += `
                                     <tr>
                                         <td><p class="text-decoration-none">${estudiante.nombre}</p></td>
                                         <td>${estudiante.apellidos}</td>
                                         <td>${estudiante.curp}</td>
                                         <td>${estudiante.telefono}</td>
                                         <td>${estudiante.correo || "N/A"}</td>
-                                        
                                     </tr>
                                 `;
-                                    });
+                            });
 
-                                    tableContent += '</tbody></table>';
-                                    $('#detallesPrograma').append(tableContent);
+                            tableContent += '</tbody></table>';
+                            $('#detallesPrograma').append(tableContent);
 
-                                    // Inicializar DataTable para cada tabla generada
-                                    $(`#estudiantesTable_${programa.id}`).DataTable({
-                                        paging: true,
-                                        searching: true,
-                                        ordering: true,
-                                        info: true,
-                                        lengthChange: true,
-                                        language: {
-                                            search: "Buscar:",
-                                            lengthMenu: "Mostrar _MENU_ registros por página",
-                                            info: "Mostrando de _START_ a _END_ de _TOTAL_ registros",
-                                            infoEmpty: "Mostrando 0 a 0 de 0 registros",
-                                            infoFiltered: "(filtrado de _MAX_ registros en total)",
-                                            paginate: {
-                                                first: "Primero",
-                                                previous: "Anterior",
-                                                next: "Siguiente",
-                                                last: "Último"
-                                            }
-                                        }
-                                    });
-                                } else {
-                                    $('#detallesPrograma').append('<p>No hay estudiantes registrados en este nivel.</p>');
+                            // Inicializar DataTable para cada tabla generada
+                            $(`#estudiantesTable_${programa.id}`).DataTable({
+                                paging: true,
+                                searching: true,
+                                ordering: true,
+                                info: true,
+                                lengthChange: true,
+                                language: {
+                                    search: "Buscar:",
+                                    lengthMenu: "Mostrar _MENU_ registros por página",
+                                    info: "Mostrando de _START_ a _END_ de _TOTAL_ registros",
+                                    infoEmpty: "Mostrando 0 a 0 de 0 registros",
+                                    infoFiltered: "(filtrado de _MAX_ registros en total)",
+                                    paginate: {
+                                        first: "Primero",
+                                        previous: "Anterior",
+                                        next: "Siguiente",
+                                        last: "Último"
+                                    }
                                 }
                             });
                         } else {
-                            $('#detallesPrograma').append('<p>No hay programas registrados para este educador.</p>');
+                            // Mostrar mensaje si no hay estudiantes en el programa
+                            $('#detallesPrograma').append('<p>No hay estudiantes registrados en este nivel.</p>');
                         }
-                    } else {
-                        alert(data.message || 'Hubo un error al obtener los detalles del programa.');
-                    }
-                },
-                error: function(error) {
-                    console.log('Error al obtener los detalles del programa:', error);
+                    });
+                } else {
+                    // Mostrar mensaje si no hay programas para el educador
+                    $('#detallesPrograma').append('<p>No hay programas registrados para este educador.</p>');
                 }
-            });
+            } else {
+                // Mostrar mensaje de error si la solicitud no fue exitosa
+                alert(data.message || 'Hubo un error al obtener los detalles del programa.');
+            }
+        },
+        error: function(error) {
+            // Manejar errores de la petición AJAX
+            console.log('Error al obtener los detalles del programa:', error);
         }
+    });
+}
 
 
         $(document).on('change', 'input[type="radio"]', function() {
