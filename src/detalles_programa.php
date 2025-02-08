@@ -60,7 +60,7 @@
                         const inicioPeriodo = formatDate(data.data.inicio_periodo);
                         const finPeriodo = formatDate(data.data.fin_periodo);
                         // Mostrar los detalles del programa
-                        $('#titulo-programa').text(`Programa: ${data.data.nivel} : ${inicioPeriodo} - ${finPeriodo} `);
+                        $('#titulo-programa').text(`Nivel: ${data.data.nivel} : ${inicioPeriodo} - ${finPeriodo} `);
                         $('#descripcion-programa').text(data.data.descripcion || "N/A");
 
                         $('#nivel-programa').text(data.data.nivel);

@@ -101,8 +101,8 @@
                     <label for="id_nivel">Nivel:</label>
                     <select id="id_nivel" name="id_nivel[]" multiple required>
                         <option value="1">Analfabeta</option>
-                        <option value="2">Inicial</option>
-                        <option value="3">Superior</option>
+                        <option value="2">Primaria</option>
+                        <option value="3">Secundaria</option>
                     </select>
                 </div>
 
@@ -131,8 +131,8 @@
             const metasContainer = document.getElementById("metasContainer");
             const niveles = {
                 "1": "Analfabeta",
-                "2": "Inicial",
-                "3": "Superior"
+                "2": "Primaria",
+                "3": "Secundaria"
             };
 
             nivelSelect.addEventListener("change", function() {
