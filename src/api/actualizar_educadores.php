@@ -41,9 +41,7 @@ if (empty($apellido)) {
 if (empty($correo)) {
     $errores[] = 'Correo';
 }
-if (empty($curp)) {
-    $errores[] = 'CURP';
-}
+
 if (empty($nombre)) {
     $errores[] = 'Nombre';
 }
