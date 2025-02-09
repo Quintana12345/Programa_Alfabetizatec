@@ -1,0 +1,131 @@
+
+
+ h3 {
+   font-weight: 400;
+   text-align: center;
+   font-size: 1rem;
+}
+
+.nombre{
+    font-weight: 800;
+}
+/* Detalles del programa */
+#detallesPrograma {
+    margin: 20px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para tablas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: left;
+}
+
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Estilo para botones */
+button {
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Modal */
+.modal-content {
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+    font-size: 18px;
+    color: #333;
+}
+
+.modal-footer {
+    text-align: right;
+}
+
+.modal-footer button {
+    background-color: #28a745;
+    color: white;
+}
+
+.modal-footer button:hover {
+    background-color: #218838;
+}
+
+/* Estilos de notificación */
+.swal2-popup {
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    padding: 10px;
+}
+
+.swal2-title {
+    font-weight: bold;
+}
+
+/* Estilo de las celdas de las tablas */
+td p {
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+}
+
+.text-decoration-none {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Ajustes generales */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+@media (max-width: 768px) {
+    table th, table td {
+        padding: 8px;
+    }
+
+    .breadcrumb {
+        font-size: 12px;
+    }
+
+    h2, h3 {
+        font-size: 18px;
+    }
+}
+
+
+.programa_titulo{
+    text-align: left;
+    font-size: 1.4rem;
+    font-weight: 600;
+
+}
