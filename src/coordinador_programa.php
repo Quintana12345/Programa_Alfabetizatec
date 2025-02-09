@@ -56,20 +56,29 @@
 
 
         <div class="datos_tec">
+    <!-- Bloque: Educadores -->
+    <div class="info">
+        <h4>Educadores:
+            <span class="tooltip-icon" data-tooltip="En esta sección se muestra la lista de educadores. Cada educador tiene un perfil detallado al que se puede acceder haciendo clic en su nombre.">?</span>
+        </h4>
+        
+        <div id="Educadores_tec"></div>
+        
+    </div>
 
-            <div class="info">
-                <h4>Educadores:</h4>
-                <div id="Educadores_tec"></div>
-            </div>
+    <!-- Bloque: Programas -->
+    <div class="info">
+        <h4>Programas:
+            <span class="tooltip-icon" data-tooltip="Aquí se muestra el listado de programas registrados, mostrando Información gral, puedes acceder a los detalles de un programa en especifico ">?</span>
+        </h4>
+        
+        <div id="Programas_tec"></div>
+        <p class="nota">
+            Nota: Un educador puede estar asociado a múltiples programas, por lo que su nombre puede aparecer más de una vez.P
+        </p>
+    </div>
+</div>
 
-            <div class="info">
-                <h4>Programas:</h4>
-                <div id="Programas_tec"></div>
-            </div>
-
-
-
-        </div>
 
 
     </main>
@@ -841,12 +850,12 @@
         </div>
     </div>
 
-                <script src="../assets/js/sweetalert.js"></script>
-                <script src="../assets/js/jquery.js"></script>
-                <script src="api/auth/login.js"></script>
-                <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="../assets/js/sweetalert.js"></script>
+    <script src="../assets/js/jquery.js"></script>
+    <script src="api/auth/login.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 
-                <script src="./utilidades/coordinador_programa.js"></script>
+    <script src="./utilidades/coordinador_programa.js"></script>
 
 
 

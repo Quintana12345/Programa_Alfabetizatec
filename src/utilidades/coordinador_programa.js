@@ -361,6 +361,7 @@ function obtenerProgramas() {
             paging: true,
             searching: true,
             ordering: true,
+            order: [[1, 'asc']], // Ordenar por la columna 'Educador' (índice 1) de manera ascendente
           });
         } else {
           // Si no hay programas, mostramos un mensaje adecuado
