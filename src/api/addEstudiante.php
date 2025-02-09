@@ -157,7 +157,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $query_solicitud = "INSERT INTO solicitudes (
             status, id_programa, id_estudiante, fecha
         ) VALUES (
-            'Pendiente', ?, ?, NOW()
+            'pendiente', ?, ?, NOW()
         )";
 
         $stmt_solicitud = $conn->prepare($query_solicitud);
