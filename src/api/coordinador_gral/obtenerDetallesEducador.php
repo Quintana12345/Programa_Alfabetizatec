@@ -25,7 +25,7 @@ try {
 
     // Obtener el nombre del educador (coordinador)
     $queryCoordinador = "
-        SELECT u.nombre, u.apellido 
+        SELECT u.id, u.nombre, u.apellido, u.curp, u.correo, u.telefono, u.correo_inst
         FROM usuarios u
         JOIN educadores e ON u.id = e.id_usuario
         WHERE e.id = ?
@@ -36,9 +36,20 @@ try {
     $resultCoordinador = $stmtCoordinador->get_result();
 
     $coordinadorNombre = '';
+    $coordinadorDatos = [];
     if ($resultCoordinador->num_rows > 0) {
         $coordinador = $resultCoordinador->fetch_assoc();
         $coordinadorNombre = $coordinador['nombre'] . ' ' . $coordinador['apellido'];
+        // Se agregan los datos del coordinador
+        $coordinadorDatos = [
+            'id' => $coordinador['id'],
+            'nombre' => $coordinador['nombre'],
+            'apellido' => $coordinador['apellido'],
+            'curp' => $coordinador['curp'],
+            'correo' => $coordinador['correo'],
+            'telefono' => $coordinador['telefono'],
+            'correo_inst' => $coordinador['correo_inst']
+        ];
     }
 
     // Si se proporciona el ID del educador, obtener los programas asociados a ese educador
@@ -103,10 +114,11 @@ try {
         $programas[] = $programa;
     }
 
-    // Enviar la respuesta JSON con el nombre del educador y los programas
+    // Enviar la respuesta JSON con el nombre del educador, los programas y los datos del coordinador
     echo json_encode([
         'success' => true,
         'educador' => $coordinadorNombre,
+        'educador_datos' => $coordinadorDatos, // Incluir los datos del coordinador
         'programas' => $programas
     ]);
 } catch (Exception $e) {
@@ -117,3 +129,4 @@ try {
         'error_details' => $e->getMessage()
     ]);
 }
+?>

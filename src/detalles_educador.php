@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="../assets/css/layout/header.css">
     <link rel="stylesheet" href="../assets/css/detallesEducador.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- SweetAlert ya importado -->
+
 </head>
 
 <body>
@@ -30,13 +32,53 @@
                 Detalles del Educador 📚
             </h1>
 
-
-
+            <!-- Botón para editar educador -->
+            <button class="btn" id="editarEducadorBtn">Editar educador</button>
 
         </div>
 
 
     </main>
+
+
+
+    <!-- Modal de edición -->
+    <div class="modal" id="editarEducadorModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" id="closeModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <!-- Formulario para editar los datos del educador -->
+                <form id="editarEducadorForm">
+                    <div class="form-group">
+                        <label for="nombreEducador">Nombre</label>
+                        <input type="text" class="form-control" id="nombreEducador" name="nombre" placeholder="Nombre del educador">
+                        <input type="hidden" class="form-control" id="idEducador" name="idEducador" placeholder="idEducador">
+                    </div>
+                    <div class="form-group">
+                        <label for="apellidoEducador">Apellido</label>
+                        <input type="text" class="form-control" id="apellidoEducador" name="apellido" placeholder="Apellido del educador">
+                    </div>
+                    <div class="form-group">
+                        <label for="curpEducador">CURP</label>
+                        <input type="text" class="form-control" id="curpEducador" name="curp" placeholder="CURP del educador">
+                    </div>
+                    <div class="form-group">
+                        <label for="telefonoEducador">Teléfono</label>
+                        <input type="text" class="form-control" id="telefonoEducador" name="telefono" placeholder="Teléfono del educador">
+                    </div>
+                    <div class="form-group">
+                        <label for="correoEducador">Correo</label>
+                        <input type="email" class="form-control" id="correoEducador" name="correo" placeholder="Correo del educador">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
@@ -63,6 +105,15 @@
                 success: function(data) {
                     if (data.success) {
 
+                        // Rellenar el formulario con los datos del educador
+                        $('#idEducador').val(data.educador_datos.id);
+                        $('#nombreEducador').val(data.educador_datos.nombre);
+                        $('#apellidoEducador').val(data.educador_datos.apellido);
+                        $('#curpEducador').val(data.educador_datos.curp);
+                        $('#telefonoEducador').val(data.educador_datos.telefono);
+                        $('#correoEducador').val(data.educador_datos.correo);
+
+
                         // Mostrar el nombre del educador
                         let nombreEducador = data.educador || "Desconocido";
                         $('#detallesPrograma').append(`<h3>Educador: <span class="nombre">${nombreEducador}</span></h3>`);
@@ -82,7 +133,7 @@
                                 let programaCard = `
             <div class="card mb-3">
                 <div class="card-body">
-                    <h3 class="programa_titulo"> ➡️ ${programa.nivel} ${programa.inicio_periodo} - ${programa.fin_periodo} </h3>
+                    <h3 class="programa_titulo"> ➡️ ${programa.nivel} - ${programa.inicio_periodo} - ${programa.fin_periodo} </h3>
         `;
 
                                 if (programa.estudiantes.length > 0) {
@@ -116,8 +167,13 @@
                                     tableContent += '</tbody></table>';
                                     programaCard += tableContent;
 
+                                    let tooltip = `
+                <span class="tooltip"> Recuerda que para editar información de un estudiante debes acceder a los detalles del programa, no del educador. </span>
+            `;
+                                    programaCard += tooltip;
                                     // Inicializar DataTable
                                     $(`#estudiantesTable_${programa.id}`).DataTable();
+
 
                                 } else {
                                     // Si no hay estudiantes, mostrar mensaje
@@ -144,4 +200,76 @@
             });
         }
     </script>
+
+    <script>
+        // Función para obtener el ID del educador de la URL
+
+        // Mostrar el modal y cargar los datos del educador
+        document.getElementById('editarEducadorBtn').addEventListener('click', function() {
+            // Mostrar el modal
+            document.getElementById('editarEducadorModal').style.display = 'block';
+        });
+
+        // Cerrar el modal
+        document.getElementById('closeModal').addEventListener('click', function() {
+            document.getElementById('editarEducadorModal').style.display = 'none';
+        });
+
+        // Manejar el envío del formulario para actualizar los datos
+        document.getElementById('editarEducadorForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevenir el envío por defecto del formulario
+
+            // Obtener los datos del formulario
+            const formData = {
+                nombre: document.getElementById('nombreEducador').value,
+                apellido: document.getElementById('apellidoEducador').value,
+                curp: document.getElementById('curpEducador').value,
+                telefono: document.getElementById('telefonoEducador').value,
+                correo: document.getElementById('correoEducador').value,
+            };
+            const idUsuario_educador = document.getElementById('idEducador').value;
+
+            // Hacer la llamada AJAX para actualizar los datos en el servidor
+            fetch(`./api/actualizar_educadores.php?id=${idUsuario_educador}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Usar SweetAlert para el éxito
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Educador actualizado correctamente',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        document.getElementById('editarEducadorModal').style.display = 'none';
+                        window.location.reload();
+                    } else {
+                        // Usar SweetAlert para el error
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: data.message || 'Hubo un error al actualizar los datos del educador.',
+                            showConfirmButton: true
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    // Usar SweetAlert para problemas de conexión
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error de conexión',
+                        text: 'Hubo un problema al conectarse con el servidor.',
+                        showConfirmButton: true
+                    });
+                });
+        });
+    </script>
+
 </body>
