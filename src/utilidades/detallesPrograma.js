@@ -85,7 +85,7 @@ if (idPrograma) {
                     <input type="radio" name="estado_${
                       estudiante.id
                     }" value="pendiente" ${
-              estudiante.status === "Pendiente" ? "checked" : ""
+              estudiante.status === "pendiente" ? "checked" : ""
             }>
                     Pendiente
                 </label>
