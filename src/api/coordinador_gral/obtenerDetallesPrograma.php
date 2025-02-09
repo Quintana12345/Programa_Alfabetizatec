@@ -67,11 +67,14 @@ try {
         $queryEstudiantes = "
             SELECT e.id, 
                    e.nombre, 
-                   CONCAT(e.apellidos, ' ', e.segundo_apellido) AS apellidos, 
-                   e.domicilio, 
+                   CONCAT(e.apellidos) AS apellidos, 
+                    CONCAT(e.segundo_apellido) AS apellido_materno, 
+                   e.vialidad_tipo, 
+                   e.vialidad_nombre, 
+                   e.num_exterior, 
                    e.curp, 
                    e.telefono, 
-                   e.correo, 
+                   e.correo , 
                    s.status
             FROM estudiantes e
             JOIN solicitudes s ON e.id = s.id_estudiante
