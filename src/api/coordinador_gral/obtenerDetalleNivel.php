@@ -48,12 +48,24 @@ try {
 
     // Paso 2: Consulta SQL para obtener los educadores según el nivel y el id_tecnologico
     $queryEducadores = "
-       SELECT DISTINCT u.id AS usuario_id, u.nombre, u.apellido, u.correo, u.telefono, n.nombre AS nivel_educativo
-       FROM educadores e
-       INNER JOIN usuarios u ON e.id_usuario = u.id
-       INNER JOIN programas p ON e.id_tecnologico = p.id_tecnologico
-       INNER JOIN niveles n ON p.id_nivel = n.id
-       WHERE n.id = ? AND e.id_tecnologico = ?;
+        SELECT DISTINCT
+            u.id AS usuario_id,
+            u.nombre,
+            u.apellido,
+            u.correo,
+            u.telefono,
+            n.nombre AS nivel_educativo
+        FROM
+            programas p
+        INNER JOIN
+            educadores e ON p.id_coordinador = e.id
+        INNER JOIN
+            usuarios u ON e.id_usuario = u.id
+        INNER JOIN
+            niveles n ON p.id_nivel = n.id
+        WHERE
+            p.id_tecnologico = ?
+            AND n.id = ?;
     ";
 
     // Preparar y ejecutar la consulta de educadores
@@ -63,7 +75,7 @@ try {
     }
 
     // Paso 3: Ejecutar la consulta con el ID del nivel y el id_tecnologico
-    $stmtEducadores->bind_param("ii", $nivelId, $idTecnologico);
+    $stmtEducadores->bind_param("ii", $idTecnologico, $nivelId);
     $stmtEducadores->execute();
     $resultEducadores = $stmtEducadores->get_result();
 
