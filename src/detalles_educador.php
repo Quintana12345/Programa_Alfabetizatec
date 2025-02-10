@@ -135,7 +135,7 @@
                         $('#curpEducador').val(data.educador_datos.curp);
                         $('#telefonoEducador').val(data.educador_datos.telefono);
                         $('#correoEducador').val(data.educador_datos.correo);
-                        $('#alianza').val(data.educador_datos.alizanza);
+                        $('#alianza').val(data.educador_datos.alianza);
                         $('#subproyecto').val(data.educador_datos.subproyecto);
                         $('#tipo_vinculacion').val(data.educador_datos.tipo_vinculacion);
                         $('#dependencia').val(data.educador_datos.dependencia);
