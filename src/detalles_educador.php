@@ -72,6 +72,29 @@
                         <label for="correoEducador">Correo</label>
                         <input type="email" class="form-control" id="correoEducador" name="correo" placeholder="Correo del educador">
                     </div>
+                    <div class="form-group">
+                        <label for="alianza">Alianza o convenio:</label>
+                        <input type="text" id="alianza" name="alianza" placeholder="Ej. Alianza con XYZ">
+                        <span class="tooltip">Ingresa el nombre de la alianza o convenio (opcional).</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subproyecto">Subproyecto:</label>
+                        <input type="text" id="subproyecto" name="subproyecto" placeholder="Ej. Subproyecto ABC">
+                        <span class="tooltip">Ingresa el nombre del subproyecto (opcional).</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tipo_vinculacion">Tipo de vinculación:</label>
+                        <input type="text" id="tipo_vinculacion" name="tipo_vinculacion" placeholder="Ej. Vinculación directa">
+                        <span class="tooltip">Ingresa el tipo de vinculación (opcional).</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dependencia">Dependencia:</label>
+                        <input type="text" id="dependencia" name="dependencia" placeholder="Dependencia ... ">
+                        <span class="tooltip">Ingresa el tipo de dependencia (opcional).</span>
+                    </div>
                     <button type="submit" class="btn btn-primary">Guardar cambios</button>
                 </form>
             </div>
@@ -112,6 +135,10 @@
                         $('#curpEducador').val(data.educador_datos.curp);
                         $('#telefonoEducador').val(data.educador_datos.telefono);
                         $('#correoEducador').val(data.educador_datos.correo);
+                        $('#alianza').val(data.educador_datos.alizanza);
+                        $('#subproyecto').val(data.educador_datos.subproyecto);
+                        $('#tipo_vinculacion').val(data.educador_datos.tipo_vinculacion);
+                        $('#dependencia').val(data.educador_datos.dependencia);
 
 
                         // Mostrar el nombre del educador
@@ -226,6 +253,10 @@
                 curp: document.getElementById('curpEducador').value,
                 telefono: document.getElementById('telefonoEducador').value,
                 correo: document.getElementById('correoEducador').value,
+                alianza: document.getElementById('alianza').value,
+                subproyecto: document.getElementById('subproyecto').value,
+                tipo_vinculacion: document.getElementById('tipo_vinculacion').value,
+                dependencia: document.getElementById('dependencia').value
             };
             const idUsuario_educador = document.getElementById('idEducador').value;
 
@@ -248,7 +279,10 @@
                             timer: 1500
                         });
                         document.getElementById('editarEducadorModal').style.display = 'none';
-                        window.location.reload();
+                        // Agregar un delay de 3 segundos antes de recargar
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 1200);
                     } else {
                         // Usar SweetAlert para el error
                         Swal.fire({

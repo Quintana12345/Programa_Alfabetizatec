@@ -12,7 +12,7 @@ try {
     $conn = Database::getConnection();
 
     // Obtener el id del educador (coordinador) desde la URL (GET)
-    $educadorId = isset($_GET['id']) ? $_GET['id'] : ''; // Obtener el ID del educador
+    $educadorId = isset($_GET['id']) ? $_GET['id'] : '';
 
     // Si no se proporciona el id del educador, devolver error
     if (empty($educadorId)) {
@@ -23,9 +23,10 @@ try {
         exit();
     }
 
-    // Obtener el nombre del educador (coordinador)
+    // Obtener el nombre y datos del educador (coordinador)
     $queryCoordinador = "
-        SELECT u.id, u.nombre, u.apellido, u.curp, u.correo, u.telefono, u.correo_inst
+        SELECT u.id, u.nombre, u.apellido, u.curp, u.correo, u.telefono, u.correo_inst,
+               e.alianza, e.subproyecto, e.tipo_vinculacion, e.dependencia
         FROM usuarios u
         JOIN educadores e ON u.id = e.id_usuario
         WHERE e.id = ?
@@ -40,7 +41,6 @@ try {
     if ($resultCoordinador->num_rows > 0) {
         $coordinador = $resultCoordinador->fetch_assoc();
         $coordinadorNombre = $coordinador['nombre'] . ' ' . $coordinador['apellido'];
-        // Se agregan los datos del coordinador
         $coordinadorDatos = [
             'id' => $coordinador['id'],
             'nombre' => $coordinador['nombre'],
@@ -48,11 +48,15 @@ try {
             'curp' => $coordinador['curp'],
             'correo' => $coordinador['correo'],
             'telefono' => $coordinador['telefono'],
-            'correo_inst' => $coordinador['correo_inst']
+            'correo_inst' => $coordinador['correo_inst'],
+            'alianza' => $coordinador['alianza'],
+            'subproyecto' => $coordinador['subproyecto'],
+            'tipo_vinculacion' => $coordinador['tipo_vinculacion'],
+            'dependencia' => $coordinador['dependencia']
         ];
     }
 
-    // Si se proporciona el ID del educador, obtener los programas asociados a ese educador
+    // Obtener los programas asociados al educador
     $queryProgramasEducador = "
         SELECT p.id, p.nombre, p.descripcion, p.inicio_periodo, p.fin_periodo, p.id_nivel, p.id_coordinador
         FROM programas p
@@ -118,7 +122,7 @@ try {
     echo json_encode([
         'success' => true,
         'educador' => $coordinadorNombre,
-        'educador_datos' => $coordinadorDatos, // Incluir los datos del coordinador
+        'educador_datos' => $coordinadorDatos,
         'programas' => $programas
     ]);
 } catch (Exception $e) {
