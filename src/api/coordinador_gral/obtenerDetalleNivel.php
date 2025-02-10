@@ -24,28 +24,46 @@ try {
         exit();
     }
 
-    // Consulta SQL para obtener los educadores según el nivel y el id_tecnologico
-    $queryEducadores = "
-       SELECT DISTINCT u.id AS usuario_id, u.nombre, u.apellido, u.correo, u.telefono, n.nombre AS nivel_educativo
-
-FROM educadores e
-
-INNER JOIN usuarios u ON e.id_usuario = u.id
-
-INNER JOIN programas p ON e.id_tecnologico = p.id_tecnologico
-
-INNER JOIN niveles n ON p.id_nivel = n.id
-
-WHERE n.nombre = ? AND e.id_tecnologico = ?;
-    ";
-
-    // Preparar y ejecutar la consulta
-    $stmtEducadores = $conn->prepare($queryEducadores);
-    if (!$stmtEducadores) {
-        throw new Exception("Error al preparar la consulta: " . $conn->error);
+    // Paso 1: Obtener el ID del nivel basado en el nombre recibido
+    $queryNivel = "SELECT id FROM niveles WHERE nombre = ?";
+    $stmtNivel = $conn->prepare($queryNivel);
+    if (!$stmtNivel) {
+        throw new Exception("Error al preparar la consulta de nivel: " . $conn->error);
     }
 
-    $stmtEducadores->bind_param("si", $nivel, $idTecnologico);
+    $stmtNivel->bind_param("s", $nivel);
+    $stmtNivel->execute();
+    $resultNivel = $stmtNivel->get_result();
+
+    // Verificar si el nivel existe
+    if ($resultNivel->num_rows > 0) {
+        $nivelId = $resultNivel->fetch_assoc()['id'];
+    } else {
+        echo json_encode([
+            'success' => false,
+            'message' => 'El nivel especificado no existe.'
+        ]);
+        exit();
+    }
+
+    // Paso 2: Consulta SQL para obtener los educadores según el nivel y el id_tecnologico
+    $queryEducadores = "
+       SELECT DISTINCT u.id AS usuario_id, u.nombre, u.apellido, u.correo, u.telefono, n.nombre AS nivel_educativo
+       FROM educadores e
+       INNER JOIN usuarios u ON e.id_usuario = u.id
+       INNER JOIN programas p ON e.id_tecnologico = p.id_tecnologico
+       INNER JOIN niveles n ON p.id_nivel = n.id
+       WHERE n.id = ? AND e.id_tecnologico = ?;
+    ";
+
+    // Preparar y ejecutar la consulta de educadores
+    $stmtEducadores = $conn->prepare($queryEducadores);
+    if (!$stmtEducadores) {
+        throw new Exception("Error al preparar la consulta de educadores: " . $conn->error);
+    }
+
+    // Paso 3: Ejecutar la consulta con el ID del nivel y el id_tecnologico
+    $stmtEducadores->bind_param("ii", $nivelId, $idTecnologico);
     $stmtEducadores->execute();
     $resultEducadores = $stmtEducadores->get_result();
 
@@ -71,6 +89,7 @@ WHERE n.nombre = ? AND e.id_tecnologico = ?;
 
     // Cerrar la conexión y liberar recursos
     $stmtEducadores->close();
+    $stmtNivel->close();
     $conn->close();
 
 } catch (Exception $e) {
@@ -81,4 +100,3 @@ WHERE n.nombre = ? AND e.id_tecnologico = ?;
         'error_details' => $e->getMessage()
     ]);
 }
-?>
