@@ -196,7 +196,7 @@
 
                 <div class="input_grupo">
                     <label for="rfc">RFC:</label>
-                    <input type="text" id="rfc" name="rfc" placeholder="Ej. PERJ800101XXX" pattern="[A-Z]{4}[0-9]{6}[A-Z0-9]{3}">
+                    <input type="text" id="rfc" name="rfc" placeholder="Ej. PERJ800101XXX">
                     <span class="tooltip">Ingresa el RFC (opcional).</span>
                 </div>
 
