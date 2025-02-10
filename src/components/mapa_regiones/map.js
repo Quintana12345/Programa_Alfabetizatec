@@ -117,11 +117,13 @@ var run = function () {
         const cards = document.querySelectorAll(".card"); // Todas las cards
         cards.forEach((card) => {
           const cardRegion = card.querySelector("h3").textContent; // Nombre de la región en la card
+          console.log("datos", cardRegion)
           if (
             cardRegion === regionName ||
             (regionName === "Suroeste" && cardRegion === "Sureste") ||
             (regionName === "Oriente" && cardRegion === "Noreste") ||
             (regionName === "Centrosur" && cardRegion === "Centro") ||
+            (regionName === "Centronorte" && cardRegion === "Bajio") ||
             (regionName === "Noroeste" && cardRegion === "Occidente") // Resalta "Occidente" si la región es "Noroeste"
           ) {
             // Resalta "Sureste" si la región es "Suroeste"
