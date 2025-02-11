@@ -1,6 +1,4 @@
-<?php
-session_start();
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,9 +10,15 @@ session_start();
     <link rel="stylesheet" href="../assets/css/vista_programa.css">
     <link rel="stylesheet" href="../assets/css/layout/header.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- SweetAlert ya importado -->
 </head>
 
 <body>
+    <?php
+    // <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- SweetAlert ya importado -->
+    session_start();
+    include('./api/auth/validate.php');
+    ?>
     <header>
         <?php include('./layout/header.php') ?>
     </header>
@@ -22,8 +26,8 @@ session_start();
     <main>
         <ul class="breadcrumb">
             <?php if ($_SESSION['rol_id'] === 2): ?>
-                <li><a href="./coordinador_nacional.php">Inicio</a></li>
-                <li><a href="./vista_region.php?region=<?php echo urlencode($_SESSION['nombre_region']); ?>">Mi región</a></li>
+                <li><a href="./vista_region.php?region=<?php echo urlencode($_SESSION['nombre_region']); ?>">Inicio</a></li>
+                <li><a href="./vista_region.php?region=<?php echo urlencode($_SESSION['nombre_region']); ?>">Región</a></li>
                 <li><a href="javascript:history.back();">Tecnológico:</a></li>
                 <li><a href="#">Detalles por nivel:</a></li>
             <?php else: ?>
@@ -35,7 +39,6 @@ session_start();
         </ul>
 
         <h3 id="titulo-programa" class="titulo_principal"></h3>
-        <p>Estudiantes:</p>
 
         <div id="detallesPrograma" class="full_center"></div>
     </main>

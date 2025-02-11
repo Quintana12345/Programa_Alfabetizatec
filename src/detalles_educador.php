@@ -15,6 +15,10 @@
 </head>
 
 <body>
+    <?php
+    session_start();
+    include('./api/auth/validate.php');
+    ?>
     <header>
         <?php include('./layout/header.php') ?>
     </header>

@@ -16,23 +16,8 @@
 
 <body>
     <?php
-    session_start(); // Asegúrate de iniciar la sesión al principio del archivo
-
-    // Verifica si 'rol_id' está presente en la sesión
-    if (!isset($_SESSION['correo']) || !isset($_SESSION['rol_id']) || !isset($_SESSION['id_tecnologico'])) {
-        // Muestra la alerta y redirige a login.php
-        echo "<script>
-            Swal.fire({
-                icon: 'warning',
-                title: 'Sesión Expirada',
-                text: 'Por favor, inicia sesión nuevamente.',
-                confirmButtonText: 'Aceptar'
-            }).then(() => {
-                window.location.href = 'login.php';
-            });
-        </script>";
-        exit(); // Detiene el script para que no se cargue el contenido HTML posterior
-    }
+    session_start();
+    include('./api/auth/validate.php');
     ?>
 
     <header>
@@ -56,28 +41,28 @@
 
 
         <div class="datos_tec">
-    <!-- Bloque: Educadores -->
-    <div class="info">
-        <h4>Educadores:
-            <span class="tooltip-icon" data-tooltip="En esta sección se muestra la lista de educadores. Cada educador tiene un perfil detallado al que se puede acceder haciendo clic en su nombre.">?</span>
-        </h4>
-        
-        <div id="Educadores_tec"></div>
-        
-    </div>
+            <!-- Bloque: Educadores -->
+            <div class="info">
+                <h4>Educadores:
+                    <span class="tooltip-icon" data-tooltip="En esta sección se muestra la lista de educadores. Cada educador tiene un perfil detallado al que se puede acceder haciendo clic en su nombre.">?</span>
+                </h4>
 
-    <!-- Bloque: Programas -->
-    <div class="info">
-        <h4>Programas:
-            <span class="tooltip-icon" data-tooltip="Aquí se muestra el listado de programas registrados, mostrando Información gral, puedes acceder a los detalles de un programa en especifico ">?</span>
-        </h4>
-        
-        <div id="Programas_tec"></div>
-        <p class="nota">
-            Nota: Un educador puede estar asociado a múltiples programas, por lo que su nombre puede aparecer más de una vez.P
-        </p>
-    </div>
-</div>
+                <div id="Educadores_tec"></div>
+
+            </div>
+
+            <!-- Bloque: Programas -->
+            <div class="info">
+                <h4>Programas:
+                    <span class="tooltip-icon" data-tooltip="Aquí se muestra el listado de programas registrados, mostrando Información gral, puedes acceder a los detalles de un programa en especifico ">?</span>
+                </h4>
+
+                <div id="Programas_tec"></div>
+                <p class="nota">
+                    Nota: Un educador puede estar asociado a múltiples programas, por lo que su nombre puede aparecer más de una vez.
+                </p>
+            </div>
+        </div>
 
 
 

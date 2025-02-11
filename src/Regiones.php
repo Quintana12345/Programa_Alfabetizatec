@@ -8,9 +8,15 @@
     <link rel="stylesheet" href="../assets/css/root.css">
     <link rel="stylesheet" href="../assets/css/regiones.css">
     <link rel="stylesheet" href="../assets/css/layout/header.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- SweetAlert ya importado -->
 </head>
 
 <body>
+    <?php
+    // <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- SweetAlert ya importado -->
+    session_start();
+    include('./api/auth/validate.php');
+    ?>
     <header>
         <?php include('./layout/header.php') ?>
     </header>
