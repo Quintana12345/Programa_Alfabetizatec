@@ -24,7 +24,6 @@ $pagina_actual = basename($_SERVER['PHP_SELF']);
 
 // Verificar permisos según el rol
 if ($rol_id == 2 || $rol_id == 3) {
-    echo $rol_id; // Imprimir el rol (solo para depuración, puede eliminarse en producción)
     
     // Restringir acceso a ciertas páginas según el rol
     if (in_array($pagina_actual, $paginas_restringidas) || ($rol_id == 3 && $pagina_actual == 'coordinador_regional.php')) {
