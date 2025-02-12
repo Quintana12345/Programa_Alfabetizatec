@@ -79,51 +79,69 @@ $(document).ready(function () {
 
     // Enviar solicitud AJAX
     $.ajax({
-      url: "./api/addEducador.php", // Cambiar URL según sea necesario
+      url: "./api/addEducador.php",
       type: "POST",
       data: formData,
-      processData: false, // No procesar los datos, ya que se usa FormData
-      contentType: false, // No establecer contentType, se ajusta automáticamente con FormData
+      processData: false,
+      contentType: false,
       success: function (response) {
-        var responseJson = JSON.parse(response);
+        try {
+          var responseJson = JSON.parse(response);
 
-        if (responseJson.success) {
-          console.log(responseJson.message); // Mostrar mensaje de éxito
+          if (
+            !responseJson.success &&
+            responseJson.message ==
+              "Sesión caducada. Por favor, inicie sesión nuevamenteeee"
+          ) {
+            console.log("sesion de endpount caducada")
+            // Si la sesión ha caducado, redirigir al login o mostrar el mensaje
+            Swal.fire({
+              title: "Sesión caducada",
+              text: responseJson.message,
+              icon: "error",
+              confirmButtonText: "Aceptar",
+            }).then(() => {
+              // Redirigir después de cerrar el modal
+              window.location.href =
+                "http://alfabetizatec.tecnm.mx/src/login.php"; // Ajusta esta URL a tu página de login
+            });
+            return; // Asegúrate de que no se ejecute más código después de la redirección
+          }
+
           Swal.fire({
-            title: "¡Éxito!",
+            title: responseJson.success ? "¡Éxito!" : "Error",
             text: responseJson.message,
-            icon: "success",
+            icon: responseJson.success ? "success" : "error",
             confirmButtonText: "Aceptar",
           }).then(() => {
-            // Ocultar modal después de aceptar
-            const modal = document.getElementById("modal_educador");
-
-            // Opcional: reiniciar el formulario
-            const formulario = document.getElementById(
-              "registrationFormEducador"
-            );
-            formulario.reset();
+            if (responseJson.success) {
+              // Ocultar modal y resetear formulario si la inserción fue exitosa
+              const modal = document.getElementById("modal_educador");
+              const formulario = document.getElementById(
+                "registrationFormEducador"
+              );
+              formulario.reset();
+              obtenerEducadores();
+            }
           });
-          obtenerEducadores();
-        } else {
+        } catch (error) {
+          console.error("Error al procesar la respuesta del servidor:", error);
           Swal.fire({
             title: "Error",
-            text: responseJson.message,
+            text: "Respuesta del servidor inválida.",
             icon: "error",
             confirmButtonText: "Aceptar",
           });
-          console.error(responseJson.message); // Mostrar mensaje de error
         }
       },
-      error: function (xhr, status, error) {
-        // Manejo de errores AJAX
+      error: function (xhr) {
+        console.error("Error en la solicitud AJAX:", xhr.responseText);
         Swal.fire({
           title: "Error",
           text: "Hubo un problema al procesar la solicitud.",
           icon: "error",
           confirmButtonText: "Aceptar",
         });
-        console.error(xhr.responseText); // Ver el error del servidor
       },
     });
   });
@@ -213,12 +231,12 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     // Obtener metas por cada nivel seleccionado
-    data.id_nivel.forEach(nivelId => {
+    data.id_nivel.forEach((nivelId) => {
       const metaInput = document.getElementById(`meta_${nivelId}`);
       if (metaInput) {
-          data.metas[nivelId] = metaInput.value;
+        data.metas[nivelId] = metaInput.value;
       }
-  });
+    });
 
     try {
       const response = await fetch("./api/addPrograma.php", {
@@ -361,7 +379,7 @@ function obtenerProgramas() {
             paging: true,
             searching: true,
             ordering: true,
-            order: [[1, 'asc']], // Ordenar por la columna 'Educador' (índice 1) de manera ascendente
+            order: [[1, "asc"]], // Ordenar por la columna 'Educador' (índice 1) de manera ascendente
           });
         } else {
           // Si no hay programas, mostramos un mensaje adecuado

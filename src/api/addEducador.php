@@ -2,6 +2,15 @@
 include '../config/conexionDB.php';
 session_start(); // Asegúrate de iniciar la sesión
 
+// Verificar si existe id_tecnologico en la sesión
+if (!isset($_SESSION['id_tecnologico'])) {
+    echo json_encode([
+        'success' => false,
+        'message' => 'Sesión caducada. Por favor, inicie sesión nuevamenteeee'
+    ]);
+    exit; // Detener la ejecución si no hay id_tecnologico en la sesión
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Recibir los datos del formulario
     $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : '';
@@ -24,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $carrera = isset($_POST['carrera']) ? intval($_POST['carrera']) : NULL; // Convertir a entero
     $semestre = isset($_POST['semestre']) ? intval($_POST['semestre']) : 0; // Convertir a entero
     $rol_id = isset($_POST['rol_id']) ? intval($_POST['rol_id']) : 4; // Convertir a entero
-    $id_tecnologico = isset($_SESSION['id_tecnologico']) ? intval($_SESSION['id_tecnologico']) : NULL; // Obtener de sesión
+    $id_tecnologico = $_SESSION['id_tecnologico']; // Obtener de sesión (ya validado)
     $nacionalidad = isset($_POST['nacionalidad']) ? $_POST['nacionalidad'] : '';
     $entidad_nacimiento = isset($_POST['entidad_nacimiento']) ? $_POST['entidad_nacimiento'] : '';
     $curp = isset($_POST['curp']) ? $_POST['curp'] : '';
@@ -118,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         echo json_encode([
             'success' => true,
-            'message' => 'Datos insertados correctamente.'
+            'message' => 'Datos insertados correctamente :)'
         ]);
     } catch (Exception $e) {
         $conn->rollback();
