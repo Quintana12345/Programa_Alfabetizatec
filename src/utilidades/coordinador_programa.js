@@ -77,73 +77,118 @@ $(document).ready(function () {
     // Recopilar los datos del formulario con FormData
     var formData = new FormData(this); // 'this' hace referencia al formulario
 
-    // Enviar solicitud AJAX
-    $.ajax({
-      url: "./api/addEducador.php",
-      type: "POST",
-      data: formData,
-      processData: false,
-      contentType: false,
-      success: function (response) {
-        try {
-          var responseJson = JSON.parse(response);
+    // Configuración de reintentos
+    let retryCount = 0;
+    const maxRetries = 3; // Número máximo de reintentos
+    const retryDelay = 3000; // Tiempo de espera entre reintentos (3 segundos)
 
-          if (
-            !responseJson.success &&
-            responseJson.message ==
-              "Sesión caducada. Por favor, inicie sesión nuevamenteeee"
-          ) {
-            console.log("sesion de endpount caducada")
-            // Si la sesión ha caducado, redirigir al login o mostrar el mensaje
+    // Función para realizar la solicitud AJAX
+    function sendRequest() {
+      $.ajax({
+        url: "./api/addEducador.php",
+        type: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+        timeout: 10000, // Timeout de 10 segundos
+        dataType: "json", // Asegurar que jQuery interprete la respuesta como JSON
+        beforeSend: function () {
+          // Mostrar estado "Enviando..."
+          Swal.fire({
+            title: "Enviando...",
+            text: "Por favor, espere.",
+            allowOutsideClick: false,
+            didOpen: () => {
+              Swal.showLoading();
+            },
+          });
+        },
+        success: function (response) {
+          // Verificar si la respuesta es un objeto JSON válido
+          if (typeof response === "object" && response !== null) {
+            if (!response.success) {
+              // Mostrar error específico del backend
+              Swal.fire({
+                title: "Error",
+                text: response.message,
+                icon: "error",
+                confirmButtonText: "Aceptar",
+              });
+              console.error("Detalles del error:", response.details); // Mostrar detalles en consola
+              return;
+            }
+
+            // Éxito: Mostrar mensaje de éxito
             Swal.fire({
-              title: "Sesión caducada",
-              text: responseJson.message,
-              icon: "error",
+              title: "¡Éxito!",
+              text: response.message,
+              icon: "success",
               confirmButtonText: "Aceptar",
             }).then(() => {
-              // Redirigir después de cerrar el modal
-              window.location.href =
-                "http://alfabetizatec.tecnm.mx/src/login.php"; // Ajusta esta URL a tu página de login
-            });
-            return; // Asegúrate de que no se ejecute más código después de la redirección
-          }
-
-          Swal.fire({
-            title: responseJson.success ? "¡Éxito!" : "Error",
-            text: responseJson.message,
-            icon: responseJson.success ? "success" : "error",
-            confirmButtonText: "Aceptar",
-          }).then(() => {
-            if (responseJson.success) {
-              // Ocultar modal y resetear formulario si la inserción fue exitosa
               const modal = document.getElementById("modal_educador");
               const formulario = document.getElementById(
                 "registrationFormEducador"
               );
               formulario.reset();
-              obtenerEducadores();
+              obtenerEducadores(); // Recargar datos
+            });
+          } else {
+            // Si la respuesta no es un objeto JSON válido
+            console.error(
+              "Respuesta del servidor no es un JSON válido:",
+              response
+            );
+            Swal.fire({
+              title: "Error",
+              text: "Respuesta del servidor inválida.",
+              icon: "error",
+              confirmButtonText: "Aceptar",
+            });
+          }
+        },
+        error: function (xhr, status, error) {
+          if (status === "timeout" || status === "error") {
+            if (retryCount < maxRetries) {
+              retryCount++;
+              Swal.fire({
+                title: "Error de red",
+                text: `Reintentando en ${
+                  retryDelay / 1000
+                } segundos... (Intento ${retryCount} de ${maxRetries})`,
+                icon: "warning",
+                allowOutsideClick: false,
+                didOpen: () => {
+                  Swal.showLoading();
+                },
+              });
+
+              // Reintentar después de un retraso
+              setTimeout(sendRequest, retryDelay);
+            } else {
+              // Máximo de reintentos alcanzado
+              Swal.fire({
+                title: "Error de red",
+                text: "No se pudo conectar al servidor. Por favor, inténtelo de nuevo más tarde.",
+                icon: "error",
+                confirmButtonText: "Aceptar",
+              });
             }
-          });
-        } catch (error) {
-          console.error("Error al procesar la respuesta del servidor:", error);
-          Swal.fire({
-            title: "Error",
-            text: "Respuesta del servidor inválida.",
-            icon: "error",
-            confirmButtonText: "Aceptar",
-          });
-        }
-      },
-      error: function (xhr) {
-        console.error("Error en la solicitud AJAX:", xhr.responseText);
-        Swal.fire({
-          title: "Error",
-          text: "Hubo un problema al procesar la solicitud.",
-          icon: "error",
-          confirmButtonText: "Aceptar",
-        });
-      },
-    });
+          } else {
+            // Otro tipo de error (por ejemplo, error 500)
+            Swal.fire({
+              title: "Error",
+              text: "Hubo un problema al procesar la solicitud.",
+              icon: "error",
+              confirmButtonText: "Aceptar",
+            });
+            console.error("Error en la solicitud AJAX:", xhr.responseText);
+          }
+        },
+      });
+    }
+
+    // Iniciar la solicitud
+    sendRequest();
   });
 });
 
