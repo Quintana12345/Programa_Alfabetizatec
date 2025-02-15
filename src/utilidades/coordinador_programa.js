@@ -86,7 +86,7 @@ $(document).ready(function () {
       // **Encabezado**
       doc.setFont("helvetica", "bold");
       doc.setFontSize(16);
-      doc.text("TecNM Registro de Educador", 10, 15);
+      doc.text("TecNM-San Marcos    Registro de Educador", 10, 15);
       doc.setFontSize(12);
       doc.text("Fecha: " + new Date().toLocaleDateString(), 140, 15);
 
@@ -221,47 +221,139 @@ function enviarFormularioEstudiante() {
       formData[name] = value; // Almacena en el objeto formData
     });
 
-  // Mostrar alerta antes de enviar (usando SweetAlert)
-  Swal.fire({
-    title: "Enviando formulario...",
-    text: "Por favor espera mientras enviamos los datos.",
-    icon: "info",
-    showConfirmButton: false,
-    willOpen: () => {
-      Swal.showLoading(); // Muestra el cargando mientras se espera la respuesta
-    },
-  });
+  let retryCount = 0;
+  const maxRetries = 3;
+  const retryDelay = 3000;
 
-  // Realizar la petición AJAX con datos en formato JSON
-  $.ajax({
-    url: "./api/addEstudiante.php", // Cambia esta URL por la ruta correcta en tu servidor
-    type: "POST",
-    contentType: "application/json", // Indicamos que el contenido será en formato JSON
-    data: JSON.stringify(formData), // Convertimos el objeto formData en JSON
-    success: function (response) {
-      console.log(response); // Maneja la respuesta del servidor
+  function generatePDF(formData) {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
 
-      // Mostrar SweetAlert con el mensaje recibido desde el backend
-      let responseObj = JSON.parse(response); // Asegúrate de que el servidor devuelve un JSON
-      Swal.fire({
-        title: responseObj.success ? "¡Éxito!" : "Error",
-        text: responseObj.message, // El mensaje que el backend envía
-        icon: responseObj.success ? "success" : "error",
-        confirmButtonText: "Aceptar",
-      });
-      obtenerEstudiantes();
-    },
-    error: function (xhr, status, error) {
-      console.error("Error en la solicitud:", error); // Maneja errores
-      Swal.fire({
-        title: "Error",
-        text: "Hubo un problema al enviar los datos.",
-        icon: "error",
-        confirmButtonText: "Aceptar",
-      });
-    },
-  });
+    // **Encabezado**
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(16);
+    doc.text("TecNM-San Marcos    Registro de Estudiante", 10, 15);
+    doc.setFontSize(12);
+    doc.text("Fecha: " + new Date().toLocaleDateString(), 140, 15);
+
+    // **Dibujar línea divisoria**
+    doc.setLineWidth(0.5);
+    doc.line(10, 20, 200, 20);
+
+    // **Sección de datos**
+    let y = 30;
+    doc.setFontSize(14);
+
+    // Mostrar los datos del formulario en el PDF
+    Object.keys(formData).forEach((key) => {
+      doc.setFont("helvetica", "bold");
+      doc.text(`${key.padEnd(25, " ")}:`, 10, y); // Etiqueta alineada
+      doc.setFont("helvetica", "normal");
+      doc.text(formData[key], 70, y); // Valor con más espacio
+      y += 12; // Espacio extra entre filas
+    });
+
+    // **Guardar PDF**
+    doc.save("registro_estudiante.pdf");
+  }
+
+  function sendRequest() {
+    // Mostrar alerta antes de enviar (usando SweetAlert)
+    Swal.fire({
+      title: "Enviando formulario...",
+      text: "Por favor espera mientras enviamos los datos.",
+      icon: "info",
+      showConfirmButton: false,
+      willOpen: () => {
+        Swal.showLoading(); // Muestra el cargando mientras se espera la respuesta
+      },
+    });
+
+    // Realizar la petición AJAX con datos en formato JSON
+    $.ajax({
+      url: "./api/addEstudiante.php", // Cambia esta URL por la ruta correcta en tu servidor
+      type: "POST",
+      contentType: "application/json", // Indicamos que el contenido será en formato JSON
+      data: JSON.stringify(formData), // Convertimos el objeto formData en JSON
+      timeout: 10000,
+      dataType: "json",
+      success: function (response) {
+        if (typeof response === "object" && response !== null) {
+          if (!response.success) {
+            Swal.fire({
+              title: "Error",
+              text: response.message,
+              icon: "error",
+              confirmButtonText: "Aceptar",
+            });
+            console.error("Detalles del error:", response.details);
+            return;
+          }
+
+          Swal.fire({
+            title: "¡Éxito!",
+            text: response.message,
+            icon: "success",
+            showCancelButton: true,
+            confirmButtonText: "Aceptar",
+            cancelButtonText: "Descargar PDF",
+            showCloseButton: true,
+          }).then((result) => {
+            if (result.isConfirmed) {
+              document.getElementById("registrationFormEstudiante").reset();
+              obtenerEstudiantes();
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+              generatePDF(formData); // Generar y descargar el PDF con los datos
+            }
+          });
+        } else {
+          console.error("Respuesta del servidor no es un JSON válido:", response);
+          Swal.fire({
+            title: "Error",
+            text: "Respuesta del servidor inválida.",
+            icon: "error",
+            confirmButtonText: "Aceptar",
+          });
+        }
+      },
+      error: function (xhr, status, error) {
+        if (status === "timeout" || status === "error") {
+          if (retryCount < maxRetries) {
+            retryCount++;
+            Swal.fire({
+              title: "Error de red",
+              text: `Reintentando en ${retryDelay / 1000} segundos... (Intento ${retryCount} de ${maxRetries})`,
+              icon: "warning",
+              allowOutsideClick: false,
+              didOpen: () => {
+                Swal.showLoading();
+              },
+            });
+            setTimeout(sendRequest, retryDelay);
+          } else {
+            Swal.fire({
+              title: "Error de red",
+              text: "No se pudo conectar al servidor. Por favor, inténtelo de nuevo más tarde.",
+              icon: "error",
+              confirmButtonText: "Aceptar",
+            });
+          }
+        } else {
+          Swal.fire({
+            title: "Error",
+            text: "Hubo un problema al procesar la solicitud.",
+            icon: "error",
+            confirmButtonText: "Aceptar",
+          });
+          console.error("Error en la solicitud AJAX:", xhr.responseText);
+        }
+      },
+    });
+  }
+
+  sendRequest(); // Iniciar el envío de la solicitud
 }
+
 
 // Código adicional para manejar formularios con "fetch" y carga de educadores
 
