@@ -1,6 +1,6 @@
 $(document).ready(function () {
   // Formulario dinámico de educador
-  // Mostrar campos adicionales si se selecciona "Estudiante"
+  // Mostrar campos adicionales si se selecciona s
   $("#tipo_participante").change(function () {
     if ($(this).val() === "estudiante") {
       $("#grupo_numero_control").show();
